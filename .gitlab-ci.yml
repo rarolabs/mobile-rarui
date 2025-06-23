@@ -1,4 +1,4 @@
-image: ghcr.io/cirruslabs/flutter:latest
+image: ghcr.io/cirruslabs/flutter:3.32.4
 
 stages:
 - test
@@ -6,12 +6,12 @@ stages:
 test_job:
     stage: test
     script:
-    - echo "Rodando testes na versão $FLUTTER_VERSION"
+    - echo "Executando testes"
     - flutter test
 
     rules:
-    - if: '$CI_PIPELINE_SOURCE == "merge_request_event" && $CI_MERGE_REQUEST_TARGET_BRANCH_NAME =~ /^candidate$/'
+    - if: '$CI_PIPELINE_SOURCE == "merge_request_event" && ($CI_MERGE_REQUEST_TARGET_BRANCH_NAME == "candidate" || $CI_MERGE_REQUEST_TARGET_BRANCH_NAME == "develop")'
       when: always
-    - if: '$CI_PIPELINE_SOURCE == "push" && $CI_COMMIT_BRANCH =~ /^candidate$/'
+    - if: '$CI_PIPELINE_SOURCE == "push" && $CI_COMMIT_BRANCH == "candidate" || $CI_COMMIT_BRANCH == "develop"'
       when: always
     - when: never
