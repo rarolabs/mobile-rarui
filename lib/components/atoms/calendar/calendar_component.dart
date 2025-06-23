@@ -1,9 +1,6 @@
-import 'package:clean_calendar/clean_calendar.dart';
 import 'package:flutter/material.dart';
 
 import '../../../shared_widget/loading_widget.dart';
-import '../../../theme/sizes.dart';
-import '../../../theme/tokens.dart';
 import '../../../utils/interfaces/behaviour.dart';
 import '../../../utils/interfaces/style.dart';
 import '../../../utils/mixin/component.dart';
@@ -188,165 +185,166 @@ class _CalendarWidgetState extends State<_CalendarWidget> {
 
   /// Retorna o símbols de mês pelo idioma informado
   /// Caso idioma seja diferente de português o valor padrão é inglês
-  Months? get _getSymbolMonthByLocale {
-    if (widget.locale == null || widget.locale == const Locale('pt', 'BR')) {
-      return const Months(
-        january: 'Janeiro',
-        february: 'Fevereiro',
-        march: 'Março',
-        april: 'Abril',
-        may: 'Maio',
-        june: 'Junho',
-        july: 'Julho',
-        august: 'Agosto',
-        september: 'Setembro',
-        october: 'Outubro',
-        november: 'Novembro',
-        december: 'Dezembro',
-      );
-    }
+  // Months? get _getSymbolMonthByLocale {
+  //   if (widget.locale == null || widget.locale == const Locale('pt', 'BR')) {
+  //     return const Months(
+  //       january: 'Janeiro',
+  //       february: 'Fevereiro',
+  //       march: 'Março',
+  //       april: 'Abril',
+  //       may: 'Maio',
+  //       june: 'Junho',
+  //       july: 'Julho',
+  //       august: 'Agosto',
+  //       september: 'Setembro',
+  //       october: 'Outubro',
+  //       november: 'Novembro',
+  //       december: 'Dezembro',
+  //     );
+  //   }
 
-    return null;
-  }
+  //   return null;
+  // }
 
   /// Retorna o símbols do dia da semana pelo idioma informado
-  Weekdays? get _getSymbolWeekdaysByLocale {
-    if (widget.locale == null || widget.locale == const Locale('pt', 'BR')) {
-      return const Weekdays(
-        monday: 'S',
-        tuesday: 'T',
-        wednesday: 'Q',
-        thursday: 'Q',
-        friday: 'S',
-        saturday: 'S',
-        sunday: 'D',
-      );
-    }
+  // Weekdays? get _getSymbolWeekdaysByLocale {
+  //   if (widget.locale == null || widget.locale == const Locale('pt', 'BR')) {
+  //     return const Weekdays(
+  //       monday: 'S',
+  //       tuesday: 'T',
+  //       wednesday: 'Q',
+  //       thursday: 'Q',
+  //       friday: 'S',
+  //       saturday: 'S',
+  //       sunday: 'D',
+  //     );
+  //   }
 
-    return const Weekdays(
-      monday: 'M',
-      tuesday: 'T',
-      wednesday: 'W',
-      thursday: 'T',
-      friday: 'F',
-      saturday: 'S',
-      sunday: 'S',
-    );
-  }
+  //   return const Weekdays(
+  //     monday: 'M',
+  //     tuesday: 'T',
+  //     wednesday: 'W',
+  //     thursday: 'T',
+  //     friday: 'F',
+  //     saturday: 'S',
+  //     sunday: 'S',
+  //   );
+  // }
 
   @override
   Widget build(BuildContext context) {
-    return Semantics(
-      label: widget.labelSemantics,
-      hint: widget.hintSemantics,
-      child: CleanCalendar(
-        // * Parametros
-        startDateOfCalendar: _firstDate,
-        initialViewMonthDateTime: _currentDate ?? _currentMonth,
-        currentDateOfCalendar: _currentDate,
-        endDateOfCalendar: _lastDate,
+    return SizedBox();
+    // return Semantics(
+    //   label: widget.labelSemantics,
+    //   hint: widget.hintSemantics,
+    //   child: CleanCalendar(
+    //     // * Parametros
+    //     startDateOfCalendar: _firstDate,
+    //     initialViewMonthDateTime: _currentDate ?? _currentMonth,
+    //     currentDateOfCalendar: _currentDate,
+    //     endDateOfCalendar: _lastDate,
 
-        // * Configura a exibição das datas do mês anterior e posterior
-        leadingTrailingDatesProperties: DatesProperties(
-          hide: true,
-          disable: true,
-        ),
+    //     // * Configura a exibição das datas do mês anterior e posterior
+    //     leadingTrailingDatesProperties: DatesProperties(
+    //       hide: true,
+    //       disable: true,
+    //     ),
 
-        // * Configura o texto exibido no campo mês
-        monthsSymbol: _getSymbolMonthByLocale,
+    //     // * Configura o texto exibido no campo mês
+    //     monthsSymbol: _getSymbolMonthByLocale,
 
-        // * Configura o design dos icones
-        headerProperties: HeaderProperties(
-          monthYearDecoration: MonthYearDecoration(monthYearTextStyle: widget.style.monthStyle),
-          navigatorDecoration: NavigatorDecoration(
-            // ! Não é possível usar um QIcon, pois o plugin exige um Icon
-            navigateLeftButtonIcon: Icon(
-              Icons.arrow_back_ios_new_rounded,
-              color: isBeforeFirstDate ? widget.style.iconDisableColor : widget.style.iconActiveColor,
-              size: QSizes.x20,
-            ),
-            navigateRightButtonIcon: Icon(
-              Icons.arrow_forward_ios_rounded,
-              color: isAfterLastDate ? widget.style.iconDisableColor : widget.style.iconActiveColor,
-              size: QSizes.x20,
-            ),
-            navigatorResetButtonIcon: Icon(
-              Icons.calendar_today,
-              color: QTheme.colors.transparent, // está ocultando este botão
-              size: QSizes.x20,
-            ),
-          ),
-        ),
+    //     // * Configura o design dos icones
+    //     headerProperties: HeaderProperties(
+    //       monthYearDecoration: MonthYearDecoration(monthYearTextStyle: widget.style.monthStyle),
+    //       navigatorDecoration: NavigatorDecoration(
+    //         // ! Não é possível usar um QIcon, pois o plugin exige um Icon
+    //         navigateLeftButtonIcon: Icon(
+    //           Icons.arrow_back_ios_new_rounded,
+    //           color: isBeforeFirstDate ? widget.style.iconDisableColor : widget.style.iconActiveColor,
+    //           size: QSizes.x20,
+    //         ),
+    //         navigateRightButtonIcon: Icon(
+    //           Icons.arrow_forward_ios_rounded,
+    //           color: isAfterLastDate ? widget.style.iconDisableColor : widget.style.iconActiveColor,
+    //           size: QSizes.x20,
+    //         ),
+    //         navigatorResetButtonIcon: Icon(
+    //           Icons.calendar_today,
+    //           color: QTheme.colors.transparent, // está ocultando este botão
+    //           size: QSizes.x20,
+    //         ),
+    //       ),
+    //     ),
 
-        // * Configura a tipografia dos dias da semana
-        weekdaysProperties: WeekdaysProperties(
-          generalWeekdaysDecoration: WeekdaysDecoration(
-            weekdayTextStyle: widget.style.dayOfWeekStyle,
-          ),
-        ),
+    //     // * Configura a tipografia dos dias da semana
+    //     weekdaysProperties: WeekdaysProperties(
+    //       generalWeekdaysDecoration: WeekdaysDecoration(
+    //         weekdayTextStyle: widget.style.dayOfWeekStyle,
+    //       ),
+    //     ),
 
-        // * Controla o texto exibido nos dias da semana
-        weekdaysSymbol: _getSymbolWeekdaysByLocale,
-        calendarDatesSectionMaxHeight: QSizes.x228, //230,
+    //     // * Controla o texto exibido nos dias da semana
+    //     weekdaysSymbol: _getSymbolWeekdaysByLocale,
+    //     calendarDatesSectionMaxHeight: QSizes.x228, //230,
 
-        // * Configura o design do dia selecionado
-        currentDateProperties: DatesProperties(
-          datesDecoration: DatesDecoration(
-            datesBackgroundColor: widget.style.selectedColor,
-            datesBorderColor: widget.style.selectedColor,
-            datesTextColor: widget.style.textSelectedColor,
-            datesBorderRadius: QSizes.x200,
-            datesTextStyle: widget.style.dateStyle,
-          ),
-        ),
-        datePickerCalendarView: DatePickerCalendarView.monthView,
-        dateSelectionMode: DatePickerSelectionMode.singleOrMultiple,
-        enableDenseSplashForDates: true,
-        enableDenseViewForDates: true,
+    //     // * Configura o design do dia selecionado
+    //     currentDateProperties: DatesProperties(
+    //       datesDecoration: DatesDecoration(
+    //         datesBackgroundColor: widget.style.selectedColor,
+    //         datesBorderColor: widget.style.selectedColor,
+    //         datesTextColor: widget.style.textSelectedColor,
+    //         datesBorderRadius: QSizes.x200,
+    //         datesTextStyle: widget.style.dateStyle,
+    //       ),
+    //     ),
+    //     datePickerCalendarView: DatePickerCalendarView.monthView,
+    //     dateSelectionMode: DatePickerSelectionMode.singleOrMultiple,
+    //     enableDenseSplashForDates: true,
+    //     enableDenseViewForDates: true,
 
-        // * Dates Configs
-        startWeekday: WeekDay.sunday,
-        generalDatesProperties: DatesProperties(
-          disableWeekends: widget.disabledWeekends,
-          firstSelectableDate: _firstDate,
-          lastDateCanBeSelected: widget.lastDateCanBeSelected,
-          datesDecoration: DatesDecoration(
-            datesBackgroundColor: widget.style.backgroundColor,
-            datesBorderColor: widget.style.borderColor,
-            datesTextStyle: widget.style.dateStyle,
-            disabledColor: widget.style.disabledColor,
-          ),
-        ),
+    //     // * Dates Configs
+    //     startWeekday: WeekDay.sunday,
+    //     generalDatesProperties: DatesProperties(
+    //       disableWeekends: widget.disabledWeekends,
+    //       firstSelectableDate: _firstDate,
+    //       lastDateCanBeSelected: widget.lastDateCanBeSelected,
+    //       datesDecoration: DatesDecoration(
+    //         datesBackgroundColor: widget.style.backgroundColor,
+    //         datesBorderColor: widget.style.borderColor,
+    //         datesTextStyle: widget.style.dateStyle,
+    //         disabledColor: widget.style.disabledColor,
+    //       ),
+    //     ),
 
-        // * Callback quando clica nos icones
-        onCalendarViewDate: (value) {
-          final bool isChanged = (value.year == _firstDate.year && value.month == _firstDate.month + 1) ||
-              (value.year == _lastDate.year && value.month == _lastDate.month - 1) ||
-              (value.year == _firstDate.year && value.month == _firstDate.month) ||
-              (value.year == _lastDate.year && value.month == _lastDate.month);
+    //     // * Callback quando clica nos icones
+    //     onCalendarViewDate: (value) {
+    //       final bool isChanged = (value.year == _firstDate.year && value.month == _firstDate.month + 1) ||
+    //           (value.year == _lastDate.year && value.month == _lastDate.month - 1) ||
+    //           (value.year == _firstDate.year && value.month == _firstDate.month) ||
+    //           (value.year == _lastDate.year && value.month == _lastDate.month);
 
-          _currentMonth = value;
+    //       _currentMonth = value;
 
-          /// Deve fazer o setState somente nesta regra do  [isChanged]
-          /// para deixar mais fluido o scroll do componente
-          Future.delayed(Durations.short4, () => isChanged ? setState(() {}) : null);
-        },
+    //       /// Deve fazer o setState somente nesta regra do  [isChanged]
+    //       /// para deixar mais fluido o scroll do componente
+    //       Future.delayed(Durations.short4, () => isChanged ? setState(() {}) : null);
+    //     },
 
-        // * Callback quando seleciona a data
-        onSelectedDates: (dates) {
-          if (dates.isNotEmpty) {
-            _currentDate = dates.first;
-          } else {
-            _currentDate = null;
-          }
-          setState(() {});
+    //     // * Callback quando seleciona a data
+    //     onSelectedDates: (dates) {
+    //       if (dates.isNotEmpty) {
+    //         _currentDate = dates.first;
+    //       } else {
+    //         _currentDate = null;
+    //       }
+    //       setState(() {});
 
-          Future.delayed(
-            Durations.short3,
-            () => widget.onSelectedDate?.call(dates.isNotEmpty ? dates.first : null),
-          );
-        },
-      ),
-    );
+    //       Future.delayed(
+    //         Durations.short3,
+    //         () => widget.onSelectedDate?.call(dates.isNotEmpty ? dates.first : null),
+    //       );
+    //     },
+    //   ),
+    // );
   }
 }
