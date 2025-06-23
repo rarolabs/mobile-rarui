@@ -1,4 +1,4 @@
-image: cirruslabs/flutter:stable
+image: ghcr.io/cirruslabs/flutter:latest
 
 stages:
 - test
