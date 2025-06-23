@@ -4,6 +4,7 @@ stages:
 - test
 
 test_job:
+    interruptible: true
     stage: test
     script:
       - echo "Executando testes"
