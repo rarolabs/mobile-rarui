@@ -1,4 +1,4 @@
-image: cirrusci/flutter:stable
+image: cirruslabs/flutter:stable
 
 stages:
 - test
