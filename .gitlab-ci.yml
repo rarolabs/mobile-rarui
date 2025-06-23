@@ -6,12 +6,11 @@ stages:
 test_job:
     stage: test
     script:
-    - echo "Executando testes"
-    - flutter test
-
+      - echo "Executando testes"
+      - flutter test
     rules:
-    - if: '$CI_PIPELINE_SOURCE == "merge_request_event" && ($CI_MERGE_REQUEST_TARGET_BRANCH_NAME == "candidate" || $CI_MERGE_REQUEST_TARGET_BRANCH_NAME == "develop")'
-      when: always
-    - if: '$CI_PIPELINE_SOURCE == "push" && $CI_COMMIT_BRANCH == "candidate" || $CI_COMMIT_BRANCH == "develop"'
-      when: always
-    - when: never
+      - if: '$CI_PIPELINE_SOURCE == "merge_request_event" && ($CI_MERGE_REQUEST_TARGET_BRANCH_NAME == "candidate" || $CI_MERGE_REQUEST_TARGET_BRANCH_NAME == "develop")'
+        when: always
+      - if: '$CI_PIPELINE_SOURCE == "push" && $CI_COMMIT_BRANCH == "candidate" || $CI_COMMIT_BRANCH == "develop"'
+        when: always
+      - when: never
