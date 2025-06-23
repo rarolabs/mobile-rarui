@@ -1,0 +1,21 @@
+image: cirrusci/flutter:3.32.4
+
+stages:
+- test
+
+test_job:
+  stage: test
+  script:
+    - echo "Rodando testes na versão $FLUTTER_VERSION"
+    - flutter test
+  rules:
+    - if: $CI_PIPELINE_SOURCE == 'push'
+    - if: $CI_PIPELINE_SOURCE == 'merge_request_event'
+    - if: $CI_MERGE_REQUEST_TARGET_BRANCH_NAME =~ /^(develop|candidate)$/
+      when: always
+    - when: never
+
+  
+
+
+
