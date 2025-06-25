@@ -9,3 +9,4 @@ export 'proof_page/proof_page_component.dart';
 export 'state_fail_page/state_fail_page.dart';
 export 'state_success_page/state_success_page.dart';
 export 'transfer_template_page/transfer_template_page.dart';
+export 'example_material/example_material_page.dart';
