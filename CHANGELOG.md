@@ -3,6 +3,7 @@
 ## Adicionado
 [18] - Componente [RCircularProgressIndicator]
 [18] - Componente [RLinearProgressIndicator]
+[22] - Componente [RSnackBar]
 
 ## Corrigido
 
