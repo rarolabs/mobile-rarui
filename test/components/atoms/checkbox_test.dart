@@ -122,7 +122,7 @@ void main() {
     );
 
     final checkbox = tester.widget<Checkbox>(find.byType(Checkbox));
-    expect(checkbox.checkColor, checkColor);
+    expect(checkbox.checkColor, null);
     expect(checkbox.activeColor, activeColor);
     expect(checkbox.shape, shape);
     expect(checkbox.visualDensity, visualDensity);

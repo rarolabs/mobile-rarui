@@ -41,7 +41,7 @@ class _RCheckboxState extends State<RCheckbox> {
       value: _value,
       shape: widget.shape,
       onChanged: widget.onChanged != null ? _onChanged : null,
-      checkColor: widget.checkColor,
+      checkColor: widget.onChanged != null ? widget.checkColor : null,
       activeColor: widget.activeColor,
       visualDensity: widget.visualDensity,
       side: BorderSide(
