@@ -1,11 +1,12 @@
 # 0.0.1
 
 ## Adicionado
-[3] Componente linear progress indicator
+[18] - Componente [RCircularProgressIndicator]
+[18] - Componente [RLinearProgressIndicator]
 
 ## Corrigido
 
 ## Modificado
 
 ## Removido
-[25/06/2025]- Estrutura antiga de pastas
+- Estrutura antiga de pastas
