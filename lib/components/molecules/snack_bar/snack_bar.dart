@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:rarUI/utils/constants.dart';
 
 class RSnackBar {
   static void show({
@@ -19,7 +20,7 @@ class RSnackBar {
               onPressed: onPressedAction,
             )
           : null,
-      duration: duration ?? Duration(seconds: 3),
+      duration: duration ?? RConstants.defaultDurationToSnackbars,
       behavior: SnackBarBehavior.floating,
       backgroundColor: backgroundColor,
       showCloseIcon: showCloseIcon,
