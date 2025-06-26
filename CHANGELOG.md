@@ -4,6 +4,7 @@
 [18] - Componente [RCircularProgressIndicator]
 [18] - Componente [RLinearProgressIndicator]
 [28] - Componentes [RCard] [RCardOutlined] [RCardFilled]
+[22] - Componente [RSnackBar]
 
 ## Corrigido
 
