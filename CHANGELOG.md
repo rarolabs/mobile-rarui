@@ -6,6 +6,7 @@
 [18] - Componente [RLinearProgressIndicator]
 [22] - Componente [RSnackBar]
 [23] - Componente [RBadge]
+[26] - Componente [RCheckbox]
 
 ## Corrigido
 
