@@ -1,12 +1,13 @@
 # 0.0.1
 
 ## Adicionado
-[3] Componente linear progress indicator
-[22] Componente snackbar
+[18] - Componente [RCircularProgressIndicator]
+[18] - Componente [RLinearProgressIndicator]
+[22] - Componente [RSnackBar]
 
 ## Corrigido
 
 ## Modificado
 
 ## Removido
-[25/06/2025]- Estrutura antiga de pastas
+- Estrutura antiga de pastas
