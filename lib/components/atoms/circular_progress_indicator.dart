@@ -33,18 +33,18 @@ class RCircularProgressIndicator extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CircularProgressIndicator(
-      semanticsLabel: semanticsLabel,
-      semanticsValue: semanticsValue,
+      color: color,
+      value: value,
+      padding: padding,
+      trackGap: trackGap,
+      strokeCap: strokeCap,
+      valueColor: valueColor,
+      strokeAlign: strokeAlign,
+      constraints: constraints,
       strokeWidth: strokeWidth,
       backgroundColor: backgroundColor,
-      color: color,
-      strokeCap: strokeCap,
-      strokeAlign: strokeAlign,
-      value: value,
-      constraints: constraints,
-      trackGap: trackGap,
-      padding: padding,
-      valueColor: valueColor,
+      semanticsLabel: semanticsLabel,
+      semanticsValue: semanticsValue,
     );
   }
 }
