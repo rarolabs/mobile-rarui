@@ -6,7 +6,7 @@ class RSwitch extends StatefulWidget {
     required this.initialValue, 
     required this.onChanged,
     this.activeThumbIcon,
-    this.incativeThumbIcon,
+    this.inactiveThumbIcon,
     this.activeColor,
     this.activeTrackColor,
     this.inactiveThumbColor,
@@ -15,7 +15,7 @@ class RSwitch extends StatefulWidget {
   final bool initialValue;
   final Function(bool)? onChanged;
   final IconData? activeThumbIcon;
-  final IconData? incativeThumbIcon;
+  final IconData? inactiveThumbIcon;
   final Color? activeColor;
   final Color? activeTrackColor;
   final Color? inactiveThumbColor;
@@ -32,7 +32,7 @@ class _RSwitchState extends State<RSwitch> {
   void initState() {
     super.initState();
     _value = widget.initialValue;
-    _thumbIcon = _value ? widget.activeThumbIcon : widget.incativeThumbIcon;
+    _thumbIcon = _value ? widget.activeThumbIcon : widget.inactiveThumbIcon;
   }
 
   bool get _isDisabled => widget.onChanged == null;
@@ -40,7 +40,7 @@ class _RSwitchState extends State<RSwitch> {
   _updateState(bool value) {
     setState(() {
       _value = value;
-      _thumbIcon = value ? widget.activeThumbIcon : widget.incativeThumbIcon;
+      _thumbIcon = value ? widget.activeThumbIcon : widget.inactiveThumbIcon;
     });
   }
 
