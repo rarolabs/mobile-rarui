@@ -1,10 +1,5 @@
-## 📋 WidgetBook PR
 
-**Link:** [WidgetbookPR](url)
-
----
-
-## �� Descrição
+## � Descrição �
 
 <!-- Escreva aqui a descrição do PR caso seja necessário -->
 
