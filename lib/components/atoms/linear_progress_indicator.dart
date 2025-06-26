@@ -1,18 +1,6 @@
 import 'package:flutter/material.dart';
 
 class RLinearProgressIndicator extends StatelessWidget {
-  final String? semanticsLabel;
-  final String? semanticsValue;
-  final Animation<Color?>? valueColor;
-  final double? minHeight;
-  final double? stopIndicatorRadius;
-  final double? trackGap;
-  final Color? backgroundColor;
-  final Color? stopIndicatorColor;
-  final double? value;
-  final Color? color;
-  final double? borderRadius;
-
   const RLinearProgressIndicator({
     super.key,
     this.semanticsLabel,
@@ -27,6 +15,18 @@ class RLinearProgressIndicator extends StatelessWidget {
     this.color,
     this.borderRadius,
   });
+
+  final String? semanticsLabel;
+  final String? semanticsValue;
+  final Animation<Color?>? valueColor;
+  final double? minHeight;
+  final double? stopIndicatorRadius;
+  final double? trackGap;
+  final Color? backgroundColor;
+  final Color? stopIndicatorColor;
+  final double? value;
+  final Color? color;
+  final double? borderRadius;
 
   @override
   Widget build(BuildContext context) {

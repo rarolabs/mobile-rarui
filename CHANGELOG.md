@@ -2,6 +2,7 @@
 
 ## Adicionado
 [3] Componente linear progress indicator
+[28] [RCard] [RCardOutlined] [RCardFilled]
 
 ## Corrigido
 
