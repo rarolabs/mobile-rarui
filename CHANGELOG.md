@@ -2,6 +2,7 @@
 
 ## Adicionado
 [3] Componente linear progress indicator
+[15] Adiciona o componente switch
 
 ## Corrigido
 
