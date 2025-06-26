@@ -1,14 +1,6 @@
 import 'package:flutter/material.dart';
 
 class RCheckbox extends StatefulWidget {
-  final bool initialValue;
-  final ValueChanged<bool?>? onChanged;
-  final OutlinedBorder? shape;
-  final VisualDensity? visualDensity;
-  final Color? checkColor;
-  final Color? activeColor;
-  final Color? borderColor;
-
   const RCheckbox({
     Key? key,
     this.shape,
@@ -19,6 +11,14 @@ class RCheckbox extends StatefulWidget {
     this.onChanged,
     this.initialValue = false,
   }) : super(key: key);
+
+  final bool initialValue;
+  final Color? checkColor;
+  final Color? activeColor;
+  final Color? borderColor;
+  final OutlinedBorder? shape;
+  final VisualDensity? visualDensity;
+  final ValueChanged<bool?>? onChanged;
 
   @override
   _RCheckboxState createState() => _RCheckboxState();
