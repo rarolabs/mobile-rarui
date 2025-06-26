@@ -1,3 +1,15 @@
-# Video exemplo:
+## 📋 WidgetBook PR
 
-(Coloque aqui o seu Video)
+**Link:** [WidgetbookPR](url)
+
+---
+
+## �� Descrição
+
+<!-- Escreva aqui a descrição do PR caso seja necessário -->
+
+---
+
+## 🎥 Mídia
+
+<!-- Adicione aqui seu vídeo ou imagem -->
