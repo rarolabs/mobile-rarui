@@ -81,6 +81,7 @@ void main() {
             activeColor: activeColor,
             shape: shape,
             visualDensity: visualDensity,
+            onChanged: (_) {},
           ),
         ),
       ),
@@ -94,6 +95,42 @@ void main() {
 
     final side = checkbox.side as BorderSide;
     expect(side.color, borderColor);
+  });
+
+  testWidgets('RCheckbox deve aplicar cor de borda padrão quando desabilitado', (tester) async {
+    const borderColor = Colors.red;
+    const checkColor = Colors.green;
+    const activeColor = Colors.blue;
+    const shape = RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(8)));
+    const visualDensity = VisualDensity(horizontal: 2, vertical: 2);
+
+    await tester.pumpWidget(
+      MaterialApp(
+        home: Scaffold(
+          body: RCheckbox(
+            key: const Key('rcheckbox'),
+            initialValue: false,
+            borderColor: borderColor,
+            checkColor: checkColor,
+            activeColor: activeColor,
+            shape: shape,
+            visualDensity: visualDensity,
+            onChanged: null,
+          ),
+        ),
+      ),
+    );
+
+    final checkbox = tester.widget<Checkbox>(find.byType(Checkbox));
+    expect(checkbox.checkColor, checkColor);
+    expect(checkbox.activeColor, activeColor);
+    expect(checkbox.shape, shape);
+    expect(checkbox.visualDensity, visualDensity);
+
+    final side = checkbox.side as BorderSide;
+    final BuildContext context = tester.element(find.byType(Checkbox));
+    final Color expectedColor = Theme.of(context).unselectedWidgetColor;
+    expect(side.color, expectedColor);
   });
 
   testWidgets('RCheckbox deve ficar desabilitado quando onChanged for null', (tester) async {
