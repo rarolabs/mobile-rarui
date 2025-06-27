@@ -12,3 +12,4 @@ export 'switch/switch.dart';
 export 'badge/badge.dart';
 export 'radio_button/radio_button.dart';
 export 'chips/chip_assist.dart';
+export 'chips/chip_suggestion.dart';
