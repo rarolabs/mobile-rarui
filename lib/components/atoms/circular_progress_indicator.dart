@@ -1,19 +1,6 @@
 import 'package:flutter/material.dart';
 
 class RCircularProgressIndicator extends StatelessWidget {
-  final double? strokeWidth;
-  final Color? color;
-  final Color? backgroundColor;
-  final double? value;
-  final String? semanticsLabel;
-  final String? semanticsValue;
-  final double? trackGap;
-  final EdgeInsetsGeometry? padding;
-  final StrokeCap? strokeCap;
-  final double? strokeAlign;
-  final Animation<Color?>? valueColor;
-  final BoxConstraints? constraints;
-
   const RCircularProgressIndicator({
     super.key,
     this.strokeWidth,
@@ -29,6 +16,19 @@ class RCircularProgressIndicator extends StatelessWidget {
     this.valueColor,
     this.constraints,
   });
+
+  final double? strokeWidth;
+  final Color? color;
+  final Color? backgroundColor;
+  final double? value;
+  final String? semanticsLabel;
+  final String? semanticsValue;
+  final double? trackGap;
+  final EdgeInsetsGeometry? padding;
+  final StrokeCap? strokeCap;
+  final double? strokeAlign;
+  final Animation<Color?>? valueColor;
+  final BoxConstraints? constraints;
 
   @override
   Widget build(BuildContext context) {
