@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:rarUI/components/atoms/circular_progress_indicator.dart';
+import 'package:rarUI/components/atoms/loading/circular_progress_indicator.dart';
 
 void main() {
   testWidgets('Deve renderizar o widget RCircularProgressIndicator corretamente', (tester) async {

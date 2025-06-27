@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:rarUI/components/atoms/switch.dart';
+import 'package:rarUI/components/atoms/switch/switch.dart';
 
 void main() {
   late RSwitch widget;
@@ -11,8 +11,7 @@ void main() {
       onChanged: (bool) {},
     );
   });
-  testWidgets('RSwitch: deve renderizar o componente corretamente',
-      (tester) async {
+  testWidgets('RSwitch: deve renderizar o componente corretamente', (tester) async {
     await tester.pumpWidget(MaterialApp(home: Scaffold(body: widget)));
     final rSwitchFinder = find.byType(RSwitch);
     expect(rSwitchFinder, findsOneWidget);
@@ -20,8 +19,7 @@ void main() {
     expect(rSwitch.initialValue, false);
   });
 
-  testWidgets('RSwitch: deve alterar o valor do componente corretamente',
-      (tester) async {
+  testWidgets('RSwitch: deve alterar o valor do componente corretamente', (tester) async {
     await tester.pumpWidget(MaterialApp(home: Scaffold(body: widget)));
     final switchFinder = find.byType(Switch);
     expect(switchFinder, findsOneWidget);

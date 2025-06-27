@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:rarUI/components/atoms/checkbox.dart';
+import 'package:rarUI/components/atoms/checkbox/checkbox.dart';
 
 void main() {
   testWidgets('RCheckbox deve renderizar com valor inicial falso', (tester) async {
