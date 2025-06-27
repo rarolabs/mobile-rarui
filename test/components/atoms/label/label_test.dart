@@ -3,8 +3,8 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:rarUI/components/atoms/label/label.dart';
 
 void main() {
-  testWidgets('QLabel deve renderizar corretamente', (tester) async {
-    final widget = const QLabel(
+  testWidgets('RLabel deve renderizar corretamente', (tester) async {
+    final widget = const RLabel(
       text: 'Texto de Exemplo',
       style: TextStyle(
         fontSize: 18,
@@ -20,7 +20,7 @@ void main() {
 
     await tester.pumpWidget(MaterialApp(home: Scaffold(body: widget)));
 
-    expect(find.byType(QLabel), findsOneWidget);
+    expect(find.byType(RLabel), findsOneWidget);
 
     final textWidget = tester.widget<Text>(find.byType(Text));
 
@@ -35,7 +35,7 @@ void main() {
     expect(textWidget.overflow, TextOverflow.ellipsis);
 
 
-    final semantics = tester.getSemantics(find.byType(QLabel));
+    final semantics = tester.getSemantics(find.byType(RLabel));
     expect(semantics.label, 'Label semântico');
     expect(semantics.identifier, 'Identificador semântico');
   });

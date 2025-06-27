@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class QLabel extends StatelessWidget {
+class RLabel extends StatelessWidget {
   final String text;
   final TextStyle? style;
   final TextAlign? textAlign;
@@ -9,7 +9,7 @@ class QLabel extends StatelessWidget {
   final String? semanticsLabel;
   final String? semanticsIdentifier;
 
-  const QLabel({
+  const RLabel({
     super.key,
     required this.text,
     this.style,
