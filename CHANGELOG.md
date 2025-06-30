@@ -13,6 +13,7 @@
 [33] - Componente [RLabel]
 [57] - Componente [RDrawer]
 [32] - Componentes [RChipAssist] [RChipFilter] [RChipInput] [RChipSugestion] 
+[41] - Componentes [RAppBar] [RSliverAppBar] [RSliverAppBarMedium] [RSliverAppBarLarge]
 
 ## Corrigido
 
