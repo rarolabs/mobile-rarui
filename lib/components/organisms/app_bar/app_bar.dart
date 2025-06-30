@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class RAppBar extends StatelessWidget {
+class RAppBar extends StatelessWidget implements PreferredSizeWidget {
   RAppBar({
     Key? key,
     this.backgroundColor,
@@ -26,4 +26,7 @@ class RAppBar extends StatelessWidget {
       centerTitle: centerTitle,
     );
   }
+  
+  @override
+  Size get preferredSize => const Size.fromHeight(kToolbarHeight);
 }
