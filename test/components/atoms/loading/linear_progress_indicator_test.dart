@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:rarUI/components/atoms/linear_progress_indicator.dart';
+import 'package:rarUI/components/atoms/loading/linear_progress_indicator.dart';
 
 void main() {
-  testWidgets('linear progress indicator component deve renderizar corretamente', (tester) async {
+  testWidgets('RLinearProgressIndicator: deve renderizar corretamente', (tester) async {
     final widget = await const RLinearProgressIndicator(
       backgroundColor: Colors.red,
       borderRadius: 10,
