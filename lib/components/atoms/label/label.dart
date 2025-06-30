@@ -1,15 +1,7 @@
 import 'package:flutter/material.dart';
 
 class RLabel extends StatelessWidget {
-  final String text;
-  final TextStyle? style;
-  final TextAlign? textAlign;
-  final int? maxLines;
-  final TextOverflow? overflow;
-  final String? semanticsLabel;
-  final String? semanticsIdentifier;
-
-  const RLabel({
+ const RLabel({
     super.key,
     required this.text,
     this.style,
@@ -20,6 +12,14 @@ class RLabel extends StatelessWidget {
     this.semanticsIdentifier,
   });
 
+  final String text;
+  final TextStyle? style;
+  final TextAlign? textAlign;
+  final int? maxLines;
+  final TextOverflow? overflow;
+  final String? semanticsLabel;
+  final String? semanticsIdentifier;
+  
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
