@@ -11,6 +11,7 @@
 [45] - Componente [RListTile]
 [33] - Componente [RRadioButton]
 [06] - Botões
+[57] - Componente [RDrawer]
 [32] - Componentes [RChipAssist] [RChipFilter] [RChipInput] [RChipSugestion] 
 
 ## Corrigido
