@@ -10,6 +10,7 @@
 [26] - Componente [RCheckbox]
 [45] - Componente [RListTile]
 [33] - Componente [RRadioButton]
+[58] - Componentes [RShimmerProvider] [RShimmer] [RShimmerPlaceholder]
 
 ## Corrigido
 
