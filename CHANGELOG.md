@@ -9,6 +9,7 @@
 [23] - Componente [RBadge]
 [26] - Componente [RCheckbox]
 [33] - Componente [RRadioButton]
+[32] - Componentes [RChipAssist] [RChipFilter] [RChipInput] [RChipSugestion] 
 
 ## Corrigido
 
