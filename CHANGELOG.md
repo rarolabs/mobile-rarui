@@ -9,6 +9,7 @@
 [23] - Componente [RBadge]
 [26] - Componente [RCheckbox]
 [33] - Componente [RRadioButton]
+[33] - Componente [RLabel]
 
 ## Corrigido
 
