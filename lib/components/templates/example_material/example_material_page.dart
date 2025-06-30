@@ -23,13 +23,15 @@ class RExampleMaterialPage extends StatelessWidget {
       hint: semanticsHint,
       child: Scaffold(
         appBar: AppBar(title: Text('Material 3 Example')),
-        body: RShimmer(
-          isLoading: isLoading,
-          child: SingleChildScrollView(
+        body: SingleChildScrollView(
+          child: RShimmer(
+            isLoading: isLoading,
+            absorbPointer: true,
             child: Column(
               children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                Wrap(
+                  spacing: 8,
+                  runSpacing: 8,
                   children: [
                     _buildBox(
                       ['surface background', 'onSurface text'],
@@ -43,12 +45,6 @@ class RExampleMaterialPage extends StatelessWidget {
                       Theme.of(context).colorScheme.onInverseSurface,
                       wSize * 0.3,
                     ),
-                  ],
-                ),
-                const SizedBox(height: 20),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
                     _buildBox(
                       ['primary background', 'onPrimary text'],
                       Theme.of(context).colorScheme.primary,
@@ -67,12 +63,6 @@ class RExampleMaterialPage extends StatelessWidget {
                       Theme.of(context).colorScheme.onTertiary,
                       wSize * 0.3,
                     ),
-                  ],
-                ),
-                const SizedBox(height: 20),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
                     _buildBox(
                       ['success background', 'onSuccess text'],
                       Theme.of(context).extension<ExtraColors>()!.success,
@@ -94,17 +84,17 @@ class RExampleMaterialPage extends StatelessWidget {
                   ],
                 ),
                 const SizedBox(height: 20),
-                _buildButtonRow(context, Theme.of(context).colorScheme.primary, null),
+                _buildButtonWrap(context, Theme.of(context).colorScheme.primary, null),
                 const SizedBox(height: 20),
-                _buildButtonRow(context, Theme.of(context).colorScheme.secondary, null),
+                _buildButtonWrap(context, Theme.of(context).colorScheme.secondary, null),
                 const SizedBox(height: 20),
-                _buildButtonRow(context, Theme.of(context).colorScheme.tertiary, null),
+                _buildButtonWrap(context, Theme.of(context).colorScheme.tertiary, null),
                 const SizedBox(height: 20),
-                _buildButtonRow(context, Theme.of(context).colorScheme.primary, () {}),
+                _buildButtonWrap(context, Theme.of(context).colorScheme.primary, () {}),
                 const SizedBox(height: 20),
-                _buildButtonRow(context, Theme.of(context).colorScheme.secondary, () {}),
+                _buildButtonWrap(context, Theme.of(context).colorScheme.secondary, () {}),
                 const SizedBox(height: 20),
-                _buildButtonRow(context, Theme.of(context).colorScheme.tertiary, () {}),
+                _buildButtonWrap(context, Theme.of(context).colorScheme.tertiary, () {}),
                 const SizedBox(height: 20),
                 _buildToggleableWidgets(context, Theme.of(context).colorScheme.primary),
                 const SizedBox(height: 20),
@@ -130,8 +120,9 @@ class RExampleMaterialPage extends StatelessWidget {
       child: ValueListenableBuilder(
           valueListenable: boolNotifier,
           builder: (context, value, child) {
-            return Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            return Wrap(
+              spacing: 8,
+              runSpacing: 8,
               children: [
                 Checkbox(
                   value: boolNotifier.value,
@@ -177,7 +168,7 @@ class RExampleMaterialPage extends StatelessWidget {
     );
   }
 
-  Widget _buildButtonRow(BuildContext context, Color primaryColor, VoidCallback? onPressed) {
+  Widget _buildButtonWrap(BuildContext context, Color primaryColor, VoidCallback? onPressed) {
     return Theme(
       data: Theme.of(context).copyWith(
         colorScheme: Theme.of(context).colorScheme.copyWith(primary: primaryColor),
@@ -186,8 +177,9 @@ class RExampleMaterialPage extends StatelessWidget {
         builder: (ctx) {
           final colorScheme = Theme.of(ctx).colorScheme;
 
-          return Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          return Wrap(
+            spacing: 8,
+            runSpacing: 8,
             children: [
               ElevatedButton(onPressed: onPressed, child: const Text('Elevated Button')),
               OutlinedButton(

@@ -5,12 +5,14 @@ class RShimmer extends StatefulWidget {
   const RShimmer({
     super.key,
     required this.isLoading,
-    this.ignoring = true,
+    this.ignorePointer = false,
+    this.absorbPointer = false,
     required this.child,
   });
 
   final bool isLoading;
-  final bool ignoring;
+  final bool ignorePointer;
+  final bool absorbPointer;
   final Widget child;
 
   @override
@@ -53,21 +55,24 @@ class _RShimmerState extends State<RShimmer> {
     final shimmerSize = hasValidLayout ? shimmer.size : const Size(300, 200);
     final offset = hasValidLayout ? shimmer.getDescendantOffset(descendant: renderObject) : Offset.zero;
 
-    return IgnorePointer(
-      ignoring: widget.ignoring,
-      child: ShaderMask(
-        blendMode: BlendMode.srcIn,
-        shaderCallback: (bounds) {
-          return gradient.createShader(
-            Rect.fromLTWH(
-              -offset.dx,
-              -offset.dy,
-              shimmerSize.width,
-              shimmerSize.height,
-            ),
-          );
-        },
-        child: widget.child,
+    return AbsorbPointer(
+      absorbing: widget.absorbPointer,
+      child: IgnorePointer(
+        ignoring: widget.ignorePointer,
+        child: ShaderMask(
+          blendMode: BlendMode.srcIn,
+          shaderCallback: (bounds) {
+            return gradient.createShader(
+              Rect.fromLTWH(
+                -offset.dx,
+                -offset.dy,
+                shimmerSize.width,
+                shimmerSize.height,
+              ),
+            );
+          },
+          child: widget.child,
+        ),
       ),
     );
   }
