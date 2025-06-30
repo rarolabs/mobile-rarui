@@ -1,6 +1,7 @@
 # 0.0.1
 
 ## Adicionado
+- [6] Botões
 
 ## Corrigido
 
