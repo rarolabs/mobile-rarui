@@ -11,3 +11,7 @@ export 'cards/card_filled.dart';
 export 'switch/switch.dart';
 export 'badge/badge.dart';
 export 'radio_button/radio_button.dart';
+export 'chips/chip_assist.dart';
+export 'chips/chip_suggestion.dart';
+export 'chips/chip_filter.dart';
+export 'chips/chip_input.dart';
