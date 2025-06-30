@@ -13,6 +13,7 @@
 [33] - Componente [RLabel]
 [57] - Componente [RDrawer]
 [32] - Componentes [RChipAssist] [RChipFilter] [RChipInput] [RChipSugestion] 
+[46] - Componentes [RTextField] [RTextFormField]
 
 ## Corrigido
 
