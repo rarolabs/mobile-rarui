@@ -15,3 +15,5 @@ export 'chips/chip_assist.dart';
 export 'chips/chip_suggestion.dart';
 export 'chips/chip_filter.dart';
 export 'chips/chip_input.dart';
+export 'date_time_pickers/date_picker.dart';
+export 'date_time_pickers/time_picker.dart';
