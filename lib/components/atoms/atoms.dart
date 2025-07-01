@@ -15,3 +15,5 @@ export 'chips/chip_assist.dart';
 export 'chips/chip_suggestion.dart';
 export 'chips/chip_filter.dart';
 export 'chips/chip_input.dart';
+export 'text_field/text_field.dart';
+export 'text_field/text_form_field.dart';
