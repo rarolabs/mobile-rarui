@@ -48,7 +48,7 @@ class RDatePicker extends StatelessWidget {
           errorInvalidText: errorInvalidText,
           fieldHintText: fieldHintText,
           fieldLabelText: fieldLabelText,
-          locale: locale,
+          locale: locale ?? Localizations.localeOf(context),
         );
 
         if (picked != null) {
