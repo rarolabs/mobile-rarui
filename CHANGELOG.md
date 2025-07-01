@@ -18,7 +18,6 @@
 [32] - Componentes [RChipAssist] [RChipFilter] [RChipInput] [RChipSugestion] 
 [46] - Componentes [RTextField] [RTextFormField]
 [41] - Componentes [RAppBar] [RSliverAppBar] [RSliverAppBarMedium] [RSliverAppBarLarge]
-[64] - Componente [RExpansionTile]
 
 ## Corrigido
 
