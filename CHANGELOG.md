@@ -10,6 +10,12 @@
 [26] - Componente [RCheckbox]
 [45] - Componente [RListTile]
 [33] - Componente [RRadioButton]
+[06] - Botões
+[27] - Componentes [RPrimaryTabBar] [RSecondaryTabBar]
+[33] - Componente [RLabel]
+[57] - Componente [RDrawer]
+[32] - Componentes [RChipAssist] [RChipFilter] [RChipInput] [RChipSugestion] 
+[46] - Componentes [RTextField] [RTextFormField]
 
 ## Corrigido
 
