@@ -1,6 +1,7 @@
 # 0.0.1
 
 ## Adicionado
+[68] - Componente [RRefreshIndicator]
 [50] - Divider
 [15] - Componente [RSwitch]
 [18] - Componente [RCircularProgressIndicator]
