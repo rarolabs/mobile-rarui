@@ -35,7 +35,6 @@ class RSearchBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SearchBar(
-      key: key,
       controller: controller,
       focusNode: focusNode,
       hintText: hintText,
