@@ -1,20 +1,22 @@
 import 'package:flutter/material.dart';
 
 class RCaroussel extends StatelessWidget {
-  final List<Widget> items;
-  final double itemSpacing;
-  final EdgeInsetsGeometry? padding;
-  final bool showIndicator;
-  final double height;
-
-  const RCaroussel({
+   const RCaroussel({
     super.key,
     required this.items,
     this.itemSpacing = 8.0,
     this.padding,
     this.showIndicator = false,
     this.height = 200,
-  });
+    this.durationForEachItem = const Duration(milliseconds: 300),
+  }); 
+  
+  final List<Widget> items;
+  final double itemSpacing;
+  final EdgeInsetsGeometry? padding;
+  final bool showIndicator;
+  final double height;
+  final Duration durationForEachItem;
 
   @override
   Widget build(BuildContext context) {
@@ -46,6 +48,7 @@ class RCaroussel extends StatelessWidget {
               child: _PageIndicator(
                 controller: controller,
                 itemCount: items.length,
+                duration: durationForEachItem,
               ),
             ),
         ],
@@ -57,10 +60,13 @@ class RCaroussel extends StatelessWidget {
 class _PageIndicator extends StatefulWidget {
   final PageController controller;
   final int itemCount;
+   final Duration duration;
+  
 
   const _PageIndicator({
     required this.controller,
     required this.itemCount,
+    required this.duration,
   });
 
   @override
@@ -96,7 +102,7 @@ class _PageIndicatorState extends State<_PageIndicator> {
       children: List.generate(widget.itemCount, (index) {
         final isActive = index == _currentPage;
         return AnimatedContainer(
-          duration: const Duration(milliseconds: 300),
+          duration:  widget.duration,
           margin: const EdgeInsets.symmetric(horizontal: 4),
           width: isActive ? 12 : 8,
           height: 8,
