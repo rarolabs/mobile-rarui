@@ -1,6 +1,7 @@
 # 0.0.1
 
 ## Adicionado
+[68] - Componente [RRefreshIndicator]
 [50] - Divider
 [15] - Componente [RSwitch]
 [18] - Componente [RCircularProgressIndicator]
@@ -15,11 +16,12 @@
 [27] - Componentes [RPrimaryTabBar] [RSecondaryTabBar]
 [33] - Componente [RLabel]
 [57] - Componente [RDrawer]
-[32] - Componentes [RChipAssist] [RChipFilter] [RChipInput] [RChipSugestion] 
+[32] - Componentes [RChipAssist] [RChipFilter] [RChipInput] [RChipSugestion]
 [46] - Componentes [RTextField] [RTextFormField]
 [41] - Componentes [RAppBar] [RSliverAppBar] [RSliverAppBarMedium] [RSliverAppBarLarge]
 [61] - Componente [RIcon]
 [52] - Componentes [RSlider] [RSliderRange]
+[42] - Componentes [RDatePicker] [RTimePicker]
 [42] - Componente [RTooltip]
 
 ## Corrigido
