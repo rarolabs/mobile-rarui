@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class RCaroussel extends StatelessWidget {
-   const RCaroussel({
+class RCaroussel extends StatefulWidget {
+  const RCaroussel({
     super.key,
     required this.items,
     this.itemSpacing = 8.0,
@@ -9,8 +9,8 @@ class RCaroussel extends StatelessWidget {
     this.showIndicator = false,
     this.height = 200,
     this.durationForEachItem = const Duration(milliseconds: 300),
-  }); 
-  
+  });
+
   final List<Widget> items;
   final double itemSpacing;
   final EdgeInsetsGeometry? padding;
@@ -19,36 +19,53 @@ class RCaroussel extends StatelessWidget {
   final Duration durationForEachItem;
 
   @override
-  Widget build(BuildContext context) {
-    final controller = PageController(viewportFraction: 0.8);
+  State<RCaroussel> createState() => _RCarousselState();
+}
 
+class _RCarousselState extends State<RCaroussel> {
+  late final PageController _controller;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = PageController(viewportFraction: 0.8);
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
     return SizedBox(
-      height: height + (showIndicator ? 24 : 0),
+      height: widget.height + (widget.showIndicator ? 24 : 0),
       child: Column(
         children: [
           Expanded(
             child: PageView.builder(
-              controller: controller,
-              itemCount: items.length,
+              controller: _controller,
+              itemCount: widget.items.length,
               itemBuilder: (context, index) => Padding(
                 padding: EdgeInsets.only(
-                  left: index == 0 ? 0 : itemSpacing / 2,
-                  right: index == items.length - 1 ? 0 : itemSpacing / 2,
+                  left: index == 0 ? 0 : widget.itemSpacing / 2,
+                  right: index == widget.items.length - 1 ? 0 : widget.itemSpacing / 2,
                 ),
                 child: Padding(
-                  padding: padding ?? EdgeInsets.zero,
-                  child: items[index],
+                  padding: widget.padding ?? EdgeInsets.zero,
+                  child: widget.items[index],
                 ),
               ),
             ),
           ),
-          if (showIndicator)
+          if (widget.showIndicator)
             Padding(
               padding: const EdgeInsets.only(top: 8.0),
               child: _PageIndicator(
-                controller: controller,
-                itemCount: items.length,
-                duration: durationForEachItem,
+                controller: _controller,
+                itemCount: widget.items.length,
+                duration: widget.durationForEachItem,
               ),
             ),
         ],

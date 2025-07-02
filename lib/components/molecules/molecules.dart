@@ -15,3 +15,4 @@ export 'tabs/primary_tab.dart';
 export 'tabs/primary_tab_bar.dart';
 export 'tabs/secondary_tab.dart';
 export 'tabs/secondary_tab_bar.dart';
+export 'caroussel/caroussel.dart';
