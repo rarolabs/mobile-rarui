@@ -1,6 +1,7 @@
 # 0.0.1
 
 ## Adicionado
+[50] - Divider
 [15] - Componente [RSwitch]
 [18] - Componente [RCircularProgressIndicator]
 [18] - Componente [RLinearProgressIndicator]
@@ -17,6 +18,7 @@
 [32] - Componentes [RChipAssist] [RChipFilter] [RChipInput] [RChipSugestion] 
 [46] - Componentes [RTextField] [RTextFormField]
 [41] - Componentes [RAppBar] [RSliverAppBar] [RSliverAppBarMedium] [RSliverAppBarLarge]
+[61] - Componente [RIcon]
 [52] - Componentes [RSlider] [RSliderRange]
 
 ## Corrigido
