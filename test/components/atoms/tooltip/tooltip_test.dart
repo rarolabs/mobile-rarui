@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:rarUI/components/atoms/tooltip/tooltip.dart';
 
-import '../badge/badge_test.dart';
+import '../../utils/widget_tester_extension.dart';
 
 void main() {
   testWidgets('Tooltip simples é renderizado com mensagem', (tester) async {
