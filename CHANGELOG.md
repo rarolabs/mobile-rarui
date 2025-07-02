@@ -20,6 +20,7 @@
 [41] - Componentes [RAppBar] [RSliverAppBar] [RSliverAppBarMedium] [RSliverAppBarLarge]
 [61] - Componente [RIcon]
 [52] - Componentes [RSlider] [RSliderRange]
+[60] - Componentes [RAvatar]
 
 ## Corrigido
 
