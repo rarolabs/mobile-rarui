@@ -53,7 +53,7 @@ class RAvatar extends StatelessWidget {
 
   Container buildBadgedWidget(double? badge, Brightness brightness) {
     Color badgeColor = brightness == Brightness.dark
-        ? const Color.fromRGBO(255, 102, 107, 100)
+        ? const Color.fromARGB(255, 243, 91, 80)
         : Colors.red;
     if (badge != null) {
       if (badge < 100) {
