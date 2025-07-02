@@ -19,3 +19,6 @@ export 'switch/switch.dart';
 export 'text_field/text_field.dart';
 export 'text_field/text_form_field.dart';
 export 'avatar/avatar.dart';
+export 'slider/slider.dart';
+export 'slider/slider_range.dart';
+export 'icon/icon.dart';
