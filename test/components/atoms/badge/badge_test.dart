@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:rarUI/components/atoms/badge/badge.dart';
 
+import '../../utils/widget_tester_extension.dart';
+
 void main() {
   testWidgets('Componente é renderizado com texto.', (tester) async {
     Key rBadgeKey = const Key("wTesting");
@@ -43,16 +45,4 @@ void main() {
     final findText = find.text("text.empty");
     expect(findText, findsNothing);
   });
-}
-
-extension WidgetTesting on WidgetTester {
-  Future<void> pumpMaterialComponent(Widget component) async {
-    await this.pumpWidget(
-      MaterialApp(
-        home: Scaffold(
-          body: component,
-        ),
-      ),
-    );
-  }
 }
