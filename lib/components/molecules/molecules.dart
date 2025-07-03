@@ -11,6 +11,8 @@ export 'buttons/outlined_button.dart';
 export 'buttons/text_button.dart';
 export 'drawer/drawer.dart';
 export 'list_tile/list_tile.dart';
+export 'search_anchor/search_anchor.dart';
+export 'search_bar/search_bar.dart';
 export 'snack_bar/snack_bar.dart';
 export 'tabs/primary_tab.dart';
 export 'tabs/primary_tab_bar.dart';

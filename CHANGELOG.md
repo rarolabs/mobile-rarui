@@ -28,6 +28,7 @@
 [42] - Componente [RTooltip]
 [59] - Component [RImage]
 [63] - Componente [RRichText]
+[66] - Componentes [RSearchBar] [RSearchAnchor]
 
 ## Corrigido
 
