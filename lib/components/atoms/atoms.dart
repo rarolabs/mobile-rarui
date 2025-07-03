@@ -23,4 +23,5 @@ export 'text_field/text_form_field.dart';
 export 'slider/slider.dart';
 export 'slider/slider_range.dart';
 export 'icon/icon.dart';
+export 'tooltip/tooltip.dart';
 export 'image/image.dart';
