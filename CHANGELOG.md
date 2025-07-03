@@ -25,6 +25,7 @@
 [61] - Componente [RIcon]
 [52] - Componentes [RSlider] [RSliderRange]
 [42] - Componentes [RDatePicker] [RTimePicker]
+[59] - Component [RImage]
 
 ## Corrigido
 
