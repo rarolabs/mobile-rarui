@@ -21,6 +21,7 @@
 [46] - Componentes [RTextField] [RTextFormField]
 [47] - Componentes [RDialog] [RDialogFullscreen]
 [41] - Componentes [RAppBar] [RSliverAppBar] [RSliverAppBarMedium] [RSliverAppBarLarge]
+[64] - Componente [RExpansionTile]
 [61] - Componente [RIcon]
 [52] - Componentes [RSlider] [RSliderRange]
 [42] - Componentes [RDatePicker] [RTimePicker]
