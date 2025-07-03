@@ -2,18 +2,6 @@ import 'package:flutter/material.dart';
 
 // ignore: must_be_immutable
 class RAvatar extends StatelessWidget {
-  final double? topNumber;
-  final Widget? child;
-  final Color? backgroundColor;
-  final ImageProvider<Object>? backgroundImage;
-  final ImageProvider<Object>? foregroundImage;
-  final ImageErrorListener? onBackgroundImageError;
-  final ImageErrorListener? onForegroundImageError;
-  final Color? foregroundColor;
-  final double? radius;
-  final double? minRadius;
-  final double? maxRadius;
-
   const RAvatar({
     super.key,
     this.topNumber,
@@ -28,6 +16,18 @@ class RAvatar extends StatelessWidget {
     this.onBackgroundImageError,
     this.onForegroundImageError,
   });
+
+  final double? topNumber;
+  final Widget? child;
+  final Color? backgroundColor;
+  final ImageProvider<Object>? backgroundImage;
+  final ImageProvider<Object>? foregroundImage;
+  final ImageErrorListener? onBackgroundImageError;
+  final ImageErrorListener? onForegroundImageError;
+  final Color? foregroundColor;
+  final double? radius;
+  final double? minRadius;
+  final double? maxRadius;
 
   BoxDecoration boxDecoration(Color topNumberColor) {
     return BoxDecoration(
