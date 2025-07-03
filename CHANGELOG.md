@@ -24,6 +24,7 @@
 [64] - Componente [RExpansionTile]
 [61] - Componente [RIcon]
 [52] - Componentes [RSlider] [RSliderRange]
+[60] - Componentes [RAvatar]
 [42] - Componentes [RDatePicker] [RTimePicker]
 [42] - Componente [RTooltip]
 [59] - Component [RImage]
