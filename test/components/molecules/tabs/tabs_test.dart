@@ -5,6 +5,8 @@ import 'package:rarUI/components/molecules/tabs/primary_tab_bar.dart';
 import 'package:rarUI/components/molecules/tabs/secondary_tab.dart';
 import 'package:rarUI/components/molecules/tabs/secondary_tab_bar.dart';
 
+import '../../utils/widget_tester_extension.dart';
+
 void main() {
   testWidgets('Componente é renderizado - Primary.', (tester) async {
     Key rTabKey = const Key("PrimaryTabBar");
@@ -44,7 +46,10 @@ void main() {
         key: rTabKey,
         tabs: [
           RSecondaryTab(label: label1, badgeText: '12'),
-          RSecondaryTab(label: label2, badgeText: '99+',),
+          RSecondaryTab(
+            label: label2,
+            badgeText: '99+',
+          ),
         ],
         tabsContent: [
           Container(color: Colors.red),
@@ -71,12 +76,21 @@ void main() {
       RPrimaryTabBar(
         key: wKey,
         tabs: [
-          RPrimaryTab(label: label1, icon: Icon(Icons.car_crash_outlined),),
+          RPrimaryTab(
+            label: label1,
+            icon: Icon(Icons.car_crash_outlined),
+          ),
           RPrimaryTab(label: label2, icon: Icon(Icons.airplanemode_active)),
         ],
         tabsContent: [
-          Container(color: Colors.amber, child: Text("V1"),),
-          Container(color: Colors.greenAccent, child: Text("V2"),),
+          Container(
+            color: Colors.amber,
+            child: Text("V1"),
+          ),
+          Container(
+            color: Colors.greenAccent,
+            child: Text("V2"),
+          ),
         ],
       ),
     );
@@ -89,16 +103,4 @@ void main() {
     currentTabIndex = wKey.currentState?.currentTabIndex;
     expect(currentTabIndex, 1);
   });
-}
-
-extension WidgetTesting on WidgetTester {
-  Future<void> pumpMaterialComponent(Widget component) async {
-    await this.pumpWidget(
-      MaterialApp(
-        home: Scaffold(
-          body: component,
-        ),
-      ),
-    );
-  }
 }
