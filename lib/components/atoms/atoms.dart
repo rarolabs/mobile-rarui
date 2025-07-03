@@ -25,3 +25,4 @@ export 'slider/slider_range.dart';
 export 'icon/icon.dart';
 export 'tooltip/tooltip.dart';
 export 'image/image.dart';
+export 'rich_text/rich_text.dart';
