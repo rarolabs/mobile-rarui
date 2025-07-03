@@ -1,0 +1,41 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_test/flutter_test.dart';
+import 'package:rarUI/rarui.dart';
+
+void main() {
+  late ValueNotifier<double> initialValue = ValueNotifier(0.0);
+  late Widget widget;
+  setUpAll(() {
+    widget = ListenableBuilder(
+        listenable: initialValue,
+        builder: (context, _) {
+          return RSlider(
+            value: initialValue.value,
+            onChanged: (value) {
+              initialValue.value = value;
+            },
+          );
+        });
+  });
+  testWidgets('RSlider: deve renderizar o componente corretamente',
+      (tester) async {
+    await tester.pumpWidget(MaterialApp(home: Scaffold(body: widget)));
+    final rSliderFinder = find.byType(RSlider);
+    expect(rSliderFinder, findsOneWidget);
+    var rSlider = tester.widget<RSlider>(rSliderFinder);
+    expect(rSlider.value, 0.0);
+  });
+
+  testWidgets('RSLider: deve alterar o valor do componente corretamente',
+      (tester) async {
+    await tester.pumpWidget(MaterialApp(home: Scaffold(body: widget)));
+    var sliderFinder = find.byType(RSlider);
+    var slider = tester.widget<RSlider>(sliderFinder);
+    expect(slider.value, 0.0);
+    await tester.drag(sliderFinder, Offset(10.0, 0.0));
+    await tester.pumpAndSettle();
+    sliderFinder = find.byType(RSlider);
+    slider = tester.widget<RSlider>(sliderFinder);
+    expect(slider.value, greaterThan(0.0));
+  });
+}
