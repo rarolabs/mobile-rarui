@@ -27,6 +27,7 @@
 [42] - Componentes [RDatePicker] [RTimePicker]
 [42] - Componente [RTooltip]
 [59] - Component [RImage]
+[63] - Componente [RRichText]
 
 ## Corrigido
 
