@@ -35,6 +35,7 @@
 ## Corrigido
 
 ## Modificado
+[71] - Componentes [RRadioButton]
 
 ## Removido
 - Estrutura antiga de pastas
