@@ -11,6 +11,7 @@ void main() {
         builder: (context, _) {
           return RSlider(
             value: initialValue.value,
+            showSubtitle: true,
             onChanged: (value) {
               initialValue.value = value;
             },
@@ -24,6 +25,11 @@ void main() {
     expect(rSliderFinder, findsOneWidget);
     var rSlider = tester.widget<RSlider>(rSliderFinder);
     expect(rSlider.value, 0.0);
+    expect(rSlider.showSubtitle, true);
+    final textMinFinder = find.text(rSlider.min.toString());
+    final textMaxFinder = find.text(rSlider.max.toString());
+    expect(textMinFinder, findsOne);
+    expect(textMaxFinder, findsOne);
   });
 
   testWidgets('RSLider: deve alterar o valor do componente corretamente',

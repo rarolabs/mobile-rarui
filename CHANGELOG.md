@@ -36,6 +36,7 @@
 
 ## Modificado
 [71] - Componentes [RRadioButton]
+[72] - Adiciona legenda no componente [RSlider]
 
 ## Removido
 - Estrutura antiga de pastas
