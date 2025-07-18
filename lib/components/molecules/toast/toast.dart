@@ -3,7 +3,7 @@ import 'package:rarUI/utils/extensions/theme_extension.dart';
 
 enum RToastType { clean, soft, solid }
 
-enum RToastStyle { success, warning, error, info }
+enum RToastStyle { success, warning, error, info, custom }
 
 class RToast extends StatelessWidget {
   final String title;
@@ -14,6 +14,8 @@ class RToast extends StatelessWidget {
   final RToastStyle style;
   final bool isDense;
   final VoidCallback? onClose;
+  final Color? customColor;
+  final IconData? customIcon;
 
   RToast({
     required this.title,
@@ -24,7 +26,12 @@ class RToast extends StatelessWidget {
     required this.style,
     required this.isDense,
     this.onClose,
-  });
+    this.customColor,
+    this.customIcon,
+  }) : assert(
+          style != RToastStyle.custom || (customColor != null && customIcon != null),
+          'customColor and customIcon must be provided when using RToastStyle.custom',
+        );
 
   @override
   Widget build(BuildContext context) {
@@ -35,42 +42,51 @@ class RToast extends StatelessWidget {
     Icon icon;
     IconData iconData;
     ColorScheme colorScheme;
+    Color primaryColor;
     double iconSize = isDense ? 16 : 24;
 
     switch (style) {
       case RToastStyle.success:
         iconData = Icons.check_circle;
         colorScheme = Theme.of(context).extension<ExtraColors>()!.success;
+        primaryColor = colorScheme.primary;
         break;
       case RToastStyle.warning:
         iconData = Icons.warning;
         colorScheme = Theme.of(context).extension<ExtraColors>()!.warning;
+        primaryColor = colorScheme.primary;
         break;
       case RToastStyle.error:
         iconData = Icons.error;
         colorScheme = Theme.of(context).extension<ExtraColors>()!.error;
+        primaryColor = colorScheme.primary;
         break;
       case RToastStyle.info:
         iconData = Icons.info;
         colorScheme = Theme.of(context).extension<ExtraColors>()!.info;
+        primaryColor = colorScheme.primary;
+        break;
+      case RToastStyle.custom:
+        iconData = customIcon!;
+        primaryColor = customColor!;
         break;
     }
 
     icon = Icon(
       iconData,
       size: iconSize,
-      color: type == RToastType.solid ? onSurface : colorScheme.primary,
+      color: type == RToastType.solid ? onSurface : primaryColor,
     );
 
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
       decoration: BoxDecoration(
-        color: colorScheme.primary.withValues(alpha: type == RToastType.solid ? 1.0 : 0.1),
+        color: primaryColor.withValues(alpha: type == RToastType.solid ? 1.0 : 0.1),
         gradient: type == RToastType.clean
             ? LinearGradient(
                 // Faixa lateral sem intrinsic height
                 // Avaliar se vale o contornar o intrinsic height assim
-                colors: [colorScheme.primary, Theme.of(context).colorScheme.surface],
+                colors: [primaryColor, Theme.of(context).colorScheme.surface],
                 stops: [0.01, 0.01],
               )
             : null,
