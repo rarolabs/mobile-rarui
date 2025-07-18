@@ -35,13 +35,13 @@ void main() {
   testWidgets('RSLider: deve alterar o valor do componente corretamente',
       (tester) async {
     await tester.pumpWidget(MaterialApp(home: Scaffold(body: widget)));
-    var sliderFinder = find.byType(RSlider);
-    var slider = tester.widget<RSlider>(sliderFinder);
-    expect(slider.value, 0.0);
+    var rSliderFinder = find.byType(RSlider);
+    var rSlider = tester.widget<RSlider>(rSliderFinder);
+    expect(rSlider.value, 0.0);
+    var sliderFinder = find.byType(Slider);
     await tester.drag(sliderFinder, Offset(10.0, 0.0));
     await tester.pumpAndSettle();
-    sliderFinder = find.byType(RSlider);
-    slider = tester.widget<RSlider>(sliderFinder);
+    var slider = tester.widget<Slider>(sliderFinder);
     expect(slider.value, greaterThan(0.0));
   });
 }

@@ -36,7 +36,7 @@
 
 ## Modificado
 [71] - Componentes [RRadioButton]
-[72] - Adiciona legenda no componente [RSlider]
+[72] - Componentes [RSlider] [RSliderRange]
 
 ## Removido
 - Estrutura antiga de pastas
