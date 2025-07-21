@@ -31,6 +31,7 @@
 [63] - Componente [RRichText]
 [66] - Componentes [RSearchBar] [RSearchAnchor]
 [65] - Componentes [RDropdownButton] [RDropdownMenu]
+[58] - Componentes [RShimmerProvider] [RShimmer] [RShimmerPlaceholder]
 
 ## Corrigido
 

@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:rarUI/rarui.dart';
 import 'package:rarUI/utils/extensions/theme_extension.dart';
 
 class RExampleMaterialPage extends StatelessWidget {
   final String? semanticsLabel;
   final String? semanticsHint;
+  final bool isLoading;
 
   RExampleMaterialPage({
     this.semanticsLabel,
     this.semanticsHint,
+    this.isLoading = false,
   });
 
   final boolNotifier = ValueNotifier<bool>(false);
@@ -21,93 +24,86 @@ class RExampleMaterialPage extends StatelessWidget {
       child: Scaffold(
         appBar: AppBar(title: Text('Material 3 Example')),
         body: SingleChildScrollView(
-          child: Column(
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  _buildBox(
-                    ['surface background', 'onSurface text'],
-                    Theme.of(context).colorScheme.surface,
-                    Theme.of(context).colorScheme.onSurface,
-                    wSize * 0.3,
-                  ),
-                  _buildBox(
-                    ['inverse surface background', 'onInverseSurface text'],
-                    Theme.of(context).colorScheme.inverseSurface,
-                    Theme.of(context).colorScheme.onInverseSurface,
-                    wSize * 0.3,
-                  ),
-                ],
-              ),
-              const SizedBox(height: 20),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  _buildBox(
-                    ['primary background', 'onPrimary text'],
-                    Theme.of(context).colorScheme.primary,
-                    Theme.of(context).colorScheme.onPrimary,
-                    wSize * 0.3,
-                  ),
-                  _buildBox(
-                    ['secondary background', 'onSecondary text'],
-                    Theme.of(context).colorScheme.secondary,
-                    Theme.of(context).colorScheme.onSecondary,
-                    wSize * 0.3,
-                  ),
-                  _buildBox(
-                    ['tertiary background', 'onTertiary text'],
-                    Theme.of(context).colorScheme.tertiary,
-                    Theme.of(context).colorScheme.onTertiary,
-                    wSize * 0.3,
-                  ),
-                ],
-              ),
-              const SizedBox(height: 20),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  _buildBox(
-                    ['success background', 'onSuccess text'],
-                    Theme.of(context).extension<ExtraColors>()!.success,
-                    Theme.of(context).colorScheme.onPrimary,
-                    wSize * 0.3,
-                  ),
-                  _buildBox(
-                    ['warning background', 'onWarning text'],
-                    Theme.of(context).extension<ExtraColors>()!.warning,
-                    Theme.of(context).colorScheme.onPrimary,
-                    wSize * 0.3,
-                  ),
-                  _buildBox(
-                    ['error background', 'onError text'],
-                    Theme.of(context).colorScheme.error,
-                    Theme.of(context).colorScheme.onError,
-                    wSize * 0.3,
-                  ),
-                ],
-              ),
-              const SizedBox(height: 20),
-              _buildButtonRow(context, Theme.of(context).colorScheme.primary, null),
-              const SizedBox(height: 20),
-              _buildButtonRow(context, Theme.of(context).colorScheme.secondary, null),
-              const SizedBox(height: 20),
-              _buildButtonRow(context, Theme.of(context).colorScheme.tertiary, null),
-              const SizedBox(height: 20),
-              _buildButtonRow(context, Theme.of(context).colorScheme.primary, () {}),
-              const SizedBox(height: 20),
-              _buildButtonRow(context, Theme.of(context).colorScheme.secondary, () {}),
-              const SizedBox(height: 20),
-              _buildButtonRow(context, Theme.of(context).colorScheme.tertiary, () {}),
-              const SizedBox(height: 20),
-              _buildToggleableWidgets(context, Theme.of(context).colorScheme.primary),
-              const SizedBox(height: 20),
-              _buildToggleableWidgets(context, Theme.of(context).colorScheme.secondary),
-              const SizedBox(height: 20),
-              _buildToggleableWidgets(context, Theme.of(context).colorScheme.tertiary),
-              const SizedBox(height: 20),
-            ],
+          child: RShimmer(
+            isLoading: isLoading,
+            absorbPointer: true,
+            child: Column(
+              children: [
+                Wrap(
+                  spacing: 8,
+                  runSpacing: 8,
+                  children: [
+                    _buildBox(
+                      ['surface background', 'onSurface text'],
+                      Theme.of(context).colorScheme.surface,
+                      Theme.of(context).colorScheme.onSurface,
+                      wSize * 0.3,
+                    ),
+                    _buildBox(
+                      ['inverse surface background', 'onInverseSurface text'],
+                      Theme.of(context).colorScheme.inverseSurface,
+                      Theme.of(context).colorScheme.onInverseSurface,
+                      wSize * 0.3,
+                    ),
+                    _buildBox(
+                      ['primary background', 'onPrimary text'],
+                      Theme.of(context).colorScheme.primary,
+                      Theme.of(context).colorScheme.onPrimary,
+                      wSize * 0.3,
+                    ),
+                    _buildBox(
+                      ['secondary background', 'onSecondary text'],
+                      Theme.of(context).colorScheme.secondary,
+                      Theme.of(context).colorScheme.onSecondary,
+                      wSize * 0.3,
+                    ),
+                    _buildBox(
+                      ['tertiary background', 'onTertiary text'],
+                      Theme.of(context).colorScheme.tertiary,
+                      Theme.of(context).colorScheme.onTertiary,
+                      wSize * 0.3,
+                    ),
+                    _buildBox(
+                      ['success background', 'onSuccess text'],
+                      Theme.of(context).extension<ExtraColors>()!.success,
+                      Theme.of(context).colorScheme.onPrimary,
+                      wSize * 0.3,
+                    ),
+                    _buildBox(
+                      ['warning background', 'onWarning text'],
+                      Theme.of(context).extension<ExtraColors>()!.warning,
+                      Theme.of(context).colorScheme.onPrimary,
+                      wSize * 0.3,
+                    ),
+                    _buildBox(
+                      ['error background', 'onError text'],
+                      Theme.of(context).colorScheme.error,
+                      Theme.of(context).colorScheme.onError,
+                      wSize * 0.3,
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 20),
+                _buildButtonWrap(context, Theme.of(context).colorScheme.primary, null),
+                const SizedBox(height: 20),
+                _buildButtonWrap(context, Theme.of(context).colorScheme.secondary, null),
+                const SizedBox(height: 20),
+                _buildButtonWrap(context, Theme.of(context).colorScheme.tertiary, null),
+                const SizedBox(height: 20),
+                _buildButtonWrap(context, Theme.of(context).colorScheme.primary, () {}),
+                const SizedBox(height: 20),
+                _buildButtonWrap(context, Theme.of(context).colorScheme.secondary, () {}),
+                const SizedBox(height: 20),
+                _buildButtonWrap(context, Theme.of(context).colorScheme.tertiary, () {}),
+                const SizedBox(height: 20),
+                _buildToggleableWidgets(context, Theme.of(context).colorScheme.primary),
+                const SizedBox(height: 20),
+                _buildToggleableWidgets(context, Theme.of(context).colorScheme.secondary),
+                const SizedBox(height: 20),
+                _buildToggleableWidgets(context, Theme.of(context).colorScheme.tertiary),
+                const SizedBox(height: 20),
+              ],
+            ),
           ),
         ),
       ),
@@ -124,8 +120,9 @@ class RExampleMaterialPage extends StatelessWidget {
       child: ValueListenableBuilder(
           valueListenable: boolNotifier,
           builder: (context, value, child) {
-            return Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            return Wrap(
+              spacing: 8,
+              runSpacing: 8,
               children: [
                 Checkbox(
                   value: boolNotifier.value,
@@ -171,7 +168,7 @@ class RExampleMaterialPage extends StatelessWidget {
     );
   }
 
-  Widget _buildButtonRow(BuildContext context, Color primaryColor, VoidCallback? onPressed) {
+  Widget _buildButtonWrap(BuildContext context, Color primaryColor, VoidCallback? onPressed) {
     return Theme(
       data: Theme.of(context).copyWith(
         colorScheme: Theme.of(context).colorScheme.copyWith(primary: primaryColor),
@@ -180,8 +177,9 @@ class RExampleMaterialPage extends StatelessWidget {
         builder: (ctx) {
           final colorScheme = Theme.of(ctx).colorScheme;
 
-          return Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          return Wrap(
+            spacing: 8,
+            runSpacing: 8,
             children: [
               ElevatedButton(onPressed: onPressed, child: const Text('Elevated Button')),
               OutlinedButton(
