@@ -31,11 +31,14 @@
 [63] - Componente [RRichText]
 [66] - Componentes [RSearchBar] [RSearchAnchor]
 [65] - Componentes [RDropdownButton] [RDropdownMenu]
+[74] - Componentes [RModal]
+[72] - Componente Switch com texto
 [75] - Componente [RToast]
 
 ## Corrigido
 
 ## Modificado
+[71] - Componentes [RRadioButton]
 
 ## Removido
 - Estrutura antiga de pastas
