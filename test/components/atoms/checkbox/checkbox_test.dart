@@ -133,6 +133,26 @@ void main() {
     expect(side.color, expectedColor);
   });
 
+
+  testWidgets('RCheckbox deve renderizar corretamente com label', (tester) async {
+    await tester.pumpWidget(
+      MaterialApp(
+        home: Scaffold(
+          body: RCheckbox(
+            key: const Key('rcheckbox'),
+            initialValue: true,
+            label: 'Label teste',
+          ),
+        ),
+      ),
+    );
+
+    final checkboxFinder = find.byType(RCheckbox);
+    expect(checkboxFinder, findsOneWidget);
+    final checkbox = tester.widget<RCheckbox>(checkboxFinder);
+    expect(checkbox.label, 'Label teste');
+  });
+
   testWidgets('RCheckbox deve ficar desabilitado quando onChanged for null', (tester) async {
     await tester.pumpWidget(
       MaterialApp(
@@ -156,4 +176,5 @@ void main() {
     final checkboxAfterTap = tester.widget<Checkbox>(find.byType(Checkbox));
     expect(checkboxAfterTap.value, isFalse);
   });
+
 }
