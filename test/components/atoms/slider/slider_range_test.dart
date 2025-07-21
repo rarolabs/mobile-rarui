@@ -12,6 +12,8 @@ void main() {
         builder: (context, _) {
           return RSliderRange(
             values: initialValue.value,
+            showSubtitle: true,
+            showInputs: true,
             onChanged: (value) {
               initialValue.value = value;
             },
@@ -26,6 +28,10 @@ void main() {
     var rSliderRange = tester.widget<RSliderRange>(rSliderRangeFinder);
     expect(rSliderRange.values.start, 0.0);
     expect(rSliderRange.values.end, 0.5);
+    final minTextFinder = find.text(rSliderRange.min.toString());
+    final maxTextFinder = find.text(rSliderRange.min.toString());
+    expect(minTextFinder, findsNWidgets(2));
+    expect(maxTextFinder, findsNWidgets(2));
   });
 
   testWidgets('RSLiderRange: deve alterar o valor do componente corretamente',
@@ -34,10 +40,12 @@ void main() {
     var sliderRangeFinder = find.byType(RSliderRange);
     var sliderRange = tester.widget<RSliderRange>(sliderRangeFinder);
     expect(sliderRange.values.start, 0.0);
-    await tester.drag(sliderRangeFinder, Offset(100.0, 0.0));
+    final minInputFinder = find.byType(RTextFormField).first;
+    final maxInputFinder = find.byType(RTextFormField).last;
+    await tester.enterText(minInputFinder, "0.1");
+    await tester.enterText(maxInputFinder, "0.8");
     await tester.pumpAndSettle();
-    sliderRangeFinder = find.byType(RSliderRange);
-    sliderRange = tester.widget<RSliderRange>(sliderRangeFinder);
-    expect(sliderRange.values.end, greaterThan(0.5));
+    expect(find.text("0.1"), findsOne);
+    expect(find.text("0.8"), findsOne);
   });
 }

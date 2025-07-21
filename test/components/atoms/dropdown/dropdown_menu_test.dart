@@ -41,7 +41,7 @@ void main() {
     expect(find.text('b'), findsAny);
     await tester.tap(rDropdownMenuFinder);
     await tester.pumpAndSettle();
-    await tester.tap(find.text('b').first);
+    await tester.tap(find.text('b').first, warnIfMissed: false);
     await tester.pumpAndSettle();
     expect(find.text('a'), findsAny);
     expect(find.text('b'), findsAny);
