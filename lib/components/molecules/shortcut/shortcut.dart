@@ -10,6 +10,7 @@ class RShortcut extends StatelessWidget {
   final VoidCallback? onTap;
   final int maxLines;
   final double minHeight;
+  final double maxHeight;
 
   const RShortcut({
     super.key,
@@ -22,6 +23,7 @@ class RShortcut extends StatelessWidget {
     this.onTap,
     this.maxLines = 2,
     this.minHeight = 103,
+    this.maxHeight = 103,
   });
 
   @override
@@ -31,6 +33,7 @@ class RShortcut extends StatelessWidget {
     return ConstrainedBox(
       constraints: BoxConstraints(
         minHeight: minHeight,
+        maxHeight: maxHeight,
       ),
       child: Material(
         borderRadius: BorderRadius.circular(8),
