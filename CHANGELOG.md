@@ -31,6 +31,7 @@
 [63] - Componente [RRichText]
 [66] - Componentes [RSearchBar] [RSearchAnchor]
 [65] - Componentes [RDropdownButton] [RDropdownMenu]
+[80] - [Shortcut]
 
 ## Corrigido
 
