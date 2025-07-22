@@ -12,6 +12,7 @@ class RSlider extends StatefulWidget {
     this.max = 1.0,
     this.divisions,
     this.label,
+    this.showSubtitle = false,
     this.activeColor,
     this.inactiveColor,
     this.secondaryActiveColor,
@@ -29,6 +30,7 @@ class RSlider extends StatefulWidget {
   final double max;
   final int? divisions;
   final String? label;
+  final bool showSubtitle;
   final Color? activeColor;
   final Color? inactiveColor;
   final Color? secondaryActiveColor;
@@ -68,22 +70,39 @@ class _RSliderState extends State<RSlider> {
       data: sliderTheme.copyWith(
         valueIndicatorShape: PaddleSliderValueIndicatorShape(),
       ),
-      child: Slider(
-        value: _value,
-        secondaryTrackValue: widget.secondaryTrackValue,
-        onChanged: !_isDisabled ? _onChanged : null,
-        onChangeStart: widget.onChangeStart,
-        onChangeEnd: widget.onChangeEnd,
-        min: widget.min,
-        max: widget.max,
-        divisions: widget.divisions,
-        label: widget.label,
-        activeColor: widget.activeColor,
-        inactiveColor: widget.inactiveColor,
-        secondaryActiveColor: widget.secondaryActiveColor,
-        thumbColor: widget.thumbColor,
-        focusNode: widget.focusNode,
-        allowedInteraction: widget.allowedInteraction,
+      child: Column(
+        children: [
+          Slider(
+            value: _value,
+            secondaryTrackValue: widget.secondaryTrackValue,
+            onChanged: !_isDisabled ? _onChanged : null,
+            onChangeStart: widget.onChangeStart,
+            onChangeEnd: widget.onChangeEnd,
+            min: widget.min,
+            max: widget.max,
+            divisions: widget.divisions,
+            label: widget.label,
+            activeColor: widget.activeColor,
+            inactiveColor: widget.inactiveColor,
+            secondaryActiveColor: widget.secondaryActiveColor,
+            thumbColor: widget.thumbColor,
+            focusNode: widget.focusNode,
+            allowedInteraction: widget.allowedInteraction,
+          ),
+          Visibility(
+            visible: widget.showSubtitle,
+            child: Padding(
+              padding: EdgeInsetsGeometry.symmetric(horizontal: 16.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text("${widget.min}"),
+                  Text("${widget.max}"),
+                ],
+              ),
+            ),
+          )
+        ],
       ),
     );
   }

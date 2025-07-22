@@ -15,6 +15,7 @@ class RExampleMaterialPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final wSize = MediaQuery.sizeOf(context).width;
+    final colorScheme = Theme.of(context).colorScheme;
     return Semantics(
       label: semanticsLabel,
       hint: semanticsHint,
@@ -26,87 +27,29 @@ class RExampleMaterialPage extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  _buildBox(
-                    ['surface background', 'onSurface text'],
-                    Theme.of(context).colorScheme.surface,
-                    Theme.of(context).colorScheme.onSurface,
-                    wSize * 0.3,
-                  ),
-                  _buildBox(
-                    ['inverse surface background', 'onInverseSurface text'],
-                    Theme.of(context).colorScheme.inverseSurface,
-                    Theme.of(context).colorScheme.onInverseSurface,
-                    wSize * 0.3,
-                  ),
+                  _buildBox('surface', colorScheme.surface, colorScheme.onSurface, wSize * 0.16),
+                  _buildBox('inverse surface', colorScheme.inverseSurface, colorScheme.onInverseSurface, wSize * 0.16),
+                  _buildBox('primary', colorScheme.primary, colorScheme.onPrimary, wSize * 0.16),
+                  _buildBox('secondary', colorScheme.secondary, colorScheme.onSecondary, wSize * 0.16),
+                  _buildBox('tertiary', colorScheme.tertiary, colorScheme.onTertiary, wSize * 0.16),
                 ],
               ),
               const SizedBox(height: 20),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  _buildBox(
-                    ['primary background', 'onPrimary text'],
-                    Theme.of(context).colorScheme.primary,
-                    Theme.of(context).colorScheme.onPrimary,
-                    wSize * 0.3,
-                  ),
-                  _buildBox(
-                    ['secondary background', 'onSecondary text'],
-                    Theme.of(context).colorScheme.secondary,
-                    Theme.of(context).colorScheme.onSecondary,
-                    wSize * 0.3,
-                  ),
-                  _buildBox(
-                    ['tertiary background', 'onTertiary text'],
-                    Theme.of(context).colorScheme.tertiary,
-                    Theme.of(context).colorScheme.onTertiary,
-                    wSize * 0.3,
-                  ),
-                ],
-              ),
-              const SizedBox(height: 20),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  _buildBox(
-                    ['success background', 'onSuccess text'],
-                    Theme.of(context).extension<ExtraColors>()!.success,
-                    Theme.of(context).colorScheme.onPrimary,
-                    wSize * 0.3,
-                  ),
-                  _buildBox(
-                    ['warning background', 'onWarning text'],
-                    Theme.of(context).extension<ExtraColors>()!.warning,
-                    Theme.of(context).colorScheme.onPrimary,
-                    wSize * 0.3,
-                  ),
-                  _buildBox(
-                    ['error background', 'onError text'],
-                    Theme.of(context).colorScheme.error,
-                    Theme.of(context).colorScheme.onError,
-                    wSize * 0.3,
-                  ),
+                  _buildBoxScheme('success', Theme.of(context).extension<ExtraColors>()!.success, wSize * 0.2),
+                  _buildBoxScheme('warning', Theme.of(context).extension<ExtraColors>()!.warning, wSize * 0.2),
+                  _buildBoxScheme('error', Theme.of(context).extension<ExtraColors>()!.error, wSize * 0.2),
+                  _buildBoxScheme('info', Theme.of(context).extension<ExtraColors>()!.info, wSize * 0.2),
                 ],
               ),
               const SizedBox(height: 20),
               _buildButtonRow(context, Theme.of(context).colorScheme.primary, null),
-              const SizedBox(height: 20),
-              _buildButtonRow(context, Theme.of(context).colorScheme.secondary, null),
-              const SizedBox(height: 20),
-              _buildButtonRow(context, Theme.of(context).colorScheme.tertiary, null),
-              const SizedBox(height: 20),
               _buildButtonRow(context, Theme.of(context).colorScheme.primary, () {}),
               const SizedBox(height: 20),
-              _buildButtonRow(context, Theme.of(context).colorScheme.secondary, () {}),
-              const SizedBox(height: 20),
-              _buildButtonRow(context, Theme.of(context).colorScheme.tertiary, () {}),
-              const SizedBox(height: 20),
               _buildToggleableWidgets(context, Theme.of(context).colorScheme.primary),
-              const SizedBox(height: 20),
-              _buildToggleableWidgets(context, Theme.of(context).colorScheme.secondary),
-              const SizedBox(height: 20),
-              _buildToggleableWidgets(context, Theme.of(context).colorScheme.tertiary),
-              const SizedBox(height: 20),
+              _buildToggleableWidgets(context, Theme.of(context).extension<ExtraColors>()!.success.primary),
             ],
           ),
         ),
@@ -116,11 +59,7 @@ class RExampleMaterialPage extends StatelessWidget {
 
   Widget _buildToggleableWidgets(BuildContext context, Color color) {
     return Theme(
-      data: Theme.of(context).copyWith(
-        colorScheme: Theme.of(context).colorScheme.copyWith(
-              primary: color,
-            ),
-      ),
+      data: Theme.of(context).copyWith(colorScheme: Theme.of(context).colorScheme.copyWith(primary: color)),
       child: ValueListenableBuilder(
           valueListenable: boolNotifier,
           builder: (context, value, child) {
@@ -211,7 +150,7 @@ class RExampleMaterialPage extends StatelessWidget {
   }
 
   Widget _buildBox(
-    List<String> text,
+    String text,
     Color color,
     Color textColor,
     double size,
@@ -222,16 +161,46 @@ class RExampleMaterialPage extends StatelessWidget {
       width: size,
       height: size,
       child: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: text.map((line) {
-            return Text(
-              line,
-              style: TextStyle(color: textColor),
-            );
-          }).toList(),
+        child: Text(
+          text,
+          style: TextStyle(
+            color: textColor,
+            fontSize: 16.0,
+            fontWeight: FontWeight.bold,
+          ),
         ),
       ),
+    );
+  }
+
+  Widget _buildBoxScheme(
+    String colorName,
+    ColorScheme colorScheme,
+    double size,
+  ) {
+    return Column(
+      children: [
+        (colorScheme.primary, colorScheme.onPrimary, 'primary'),
+        (colorScheme.primaryContainer, colorScheme.onPrimaryContainer, 'primaryContainer'),
+        (colorScheme.primaryFixed, colorScheme.onPrimaryFixed, 'primaryFixed'),
+        (colorScheme.primaryFixedDim, colorScheme.onPrimaryFixedVariant, 'primaryFixedDim'),
+      ].map(
+        (e) {
+          return Container(
+            color: e.$1,
+            width: size,
+            height: size / 4,
+            padding: EdgeInsets.only(left: 8),
+            child: Align(
+              alignment: Alignment.centerLeft,
+              child: Text(
+                colorName + ' (${e.$3})',
+                style: TextStyle(color: e.$2, fontSize: 16.0, fontWeight: FontWeight.bold),
+              ),
+            ),
+          );
+        },
+      ).toList(),
     );
   }
 }
