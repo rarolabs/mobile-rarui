@@ -19,7 +19,8 @@ class RTextButton extends RBaseButton {
 
   @override
   Widget build(BuildContext context) {
-    final textColor = onPressed == null ? disabledForegroundColor : foregroundColor;
+    final textColor =
+        onPressed == null ? disabledForegroundColor : foregroundColor;
 
     final Widget textWidget = Text(
       text,
@@ -49,6 +50,7 @@ class RTextButton extends RBaseButton {
       button = TextButton(
         onPressed: onPressed,
         child: textWidget,
+        style: style,
       );
     }
 
