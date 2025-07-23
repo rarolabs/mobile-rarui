@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class RLabel extends StatelessWidget {
- const RLabel({
+  const RLabel({
     super.key,
     required this.text,
     this.style,
@@ -19,21 +19,19 @@ class RLabel extends StatelessWidget {
   final TextOverflow? overflow;
   final String? semanticsLabel;
   final String? semanticsIdentifier;
-  
+
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final typography = theme.textTheme;
-    final baseStyle = typography.bodyLarge?.copyWith(
-      color: theme.colorScheme.onSurface,  
-    );
+    final baseStyle = typography.bodyLarge?.copyWith(color: theme.colorScheme.onSurface);
 
     return Text(
       text,
-      style: baseStyle?.merge(style), 
+      style: baseStyle?.merge(style),
       textAlign: textAlign ?? TextAlign.start,
       maxLines: maxLines,
-      overflow: overflow ?? TextOverflow.ellipsis,
+      overflow: maxLines != null ? overflow ?? TextOverflow.ellipsis : null,
       semanticsLabel: semanticsLabel,
       semanticsIdentifier: semanticsIdentifier,
     );

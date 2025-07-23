@@ -36,6 +36,7 @@
 [72] - Componente Switch com texto
 [75] - Componente [RToast]
 [78] - Componente [RCalendar]
+[92] - Componente [RTitleSubtitle]
 
 ## Corrigido
 
