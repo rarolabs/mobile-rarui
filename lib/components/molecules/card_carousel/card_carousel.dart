@@ -9,6 +9,8 @@ class RCardCarousel extends StatelessWidget {
     required this.actionLabel,
     required this.cardIcon,
     this.onTap,
+    this.width = 328.0,
+    this.height = 233.0,
   });
 
   final String title;
@@ -16,12 +18,14 @@ class RCardCarousel extends StatelessWidget {
   final String actionLabel;
   final Widget cardIcon;
   final VoidCallback? onTap;
+  final double width;
+  final double height;
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     return RCard(
-      size: Size(328.0, 233.0),
+      size: Size(width, height),
       color: theme.colorScheme.surfaceContainerLowest,
       child: Material(
         clipBehavior: Clip.hardEdge,
