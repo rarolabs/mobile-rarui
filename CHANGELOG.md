@@ -32,8 +32,11 @@
 [66] - Componentes [RSearchBar] [RSearchAnchor]
 [65] - Componentes [RDropdownButton] [RDropdownMenu]
 [80] - [Shortcut]
+[73] - Componente [BottomSheet]
 [74] - Componentes [RModal]
 [72] - Componente Switch com texto
+[75] - Componente [RToast]
+[78] - Componente [RCalendar]
 
 ## Corrigido
 
