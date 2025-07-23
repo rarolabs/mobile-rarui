@@ -35,6 +35,7 @@
 [74] - Componentes [RModal]
 [72] - Componente Switch com texto
 [75] - Componente [RToast]
+[78] - Componente [RCalendar]
 
 ## Corrigido
 
