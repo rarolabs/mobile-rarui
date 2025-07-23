@@ -11,7 +11,8 @@ void main() {
       onChanged: (bool) {},
     );
   });
-  testWidgets('RSwitch: deve renderizar o componente corretamente', (tester) async {
+  testWidgets('RSwitch: deve renderizar o componente corretamente',
+      (tester) async {
     await tester.pumpWidget(MaterialApp(home: Scaffold(body: widget)));
     final rSwitchFinder = find.byType(RSwitch);
     expect(rSwitchFinder, findsOneWidget);
@@ -19,7 +20,8 @@ void main() {
     expect(rSwitch.initialValue, false);
   });
 
-  testWidgets('RSwitch: deve alterar o valor do componente corretamente', (tester) async {
+  testWidgets('RSwitch: deve alterar o valor do componente corretamente',
+      (tester) async {
     await tester.pumpWidget(MaterialApp(home: Scaffold(body: widget)));
     final switchFinder = find.byType(Switch);
     expect(switchFinder, findsOneWidget);
@@ -33,5 +35,16 @@ void main() {
     await tester.pumpAndSettle();
     _switch = tester.widget<Switch>(switchFinder);
     expect(_switch.value, false);
+  });
+  testWidgets('RSwitch: deve renderizar um texto', (tester) async {
+    await tester.pumpWidget(MaterialApp(
+        home: Scaffold(
+            body: RSwitch(
+      initialValue: false,
+      onChanged: (bool) {},
+      text: 'Switch Text',
+    ))));
+    final textFinder = find.text('Switch Text');
+    expect(textFinder, findsOneWidget);
   });
 }
