@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:rarUI/utils/extensions/theme_extension.dart';
 
-class RExampleMaterialPage extends StatelessWidget {
+class RMaterialDemoPage extends StatelessWidget {
   final String? semanticsLabel;
   final String? semanticsHint;
 
-  RExampleMaterialPage({
+  RMaterialDemoPage({
     this.semanticsLabel,
     this.semanticsHint,
   });
