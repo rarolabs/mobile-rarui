@@ -9,9 +9,10 @@ class RBanner extends StatelessWidget {
   final VoidCallback? onTap;
   final VoidCallback? onButtonPressed;
   final ImageProvider? image;
-  final Color backgroundColor;
+  final Color? backgroundColor;
   final Color? titleColor;
   final Color? subtitleColor;
+  final double? height;
 
   const RBanner({
     super.key,
@@ -21,20 +22,23 @@ class RBanner extends StatelessWidget {
     this.image,
     this.onTap,
     this.onButtonPressed,
-    this.backgroundColor = Colors.white,
+    this.backgroundColor,
+    this.height = 160,
     this.titleColor,
     this.subtitleColor,
   });
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        height: 160,
+        height: height,
         padding: const EdgeInsets.all(16),
         decoration: BoxDecoration(
-          color: backgroundColor,
+          color: backgroundColor ?? theme.colorScheme.surface,
           borderRadius: BorderRadius.circular(16),
         ),
         child: Row(
@@ -48,16 +52,16 @@ class RBanner extends StatelessWidget {
                 children: [
                   RLabel(
                     text: title,
-                    style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                          color: titleColor ?? Colors.black,
-                        ),
+                    style: theme.textTheme.titleMedium?.copyWith(
+                      color: titleColor ?? theme.colorScheme.onSurface,
+                    ),
                   ),
                   const SizedBox(height: 8),
                   RLabel(
                     text: subtitle,
-                    style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                          color: subtitleColor ?? Colors.black54,
-                        ),
+                    style: theme.textTheme.bodyMedium?.copyWith(
+                      color: subtitleColor ?? theme.colorScheme.onSurface.withAlpha(179),
+                    ),
                   ),
                   const SizedBox(height: 12),
                   RElevatedButton(
