@@ -1,5 +1,7 @@
 // usada para exportar os templates
 library;
 
-export 'example_material/example_material_page.dart';
+
 export 'status/status.dart';
+export 'demo/material_demo_page.dart';
+export 'demo/theme_demo_page.dart';
