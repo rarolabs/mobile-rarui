@@ -9,8 +9,6 @@ class RPinInput extends StatefulWidget {
     this.onSaved,
     this.obscureText = true,
     this.length = 6,
-    this.emptyFieldBorderColor = const Color(0xFF000000),
-    this.pinFieldBorderColor = const Color(0xFF000000),
     this.validator,
   }) : super(key: key);
 
@@ -18,8 +16,6 @@ class RPinInput extends StatefulWidget {
   final bool obscureText;
   final int length;
   final ValueChanged<String> onComplete;
-  final Color emptyFieldBorderColor;
-  final Color pinFieldBorderColor;
   final FormFieldSetter<String>? onSaved;
   final FormFieldValidator<String>? validator;
 
@@ -69,11 +65,6 @@ class _RPinInputState extends State<RPinInput> {
           textAlign: TextAlign.center,
           decoration: InputDecoration(
             border: OutlineInputBorder(
-              borderSide: BorderSide(
-                color: controllers[index].text.isEmpty
-                    ? widget.emptyFieldBorderColor
-                    : widget.pinFieldBorderColor,
-              ),
               borderRadius: BorderRadius.circular(8.0),
             ),
           ),
@@ -90,8 +81,7 @@ class _RPinInputState extends State<RPinInput> {
               }
               FocusScope.of(context).unfocus();
               widget.onComplete(pinValue);
-            }
-            if (value.length == 1 && index < widget.length - 1) {
+            } else if (value.length == 1 && index < widget.length - 1) {
               FocusScope.of(context).nextFocus();
               pinValue += value;
             } else if (widget.length == index + 1) {
