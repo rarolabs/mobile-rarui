@@ -55,6 +55,7 @@ class _RPinInputState extends State<RPinInput> {
       return SizedBox(
         width: 48.0,
         child: RTextFormField(
+          key: Key('pin_input_$index'),
           controller: controllers[index],
           focusNode: focusNodes[index],
           style: TextStyle(
@@ -75,19 +76,28 @@ class _RPinInputState extends State<RPinInput> {
           onSaved: widget.onSaved,
           onChanged: (value) {
             if (value.length > 1) {
+              if (index == 0) {
+                pinValue = '';
+              }
               for (int i = 0; i < value.length; i++) {
                 if (index + i >= widget.length) break;
                 controllers[index + i].text = value[i];
                 pinValue += value[i];
               }
-              FocusScope.of(context).unfocus();
-              widget.onComplete(pinValue);
+              if (pinValue.length == widget.length) {
+                FocusScope.of(context).unfocus();
+                widget.onComplete(pinValue);
+              } else {
+                FocusScope.of(context).nextFocus();
+              }
             } else if (value.length == 1 && index < widget.length - 1) {
               FocusScope.of(context).nextFocus();
               pinValue += value;
-            } else if (value.isEmpty && index > 0) {
-              FocusScope.of(context).previousFocus();
+            } else if (value.isEmpty) {
               pinValue = pinValue.substring(0, pinValue.length - 1);
+              if (index > 0) {
+                FocusScope.of(context).previousFocus();
+              }
             } else if (widget.length == index + 1) {
               pinValue += value;
               FocusScope.of(context).unfocus();
