@@ -35,6 +35,7 @@
 [73] - Componente [BottomSheet]
 [74] - Componentes [RModal]
 [72] - Componente Switch com texto
+[83] - Componente [Banner]
 [83] - [Balance Display]
 [85] - Componente [OtpTimer]
 [75] - Componente [RToast]
