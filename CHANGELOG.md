@@ -43,6 +43,7 @@
 [92] - Componente [RTitleSubtitle]
 [81] = Componente [RCardCarousel]
 [84] - Componente [RPinInput]
+[86] - Componente [RKeyPixTemplate]
 
 ## Corrigido
 
