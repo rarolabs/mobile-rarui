@@ -21,3 +21,4 @@ export 'tabs/secondary_tab_bar.dart';
 export 'caroussel/caroussel.dart';
 export 'toast/toast.dart';
 export 'card_carousel/card_carousel.dart';
+export 'pin_input/pin_input.dart';
