@@ -31,9 +31,20 @@
 [63] - Componente [RRichText]
 [66] - Componentes [RSearchBar] [RSearchAnchor]
 [65] - Componentes [RDropdownButton] [RDropdownMenu]
+[80] - [Shortcut]
+[73] - Componente [BottomSheet]
 [74] - Componentes [RModal]
 [72] - Componente Switch com texto
+<<<<<<< HEAD
 [83] - Componente [Banner]
+=======
+[83] - [Balance Display]
+[85] - Componente [OtpTimer]
+[75] - Componente [RToast]
+[78] - Componente [RCalendar]
+[92] - Componente [RTitleSubtitle]
+[81] = Componente [RCardCarousel]
+>>>>>>> develop
 
 ## Corrigido
 
