@@ -38,6 +38,7 @@
 [85] - Componente [OtpTimer]
 [75] - Componente [RToast]
 [78] - Componente [RCalendar]
+[92] - Componente [RTitleSubtitle]
 [81] = Componente [RCardCarousel]
 
 ## Corrigido
