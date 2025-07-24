@@ -33,6 +33,7 @@
 [65] - Componentes [RDropdownButton] [RDropdownMenu]
 [74] - Componentes [RModal]
 [72] - Componente Switch com texto
+[87] - Template [Status]
 
 ## Corrigido
 
