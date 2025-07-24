@@ -70,6 +70,7 @@ class _RPinInputState extends State<RPinInput> {
           ),
           keyboardType: TextInputType.number,
           obscureText: widget.obscureText,
+          showCursor: false,
           validator: widget.validator,
           onSaved: widget.onSaved,
           onChanged: (value) {
@@ -84,13 +85,13 @@ class _RPinInputState extends State<RPinInput> {
             } else if (value.length == 1 && index < widget.length - 1) {
               FocusScope.of(context).nextFocus();
               pinValue += value;
+            } else if (value.isEmpty && index > 0) {
+              FocusScope.of(context).previousFocus();
+              pinValue = pinValue.substring(0, pinValue.length - 1);
             } else if (widget.length == index + 1) {
               pinValue += value;
               FocusScope.of(context).unfocus();
               widget.onComplete(pinValue);
-            } else if (value.isEmpty && index > 0) {
-              FocusScope.of(context).previousFocus();
-              pinValue = pinValue.substring(0, pinValue.length - 1);
             }
           },
         ),
