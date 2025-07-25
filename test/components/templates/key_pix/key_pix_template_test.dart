@@ -59,7 +59,7 @@ void main() {
       expect(find.text(descricao), findsOneWidget);
       expect(find.text('Cadastrar chave'), findsOneWidget);
       expect(find.text('Cadastre uma nova chave Pix'), findsOneWidget);
-      expect(find.text('1 de 5 chaves cadastradas'), findsOneWidget);
+      expect(find.text('status'), findsOneWidget);
       expect(find.text('E-mail'), findsOneWidget);
       expect(find.text('exemplo@email.com'), findsOneWidget);
 
