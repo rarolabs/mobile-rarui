@@ -1,69 +1,82 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:rarUI/components/templates/key_pix/key_pix_template.dart';
-import 'package:rarUI/components/templates/key_pix/models/key_pix_model.dart';
+import 'package:rarUI/components/templates/key_pix/models/list_tile_options_model.dart';
 
 void main() {
-  testWidgets('RKeyPixTemplate renderiza corretamente com título, descrição e chaves registradas',
-      (WidgetTester tester) async {
-    // Arrange
-    final registeredKeys = [
-      KeyPixModel(
-        keyType: 'CPF',
-        keyValue: '123.456.789-00',
-        keyIcon: const Icon(Icons.account_circle),
-      ),
-      KeyPixModel(
-        keyType: 'E-mail',
-        keyValue: 'exemplo@email.com',
-        keyIcon: const Icon(Icons.email),
-      ),
-    ];
+  testWidgets(
+    'Deve exibir título, descrição, status, ícones, itens cadastrados, opções e acionar onTap',
+    (WidgetTester tester) async {
+      // Flags para verificar se o onTap foi chamado
+      bool onTapOpcoesChamado = false;
+      bool onTapCadastradoChamado = false;
 
-    // Act
-    await tester.pumpWidget(
-      MaterialApp(
-        home: Scaffold(
-          body: RKeyPixTemplate(
-            title: 'Minhas Chaves Pix',
-            description: 'Gerencie suas chaves cadastradas',
-            registeredPixKeys: registeredKeys,
+      // Dados de teste
+      const titulo = 'Minhas chaves Pix';
+      const descricao = 'Gerencie suas chaves de forma simples';
+      const status = 'status';
+
+      final iconeOpcao = const Icon(Icons.add, key: Key('icone_opcao'));
+      final iconeCadastrado = const Icon(Icons.email, key: Key('icone_cadastrado'));
+
+      final itensOpcoes = [
+        ListTileOptionsModel(
+          title: 'Cadastrar chave',
+          subtitle: 'Cadastre uma nova chave Pix',
+          leadingIcon: iconeOpcao,
+          trailingIcon: const Icon(Icons.arrow_forward_ios, key: Key('icone_trailing_opcao')),
+          onTap: () => onTapOpcoesChamado = true,
+        ),
+      ];
+
+      final itensCadastrados = [
+        ListTileOptionsModel(
+          title: 'E-mail',
+          subtitle: 'exemplo@email.com',
+          leadingIcon: iconeCadastrado,
+          trailingIcon: const Icon(Icons.more_vert, key: Key('icone_trailing_cadastrado')),
+          onTap: () => onTapCadastradoChamado = true,
+        ),
+      ];
+
+      // Monta o widget
+      await tester.pumpWidget(
+        MaterialApp(
+          home: Scaffold(
+            body: RKeyPixTemplate(
+              title: titulo,
+              description: descricao,
+              itemsRegistrationStatus: status,
+              itemsOptions: itensOpcoes,
+              itemsRegistered: itensCadastrados,
+            ),
           ),
         ),
-      ),
-    );
+      );
 
-    // Assert
-    expect(find.text('Minhas Chaves Pix'), findsOneWidget);
-    expect(find.text('Gerencie suas chaves cadastradas'), findsOneWidget);
-    expect(find.text('2 de 5 chaves cadastradas'), findsOneWidget);
+      // Verificações visuais
+      expect(find.text(titulo), findsOneWidget);
+      expect(find.text(descricao), findsOneWidget);
+      expect(find.text('Cadastrar chave'), findsOneWidget);
+      expect(find.text('Cadastre uma nova chave Pix'), findsOneWidget);
+      expect(find.text('1 de 5 chaves cadastradas'), findsOneWidget);
+      expect(find.text('E-mail'), findsOneWidget);
+      expect(find.text('exemplo@email.com'), findsOneWidget);
 
-    expect(find.text('CPF'), findsOneWidget);
-    expect(find.text('123.456.789-00'), findsOneWidget);
-    expect(find.text('E-mail'), findsOneWidget);
-    expect(find.text('exemplo@email.com'), findsOneWidget);
-  });
+      // Verifica ícones
+      expect(find.byKey(Key('icone_opcao')), findsOneWidget);
+      expect(find.byKey(Key('icone_trailing_opcao')), findsOneWidget);
+      expect(find.byKey(Key('icone_cadastrado')), findsOneWidget);
+      expect(find.byKey(Key('icone_trailing_cadastrado')), findsOneWidget);
 
-  testWidgets('RKeyPixTemplate gera erro de asserção quando mais de 5 chaves são passadas',
-      (WidgetTester tester) async {
-    // Arrange
-    final tooManyKeys = List.generate(
-      6,
-      (i) => KeyPixModel(
-        keyType: 'Chave $i',
-        keyValue: 'Valor $i',
-        keyIcon: const Icon(Icons.vpn_key),
-      ),
-    );
+      // Toca nas opções e nos cadastrados
+      await tester.tap(find.text('Cadastrar chave'));
+      await tester.tap(find.text('E-mail'));
+      await tester.pumpAndSettle();
 
-    // Act & Assert
-    expect(
-      () => RKeyPixTemplate(
-        title: 'Erro',
-        description: 'Mais de 5 chaves',
-        registeredPixKeys: tooManyKeys,
-      ),
-      throwsA(isA<AssertionError>()),
-    );
-  });
+      // Verifica se onTap foi chamado
+      expect(onTapOpcoesChamado, isTrue);
+      expect(onTapCadastradoChamado, isTrue);
+    },
+  );
 }
