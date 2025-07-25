@@ -36,12 +36,14 @@
 [74] - Componentes [RModal]
 [72] - Componente Switch com texto
 [87] - Template [Status]
+[83] - Componente [Banner]
 [83] - [Balance Display]
 [85] - Componente [OtpTimer]
 [75] - Componente [RToast]
 [78] - Componente [RCalendar]
 [92] - Componente [RTitleSubtitle]
 [81] = Componente [RCardCarousel]
+[84] - Componente [RPinInput]
 
 ## Corrigido
 

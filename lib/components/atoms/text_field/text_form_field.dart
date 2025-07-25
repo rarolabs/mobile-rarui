@@ -24,6 +24,7 @@ class RTextFormField extends StatelessWidget {
     this.validator,
     this.inputFormatters,
     this.autovalidateMode,
+    this.showCursor,
   }) : super(key: key);
 
   final TextEditingController? controller;
@@ -46,11 +47,14 @@ class RTextFormField extends StatelessWidget {
   final FormFieldValidator<String>? validator;
   final List<TextInputFormatter>? inputFormatters;
   final AutovalidateMode? autovalidateMode;
+  final bool? showCursor;
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
       controller: controller,
+      cursorColor: Colors.red,
+      showCursor: showCursor,
       initialValue: initialValue,
       focusNode: focusNode,
       decoration: decoration,
