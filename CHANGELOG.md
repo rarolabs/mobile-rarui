@@ -43,6 +43,7 @@
 [92] - Componente [RTitleSubtitle]
 [81] = Componente [RCardCarousel]
 [84] - Componente [RPinInput]
+[96] - Template [RSetLimitTemplate]
 
 ## Corrigido
 
