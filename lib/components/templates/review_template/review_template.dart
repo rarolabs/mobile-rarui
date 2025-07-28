@@ -68,7 +68,7 @@ class _RReviewTemplateState extends State<RReviewTemplate> {
               SizedBox(height: 32),
               Text(
                 widget.bodyTitle,
-                style: Theme.of(context).textTheme.headlineMedium,
+                style: Theme.of(context).textTheme.headlineSmall,
               ),
               SizedBox(height: 16),
               Text(widget.valueLabel, style: theme.textTheme.bodyMedium),
@@ -124,6 +124,8 @@ class _RReviewTemplateState extends State<RReviewTemplate> {
                 expanded: true,
                 onPressed: () =>
                     widget.onPrimaryButtonPressed?.call(_checkboxValue.value),
+                backgroundColor: Theme.of(context).primaryColor,
+                foregroundColor: Colors.white,
               ),
               SizedBox(height: 48),
             ],
