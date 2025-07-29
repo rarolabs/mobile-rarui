@@ -44,6 +44,11 @@ void main() {
                       onSelected: (value) {
                         selectedValue = value;
                       },
+                      filterCondition: (value, item) {
+                        return item.label
+                            .toLowerCase()
+                            .contains(value.toLowerCase());
+                      },
                     ),
                   ),
                   text: "Search",

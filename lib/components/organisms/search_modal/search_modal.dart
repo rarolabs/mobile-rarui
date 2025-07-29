@@ -10,6 +10,7 @@ class RSearchModal<T extends Object> extends StatefulWidget {
     this.searchHintText,
     this.searchLabel,
     required this.searchItems,
+    required this.filterCondition,
     required this.onSelected,
   });
 
@@ -18,6 +19,7 @@ class RSearchModal<T extends Object> extends StatefulWidget {
   final String? searchHintText;
   final String? searchLabel;
   final List<RSearchModalItem<T>> searchItems;
+  final bool Function(String value, RSearchModalItem<T>)? filterCondition;
   final ValueChanged<T> onSelected;
 
   @override
@@ -37,13 +39,13 @@ class _RSearchModalState<T extends Object> extends State<RSearchModal<T>>
   }
 
   _filterItems(String value) {
-    setState(() {
-      items = widget.searchItems
-          .where(
-            (item) => item.label.toLowerCase().contains(value.toLowerCase()),
-          )
-          .toList();
-    });
+    if (widget.filterCondition != null) {
+      setState(() {
+        items = widget.searchItems
+            .where((item) => widget.filterCondition!(value, item))
+            .toList();
+      });
+    }
   }
 
   @override
