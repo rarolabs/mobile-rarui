@@ -41,7 +41,7 @@ class _RCheckboxState extends State<RCheckbox> {
   @override
   Widget build(BuildContext context) {
     return Row(
-         mainAxisAlignment: MainAxisAlignment.center,
+      mainAxisAlignment: MainAxisAlignment.start,
       spacing: 8,
       children: [
         Checkbox(
@@ -61,7 +61,7 @@ class _RCheckboxState extends State<RCheckbox> {
             width: CheckboxTheme.of(context).side?.width ?? 2.0,
           ),
         ),
-         Visibility(
+        Visibility(
           visible: widget.label != null && widget.label!.isNotEmpty,
           child: Flexible(
             child: RLabel(

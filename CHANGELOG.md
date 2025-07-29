@@ -35,6 +35,7 @@
 [73] - Componente [BottomSheet]
 [74] - Componentes [RModal]
 [72] - Componente Switch com texto
+[91] - Componente [RReviewTemplate]
 [87] - Template [Status]
 [83] - Componente [Banner]
 [83] - [Balance Display]
