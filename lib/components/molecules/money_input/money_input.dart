@@ -18,6 +18,9 @@ class RMoneyInput extends StatefulWidget {
     this.inputTextStyle,
     this.balanceDescriptionTextStyle,
     this.balanceValueTextStyle,
+    this.icon = Icons.visibility,
+    this.iconSize = 16.0,
+    this.iconColor,
   }) : super(key: key);
 
   final TextEditingController? controller;
@@ -30,6 +33,9 @@ class RMoneyInput extends StatefulWidget {
   final TextStyle? inputTextStyle;
   final TextStyle? balanceDescriptionTextStyle;
   final TextStyle? balanceValueTextStyle;
+  final IconData icon;
+  final double iconSize;
+  final Color? iconColor;
 
   @override
   State<RMoneyInput> createState() => _RMoneyInputState();
@@ -97,8 +103,9 @@ class _RMoneyInputState extends State<RMoneyInput> {
                       ?.copyWith(color: theme.colorScheme.onSurface),
             ),
             RIconButton(
-              icon: Icons.visibility,
-              size: 16.0,
+              icon: widget.icon,
+              size: widget.iconSize,
+              iconColor: widget.iconColor,
               onPressed: () {
                 setState(() {
                   visible = !visible;
