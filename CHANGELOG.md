@@ -36,6 +36,7 @@
 [74] - Componentes [RModal]
 [72] - Componente Switch com texto
 [91] - Componente [RReviewTemplate]
+[87] - Template [Status]
 [83] - Componente [Banner]
 [83] - [Balance Display]
 [85] - Componente [OtpTimer]
@@ -44,6 +45,8 @@
 [92] - Componente [RTitleSubtitle]
 [81] = Componente [RCardCarousel]
 [84] - Componente [RPinInput]
+[96] - Template [RSetLimitTemplate]
+[86] - Componente [RKeyPixTemplate]
 
 ## Corrigido
 
