@@ -50,8 +50,9 @@ class RModal extends StatelessWidget {
               margin: const EdgeInsets.only(bottom: 16.0),
               width: 40.0,
               height: 4.0,
-              decoration:
-                  BoxDecoration(color: dragHandleColor ?? Colors.grey[400], borderRadius: BorderRadius.circular(2)),
+              decoration: BoxDecoration(
+                  color: dragHandleColor ?? Theme.of(context).colorScheme.primary,
+                  borderRadius: BorderRadius.circular(2)),
             ),
           ),
           if (title.isNotEmpty)
