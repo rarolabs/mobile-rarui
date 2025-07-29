@@ -4,29 +4,25 @@ import 'package:rarUI/components/molecules/list_tile/list_tile.dart';
 import 'package:rarUI/components/molecules/title_subtitle/title_subtitle.dart';
 import 'package:rarUI/components/templates/key_pix/models/list_tile_options_model.dart';
 
-class RKeyPixTemplate extends StatelessWidget {
-  const RKeyPixTemplate({
+class RListRegisterKeyPixTemplate extends StatelessWidget {
+  const RListRegisterKeyPixTemplate({
     super.key,
     required this.title,
     required this.description,
-    this.itemsRegistrationStatus = "",
     this.styleTitle,
     this.styleDescription,
     this.styleTitleListTile,
     this.styleSubtitleListTile,
     this.itemsOptions = const [],
-    this.itemsRegistered = const [],
     this.spaceBetweenTitleSubtitle = 4.0,
   });
 
   final String title;
   final String description;
-  final String itemsRegistrationStatus;
   final TextStyle? styleTitle;
   final TextStyle? styleTitleListTile;
   final TextStyle? styleDescription;
   final TextStyle? styleSubtitleListTile;
-  final List<ListTileOptionsModel> itemsRegistered;
   final List<ListTileOptionsModel> itemsOptions;
   final double spaceBetweenTitleSubtitle;
 
@@ -43,7 +39,7 @@ class RKeyPixTemplate extends StatelessWidget {
             subTitleStyle: styleDescription,
             spaceBetween: spaceBetweenTitleSubtitle,
           ),
-          SizedBox(height: 24.0),
+          SizedBox(height: 10.0),
           if (itemsOptions.isNotEmpty)
             ListView.builder(
               padding: EdgeInsets.zero,
@@ -54,46 +50,9 @@ class RKeyPixTemplate extends StatelessWidget {
                 contentPadding: EdgeInsets.zero,
                 title: RLabel(
                     text: itemsOptions[index].title, style: styleTitleListTile),
-                subtitle: itemsOptions[index].subtitle != null
-                    ? RLabel(
-                        text: itemsOptions[index].subtitle!,
-                        style: styleSubtitleListTile)
-                    : null,
                 leading: itemsOptions[index].leadingIcon,
                 trailing: itemsOptions[index].trailingIcon,
                 onTap: itemsOptions[index].onTap,
-              ),
-            ),
-          if (itemsRegistrationStatus.isNotEmpty)
-            Padding(
-              padding: const EdgeInsets.symmetric(vertical: 12.0),
-              child: RLabel(
-                text: itemsRegistrationStatus,
-                style: TextStyle(
-                  fontSize: 16.0,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            ),
-          if (itemsRegistered.isNotEmpty)
-            ListView.builder(
-              padding: EdgeInsets.zero,
-              itemCount: itemsRegistered.length,
-              shrinkWrap: true,
-              physics: const NeverScrollableScrollPhysics(),
-              itemBuilder: (_, index) => RListTile(
-                contentPadding: EdgeInsets.zero,
-                title: RLabel(
-                    text: itemsRegistered[index].title,
-                    style: styleTitleListTile),
-                subtitle: itemsRegistered[index].subtitle != null
-                    ? RLabel(
-                        text: itemsRegistered[index].subtitle!,
-                        style: styleSubtitleListTile)
-                    : null,
-                leading: itemsRegistered[index].leadingIcon,
-                trailing: itemsRegistered[index].trailingIcon,
-                onTap: itemsRegistered[index].onTap,
               ),
             ),
         ],
