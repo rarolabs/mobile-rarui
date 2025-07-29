@@ -47,6 +47,7 @@
 [84] - Componente [RPinInput]
 [96] - Template [RSetLimitTemplate]
 [86] - Componente [RKeyPixTemplate]
+[95] - Componente [RMoneyInput]
 
 ## Corrigido
 
