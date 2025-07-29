@@ -48,6 +48,7 @@
 [96] - Template [RSetLimitTemplate]
 [86] - Componente [RKeyPixTemplate]
 [95] - Componente [RMoneyInput]
+[90] - Componente [RSearchModal]
 
 ## Corrigido
 
