@@ -10,7 +10,7 @@ void main() {
           body: RRichText(
             children: [
               TextSpan(text: 'Olá '),
-              TextSpan(text: 'Letícia', style: TextStyle(fontWeight: FontWeight.bold)),
+              TextSpan(text: 'Pessoa', style: TextStyle(fontWeight: FontWeight.bold)),
               TextSpan(text: '!'),
             ],
           ),
@@ -19,7 +19,7 @@ void main() {
     );
 
     expect(find.textContaining('Olá'), findsOneWidget);
-    expect(find.textContaining('Letícia'), findsOneWidget);
+    expect(find.textContaining('Pessoa'), findsOneWidget);
     expect(find.textContaining('!'), findsOneWidget);
   });
 
