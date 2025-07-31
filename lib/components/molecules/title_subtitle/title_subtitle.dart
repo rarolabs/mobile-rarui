@@ -14,7 +14,7 @@ class RTitleSubtitle extends StatelessWidget {
     required this.subTitle,
     this.titleStyle,
     this.subTitleStyle,
-    this.spaceBetween = 4.0,
+    this.spaceBetween = 8.0,
   });
 
   @override
@@ -23,9 +23,9 @@ class RTitleSubtitle extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisSize: MainAxisSize.min,
       children: [
-        RLabel(text: title, style: titleStyle),
+        RLabel(text: title, style: titleStyle ?? TextStyle(fontSize: 20, fontWeight: FontWeight.w700)),
         SizedBox(height: spaceBetween),
-        RLabel(text: subTitle, style: subTitleStyle),
+        RLabel(text: subTitle, style: subTitleStyle ?? TextStyle(fontSize: 14, fontWeight: FontWeight.w400)),
       ],
     );
   }
