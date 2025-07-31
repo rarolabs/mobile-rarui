@@ -32,6 +32,8 @@ class RIcon extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final Color resolvedColor = color ?? Theme.of(context).iconTheme.color!;
+
     return Icon(
       icon,
       size: size,
@@ -39,7 +41,7 @@ class RIcon extends StatelessWidget {
       weight: weight,
       grade: grade,
       opticalSize: opticalSize,
-      color: color,
+      color: resolvedColor,
       shadows: shadows,
       semanticLabel: semanticLabel,
       textDirection: textDirection,
