@@ -39,6 +39,7 @@
 [87] - Template [Status]
 [83] - Componente [Banner]
 [83] - [Balance Display]
+[97] - Componente [TabPix]
 [85] - Componente [OtpTimer]
 [75] - Componente [RToast]
 [78] - Componente [RCalendar]
