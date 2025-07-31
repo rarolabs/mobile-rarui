@@ -51,6 +51,7 @@
 [95] - Componente [RMoneyInput]
 [90] - Componente [RSearchModal]
 [94] - Template [RPasswordCode]
+[100] - Template [RProofTransferTemplate]
 
 ## Corrigido
 
