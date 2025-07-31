@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:rarUI/components/molecules/bottom_sheet/bottom_sheet.dart';
 import 'package:rarUI/rarui.dart';
 
 class RReviewTemplate extends StatefulWidget {
@@ -19,7 +18,7 @@ class RReviewTemplate extends StatefulWidget {
   final String checkboxText;
   final Map<String, String> details;
   final String primaryButtonText;
-  final Function(bool checkboxValue)? onPrimaryButtonPressed;
+  final Function(bool checkboxValue, String? description)? onPrimaryButtonPressed;
 
   @override
   State<RReviewTemplate> createState() => _RReviewTemplateState();
@@ -113,8 +112,10 @@ class _RReviewTemplateState extends State<RReviewTemplate> {
             RElevatedButton(
               text: widget.primaryButtonText,
               expanded: true,
-              onPressed: () =>
-                  widget.onPrimaryButtonPressed?.call(_checkboxValue.value),
+              onPressed: () => widget.onPrimaryButtonPressed?.call(
+                _checkboxValue.value,
+                _descriptionController.text.trim().isEmpty ? null : _descriptionController.text,
+              ),
               backgroundColor: Theme.of(context).primaryColor,
               foregroundColor: Colors.white,
             ),
@@ -138,9 +139,7 @@ class _RReviewTemplateState extends State<RReviewTemplate> {
             maxLength: _descriptionMaxLength,
           ),
           titlePrimaryButton: 'Concluir',
-          onPrimaryButtonPressed: _descriptionController.text.trim().isEmpty
-              ? null
-              : () => Navigator.pop(context),
+          onPrimaryButtonPressed: _descriptionController.text.trim().isEmpty ? null : () => Navigator.pop(context),
         ),
       ),
     );

@@ -3,18 +3,17 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:qr_code_scanner_plus/qr_code_scanner_plus.dart';
 
-class QrCodeReaderTemplate extends StatefulWidget {
+class RQrCodeReaderTemplate extends StatefulWidget {
   final String appbarLabel;
   final String? instructionLabel;
-  const QrCodeReaderTemplate({super.key, required this.appbarLabel, this.instructionLabel});
+  const RQrCodeReaderTemplate({super.key, required this.appbarLabel, this.instructionLabel});
 
   @override
-  State<QrCodeReaderTemplate> createState() => _QrCodeReaderTemplateState();
+  State<RQrCodeReaderTemplate> createState() => _RQrCodeReaderTemplateState();
 }
 
-class _QrCodeReaderTemplateState extends State<QrCodeReaderTemplate> {
+class _RQrCodeReaderTemplateState extends State<RQrCodeReaderTemplate> {
   final GlobalKey qrKey = GlobalKey(debugLabel: 'QR');
-  Barcode? result;
   QRViewController? controller;
 
   // In order to get hot reload to work we need to pause the camera if the platform
@@ -39,18 +38,7 @@ class _QrCodeReaderTemplateState extends State<QrCodeReaderTemplate> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          widget.appbarLabel,
-          style: TextStyle(
-            color: Theme.of(context).colorScheme.onInverseSurface,
-            shadows: _shadow(context),
-          ),
-        ),
-        iconTheme: IconThemeData(color: Theme.of(context).colorScheme.onInverseSurface, shadows: _shadow(context)),
-        centerTitle: true,
-        backgroundColor: Colors.transparent,
-      ),
+      appBar: AppBar(title: Text(widget.appbarLabel), centerTitle: true),
       extendBodyBehindAppBar: true,
       body: Stack(
         children: [
@@ -92,11 +80,9 @@ class _QrCodeReaderTemplateState extends State<QrCodeReaderTemplate> {
 
   void _onQRViewCreated(QRViewController controller) {
     this.controller = controller;
-    controller.scannedDataStream.listen((scanData) {
-      result = scanData;
-      if (result!.code != null) {
-        Navigator.pop(context, result!.code);
-      }
+    controller.scannedDataStream.listen((scanData) async {
+      await controller.pauseCamera();
+      if (scanData.code != null) Navigator.pop(context, scanData.code);
     });
   }
 }

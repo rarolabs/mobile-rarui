@@ -9,8 +9,7 @@ void main() {
       'Detail 2': 'Value 2',
     };
 
-    testWidgets('should render all basic elements',
-        (WidgetTester tester) async {
+    testWidgets('should render all basic elements', (WidgetTester tester) async {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
@@ -57,8 +56,7 @@ void main() {
       );
 
       final valueText = tester.widget<Text>(find.text('Value'));
-      expect(valueText.style?.color,
-          Theme.of(tester.element(find.text('Value'))).primaryColor);
+      expect(valueText.style?.color, Theme.of(tester.element(find.text('Value'))).primaryColor);
     });
 
     testWidgets('checkbox should toggle value', (WidgetTester tester) async {
@@ -85,8 +83,49 @@ void main() {
       expect(checkboxWidget.value, isTrue);
     });
 
-    testWidgets('should show message button with default text',
-        (WidgetTester tester) async {
+    testWidgets('should call callback with checkbox value and description value', (WidgetTester tester) async {
+      bool? callbackCheckbox;
+      String? callbackDescription;
+
+      await tester.pumpWidget(
+        MaterialApp(
+          home: Scaffold(
+            body: RReviewTemplate(
+              bodyTitle: 'Title',
+              valueLabel: 'Label',
+              valueText: 'Value',
+              checkboxText: 'Checkbox',
+              details: testData,
+              primaryButtonText: 'Button',
+              onPrimaryButtonPressed: (checkbox, description) {
+                callbackCheckbox = checkbox;
+                callbackDescription = description;
+              },
+            ),
+          ),
+        ),
+      );
+
+      await tester.tap(find.byType(Checkbox));
+      await tester.pump();
+
+      await tester.tap(find.text('Escrever uma mensagem'));
+      await tester.pumpAndSettle();
+
+      await tester.enterText(find.byType(TextField), 'Test description');
+      await tester.pump();
+
+      await tester.tap(find.text('Concluir'));
+      await tester.pump();
+
+      await tester.tap(find.text('Button'));
+      await tester.pump();
+
+      expect(callbackCheckbox, isTrue);
+      expect(callbackDescription, 'Test description');
+    });
+
+    testWidgets('should show message button with default text', (WidgetTester tester) async {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
