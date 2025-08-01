@@ -23,12 +23,14 @@ class RLabel extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final typography = theme.textTheme;
-    final baseStyle = typography.bodyLarge?.copyWith(color: theme.colorScheme.onSurface);
+    final textStyle = style ??
+        theme.textTheme.bodyLarge?.copyWith(
+          color: theme.colorScheme.onSurface,
+        );
 
     return Text(
       text,
-      style: baseStyle?.merge(style),
+      style: textStyle,
       textAlign: textAlign ?? TextAlign.start,
       maxLines: maxLines,
       overflow: maxLines != null ? overflow ?? TextOverflow.ellipsis : null,

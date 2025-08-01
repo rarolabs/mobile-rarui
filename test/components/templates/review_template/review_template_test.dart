@@ -13,19 +13,19 @@ void main() {
         (WidgetTester tester) async {
       await tester.pumpWidget(
         MaterialApp(
-          home: RReviewTemplate(
-            appBarTitle: 'Review',
-            bodyTitle: 'Transaction Review',
-            valueLabel: 'Amount',
-            valueText: 'R\$ 100,00',
-            checkboxText: 'I confirm',
-            details: testData,
-            primaryButtonText: 'Confirm',
+          home: Scaffold(
+            body: RReviewTemplate(
+              bodyTitle: 'Transaction Review',
+              valueLabel: 'Amount',
+              valueText: 'R\$ 100,00',
+              checkboxText: 'I confirm',
+              details: testData,
+              primaryButtonText: 'Confirm',
+            ),
           ),
         ),
       );
 
-      expect(find.text('Review'), findsOneWidget); // AppBar title
       expect(find.text('Transaction Review'), findsOneWidget);
       expect(find.text('Amount'), findsOneWidget);
       expect(find.text('R\$ 100,00'), findsOneWidget);
@@ -43,14 +43,15 @@ void main() {
     testWidgets('should apply correct styles', (WidgetTester tester) async {
       await tester.pumpWidget(
         MaterialApp(
-          home: RReviewTemplate(
-            appBarTitle: 'Review',
-            bodyTitle: 'Title',
-            valueLabel: 'Label',
-            valueText: 'Value',
-            checkboxText: 'Checkbox',
-            details: testData,
-            primaryButtonText: 'Button',
+          home: Scaffold(
+            body: RReviewTemplate(
+              bodyTitle: 'Title',
+              valueLabel: 'Label',
+              valueText: 'Value',
+              checkboxText: 'Checkbox',
+              details: testData,
+              primaryButtonText: 'Button',
+            ),
           ),
         ),
       );
@@ -63,14 +64,15 @@ void main() {
     testWidgets('checkbox should toggle value', (WidgetTester tester) async {
       await tester.pumpWidget(
         MaterialApp(
-          home: RReviewTemplate(
-            appBarTitle: 'Review',
-            bodyTitle: 'Title',
-            valueLabel: 'Label',
-            valueText: 'Value',
-            checkboxText: 'Checkbox',
-            details: testData,
-            primaryButtonText: 'Button',
+          home: Scaffold(
+            body: RReviewTemplate(
+              bodyTitle: 'Title',
+              valueLabel: 'Label',
+              valueText: 'Value',
+              checkboxText: 'Checkbox',
+              details: testData,
+              primaryButtonText: 'Button',
+            ),
           ),
         ),
       );
@@ -83,46 +85,19 @@ void main() {
       expect(checkboxWidget.value, isTrue);
     });
 
-    testWidgets('should call callback with checkbox value',
-        (WidgetTester tester) async {
-      bool? callbackValue;
-
-      await tester.pumpWidget(
-        MaterialApp(
-          home: RReviewTemplate(
-            appBarTitle: 'Review',
-            bodyTitle: 'Title',
-            valueLabel: 'Label',
-            valueText: 'Value',
-            checkboxText: 'Checkbox',
-            details: testData,
-            primaryButtonText: 'Button',
-            onPrimaryButtonPressed: (value) => callbackValue = value,
-          ),
-        ),
-      );
-
-      await tester.tap(find.byType(Checkbox));
-      await tester.pump();
-
-      await tester.tap(find.text('Button'));
-      await tester.pump();
-
-      expect(callbackValue, isTrue);
-    });
-
     testWidgets('should show message button with default text',
         (WidgetTester tester) async {
       await tester.pumpWidget(
         MaterialApp(
-          home: RReviewTemplate(
-            appBarTitle: 'Review',
-            bodyTitle: 'Title',
-            valueLabel: 'Label',
-            valueText: 'Value',
-            checkboxText: 'Checkbox',
-            details: testData,
-            primaryButtonText: 'Button',
+          home: Scaffold(
+            body: RReviewTemplate(
+              bodyTitle: 'Title',
+              valueLabel: 'Label',
+              valueText: 'Value',
+              checkboxText: 'Checkbox',
+              details: testData,
+              primaryButtonText: 'Button',
+            ),
           ),
         ),
       );

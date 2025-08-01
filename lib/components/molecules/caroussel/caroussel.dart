@@ -126,7 +126,7 @@ class _PageIndicatorState extends State<_PageIndicator> {
           decoration: BoxDecoration(
             color: isActive
                 ? Theme.of(context).colorScheme.primary
-                : Theme.of(context).colorScheme.onSurface.withOpacity(0.4),
+                : Theme.of(context).colorScheme.onSurface.withAlpha((0.4 * 255).toInt()),
             borderRadius: BorderRadius.circular(4),
           ),
         );

@@ -39,6 +39,7 @@
 [87] - Template [Status]
 [83] - Componente [Banner]
 [83] - [Balance Display]
+[97] - Componente [TabPix]
 [85] - Componente [OtpTimer]
 [75] - Componente [RToast]
 [78] - Componente [RCalendar]
@@ -50,12 +51,15 @@
 [95] - Componente [RMoneyInput]
 [90] - Componente [RSearchModal]
 [94] - Template [RPasswordCode]
+[93] - Template [RLimitPix]
+[100] - Template [RProofTransferTemplate]
 
 ## Corrigido
 
 ## Modificado
 [71] - Componentes [RRadioButton]
 [72] - Componentes [RSlider] [RSliderRange]
+[98] - Componente RReviewTemplate
 
 ## Removido
 - Estrutura antiga de pastas
