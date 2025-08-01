@@ -23,3 +23,5 @@ export 'toast/toast.dart';
 export 'card_carousel/card_carousel.dart';
 export 'pin_input/pin_input.dart';
 export 'money_input/money_input.dart';
+export 'title_subtitle/title_subtitle.dart';
+export 'bottom_sheet/bottom_sheet.dart';
