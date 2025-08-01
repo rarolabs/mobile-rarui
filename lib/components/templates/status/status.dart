@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:rarUI/components/atoms/image/image.dart';
 import 'package:rarUI/components/atoms/label/label.dart';
 import 'package:rarUI/components/molecules/buttons/elevated_button.dart';
 
@@ -34,7 +35,7 @@ class RStatus extends StatelessWidget {
   }
 
   Color _getBackgroundColor(BuildContext context) {
-    return Theme.of(context).colorScheme.background;
+    return Theme.of(context).colorScheme.surface;
   }
 
   Color _getTitleColor(BuildContext context) {
@@ -66,7 +67,7 @@ class RStatus extends StatelessWidget {
                         ),
                   ),
                   const SizedBox(height: 48),
-                  Image(image: image, width: 160, height: 160),
+                  RImage(image:image, size: Size(160, 160),),
                   const SizedBox(height: 48),
                   RLabel(
                     text: description,

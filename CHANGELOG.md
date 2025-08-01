@@ -51,6 +51,8 @@
 [95] - Componente [RMoneyInput]
 [90] - Componente [RSearchModal]
 [94] - Template [RPasswordCode]
+[93] - Template [RLimitPix]
+[100] - Template [RProofTransferTemplate]
 [88] - Templates [RQrCodeReaderTemplate] [RTransferValueTemplate]
 
 ## Corrigido
