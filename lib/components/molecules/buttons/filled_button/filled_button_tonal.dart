@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:rarUI/components/molecules/buttons/base_button.dart';
+import 'package:rarUI/utils/constants.dart';
 
 class RFilledButtonTonal extends RBaseButton {
   const RFilledButtonTonal({
@@ -15,13 +16,20 @@ class RFilledButtonTonal extends RBaseButton {
     super.iconAlignment = IconAlignment.start,
     super.maxLines,
     super.iconSize,
+    this.height,
   }) : super(text: text);
+
+  final double? height;
 
   @override
   Widget build(BuildContext context) {
     final textDefaultColor = (onPressed == null
         ? disabledForegroundColor
         : foregroundColor ?? Colors.white);
+    final double buttonHeight =
+        (height != null && height! >= RConstants.minButtonHeight)
+            ? height!
+            : RConstants.minButtonHeight;
 
     final styleButton = FilledButton.styleFrom(
       disabledBackgroundColor: disabledBackgroundColor,
@@ -58,6 +66,7 @@ class RFilledButtonTonal extends RBaseButton {
     }
 
     return SizedBox(
+      height: buttonHeight,
       width: expanded ? MediaQuery.sizeOf(context).width : null,
       child: button,
     );

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:rarUI/components/molecules/buttons/base_button.dart';
+import 'package:rarUI/utils/constants.dart';
 
 class ROutlinedButton extends RBaseButton {
   const ROutlinedButton({
@@ -15,11 +16,19 @@ class ROutlinedButton extends RBaseButton {
     super.iconAlignment = IconAlignment.start,
     super.maxLines,
     super.iconSize,
+    this.height,
   }) : super(text: text);
+
+  final double? height;
 
   @override
   Widget build(BuildContext context) {
-    final textColor = onPressed == null ? disabledForegroundColor : foregroundColor;
+    final textColor =
+        onPressed == null ? disabledForegroundColor : foregroundColor;
+    final double buttonHeight =
+        (height != null && height! >= RConstants.minButtonHeight)
+            ? height!
+            : RConstants.minButtonHeight;
 
     final styleButton = OutlinedButton.styleFrom(
       foregroundColor: textColor,
@@ -61,6 +70,7 @@ class ROutlinedButton extends RBaseButton {
     }
 
     return SizedBox(
+      height: buttonHeight,
       width: expanded ? MediaQuery.sizeOf(context).width : null,
       child: button,
     );

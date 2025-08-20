@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:rarUI/components/molecules/buttons/base_button.dart';
+import 'package:rarUI/utils/constants.dart';
 
 class RElevatedButton extends RBaseButton {
   const RElevatedButton({
@@ -15,11 +16,19 @@ class RElevatedButton extends RBaseButton {
     super.iconAlignment = IconAlignment.start,
     super.maxLines,
     super.iconSize,
+    this.height,
   }) : super(text: text);
+
+  final double? height;
 
   @override
   Widget build(BuildContext context) {
-    final textColor = onPressed == null ? disabledForegroundColor : foregroundColor;
+    final textColor =
+        onPressed == null ? disabledForegroundColor : foregroundColor;
+    final double buttonHeight =
+        (height != null && height! >= RConstants.minButtonHeight)
+            ? height!
+            : RConstants.minButtonHeight;
 
     final styleButton = ElevatedButton.styleFrom(
         disabledBackgroundColor: disabledBackgroundColor,
@@ -56,6 +65,7 @@ class RElevatedButton extends RBaseButton {
     }
 
     return SizedBox(
+      height: buttonHeight,
       width: expanded ? MediaQuery.sizeOf(context).width : null,
       child: button,
     );
