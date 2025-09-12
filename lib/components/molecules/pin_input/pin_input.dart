@@ -10,6 +10,10 @@ class RPinInput extends StatefulWidget {
     this.obscureText = true,
     this.length = 6,
     this.validator,
+    this.useCustomKeyboard = false,
+    this.activeBorderColor,
+    this.heightFormField = 74.0,
+    this.widthFormField = 48.0,
   }) : super(key: key);
 
   final GlobalKey<FormState> formKey;
@@ -18,94 +22,169 @@ class RPinInput extends StatefulWidget {
   final ValueChanged<String> onComplete;
   final FormFieldSetter<String>? onSaved;
   final FormFieldValidator<String>? validator;
+  final bool useCustomKeyboard;
+  final Color? activeBorderColor;
+  final double heightFormField;
+  final double widthFormField;
 
   @override
-  State<RPinInput> createState() => _RPinInputState();
+  State<RPinInput> createState() => RPinInputState();
 }
 
-class _RPinInputState extends State<RPinInput> {
-  List<TextEditingController> controllers = [];
-  List<FocusNode> focusNodes = [];
-  String pinValue = '';
-  List<Widget> pinFields = [];
+class RPinInputState extends State<RPinInput> {
+  late final List<TextEditingController> controllers;
+  late final List<FocusNode> focusNodes;
+  late final List<VoidCallback> _focusListeners;
+
+  bool allFilled = false;
 
   @override
   void initState() {
-    buildItems();
     super.initState();
+    controllers = List.generate(widget.length, (_) => TextEditingController());
+    focusNodes = List.generate(widget.length, (_) => FocusNode());
+    _focusListeners = List.generate(widget.length, (i) {
+      final listener = () {
+        if (mounted) setState(() {});
+      };
+      focusNodes[i].addListener(listener);
+      return listener;
+    });
+  }
+
+  @override
+  void dispose() {
+    for (int i = 0; i < _focusListeners.length; i++) {
+      focusNodes[i].removeListener(_focusListeners[i]);
+    }
+    for (final c in controllers) c.dispose();
+    for (final f in focusNodes) f.dispose();
+    super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
+    final activeColor = widget.activeBorderColor ?? Colors.green;
+    const defaultColor = Colors.grey;
+
     return Form(
       key: widget.formKey,
       child: Row(
-        spacing: 16.0,
         mainAxisAlignment: MainAxisAlignment.center,
-        children: pinFields,
+        children: List.generate(widget.length, (index) {
+          final isFocused = focusNodes[index].hasFocus;
+          final borderColor = allFilled ? activeColor : (isFocused ? activeColor : defaultColor);
+          final borderWidth = allFilled || isFocused ? 2.0 : 1.0;
+
+          return Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 8),
+            child: SizedBox(
+              width: widget.widthFormField,
+              height: widget.heightFormField,
+              child: Container(
+                decoration: BoxDecoration(
+                  border: Border.all(color: borderColor, width: borderWidth),
+                  borderRadius: BorderRadius.circular(8),
+                ),
+                child: AbsorbPointer(
+                  absorbing: widget.useCustomKeyboard,
+                  child: Center(
+                    child: RTextFormField(
+                      key: Key('pin_input_$index'),
+                      controller: controllers[index],
+                      focusNode: focusNodes[index],
+                      readOnly: widget.useCustomKeyboard,
+                      showCursor: !widget.useCustomKeyboard,
+                      obscureText: widget.obscureText,
+                      textAlign: TextAlign.center,
+                      style: const TextStyle(
+                        fontSize: 42,
+                        height: 1,
+                        fontWeight: FontWeight.bold,
+                      ),
+                      decoration: const InputDecoration(
+                        border: InputBorder.none,
+                        isDense: true,
+                        contentPadding: EdgeInsets.zero,
+                      ),
+                      keyboardType: TextInputType.number,
+                      validator: widget.validator,
+                      onSaved: widget.onSaved,
+                      onChanged: (value) => _onChanged(value, index),
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          );
+        }),
       ),
     );
   }
 
-  void buildItems() {
-    controllers =
-        List.generate(widget.length, (index) => TextEditingController());
-    focusNodes = List.generate(widget.length, (index) => FocusNode());
-    pinFields = List.generate(widget.length, (index) {
-      return SizedBox(
-        width: 48.0,
-        child: RTextFormField(
-          key: Key('pin_input_$index'),
-          controller: controllers[index],
-          focusNode: focusNodes[index],
-          style: TextStyle(
-            fontSize: 42.0,
-            height: 1,
-            fontWeight: FontWeight.bold,
-          ),
-          textAlign: TextAlign.center,
-          decoration: InputDecoration(
-            border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(8.0),
-            ),
-          ),
-          keyboardType: TextInputType.number,
-          obscureText: widget.obscureText,
-          showCursor: false,
-          validator: widget.validator,
-          onSaved: widget.onSaved,
-          onChanged: (value) {
-            if (value.length > 1) {
-              if (index == 0) {
-                pinValue = '';
-              }
-              for (int i = 0; i < value.length; i++) {
-                if (index + i >= widget.length) break;
-                controllers[index + i].text = value[i];
-                pinValue += value[i];
-              }
-              if (pinValue.length == widget.length) {
-                FocusScope.of(context).unfocus();
-                widget.onComplete(pinValue);
-              } else {
-                FocusScope.of(context).nextFocus();
-              }
-            } else if (value.length == 1 && index < widget.length - 1) {
-              FocusScope.of(context).nextFocus();
-              pinValue += value;
-            } else if (value.isEmpty) {
-              pinValue = pinValue.substring(0, pinValue.length - 1);
-              if (index > 0) {
-                FocusScope.of(context).previousFocus();
-              }
-            } else if (widget.length == index + 1) {
-              pinValue += value;
-              FocusScope.of(context).unfocus();
-              widget.onComplete(pinValue);
-            }
-          },
-        ),
-      );
-    });
+  void _onChanged(String value, int index) {
+    if (value.length > 1) {
+      final paste = value;
+      for (int i = 0; i < paste.length; i++) {
+        final pos = index + i;
+        if (pos >= controllers.length) break;
+        controllers[pos].text = paste[i];
+      }
+      for (int i = 0; i < controllers.length; i++) {
+        if (controllers[i].text.isEmpty) {
+          focusNodes[i].requestFocus();
+          break;
+        }
+      }
+    } else {
+      if (value.isNotEmpty && index < controllers.length - 1) {
+        focusNodes[index + 1].requestFocus();
+      } else if (value.isEmpty && index > 0) {
+        focusNodes[index - 1].requestFocus();
+      }
+    }
+
+    allFilled = controllers.every((c) => c.text.isNotEmpty);
+
+    if (allFilled) {
+      final full = controllers.map((c) => c.text).join();
+      FocusScope.of(context).unfocus();
+      widget.onComplete(full);
+    }
+
+    if (mounted) setState(() {});
+  }
+
+  void addDigit(String digit) {
+    if (digit.isEmpty || digit.length != 1) return;
+    for (int i = 0; i < controllers.length; i++) {
+      if (controllers[i].text.isEmpty) {
+        controllers[i].text = digit;
+        if (i < controllers.length - 1) {
+          focusNodes[i + 1].requestFocus();
+        } else {
+          allFilled = controllers.every((c) => c.text.isNotEmpty);
+          if (allFilled) {
+            final full = controllers.map((c) => c.text).join();
+            FocusScope.of(context).unfocus();
+            widget.onComplete(full);
+          }
+        }
+        if (mounted) setState(() {});
+        break;
+      }
+    }
+  }
+
+  void backspace() {
+    for (int i = controllers.length - 1; i >= 0; i--) {
+      if (controllers[i].text.isNotEmpty) {
+        controllers[i].clear();
+        focusNodes[i].requestFocus();
+        break;
+      }
+    }
+    allFilled = controllers.every((c) => c.text.isNotEmpty);
+    if (mounted) setState(() {});
   }
 }

@@ -61,6 +61,7 @@
 [71] - Componentes [RRadioButton]
 [72] - Componentes [RSlider] [RSliderRange]
 [98] - Componente RReviewTemplate
+[84] - Componente [RPinInput]
 
 ## Removido
 - Estrutura antiga de pastas
