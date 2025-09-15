@@ -14,6 +14,7 @@ class RPinInput extends StatefulWidget {
     this.activeBorderColor,
     this.heightFormField = 74.0,
     this.widthFormField = 48.0,
+    this.fontSize = 42,
   }) : super(key: key);
 
   final GlobalKey<FormState> formKey;
@@ -26,6 +27,7 @@ class RPinInput extends StatefulWidget {
   final Color? activeBorderColor;
   final double heightFormField;
   final double widthFormField;
+  final double? fontSize;
 
   @override
   State<RPinInput> createState() => RPinInputState();
@@ -97,8 +99,8 @@ class RPinInputState extends State<RPinInput> {
                       showCursor: !widget.useCustomKeyboard,
                       obscureText: widget.obscureText,
                       textAlign: TextAlign.center,
-                      style: const TextStyle(
-                        fontSize: 42,
+                      style: TextStyle(
+                        fontSize: widget.fontSize,
                         height: 1,
                         fontWeight: FontWeight.bold,
                       ),
