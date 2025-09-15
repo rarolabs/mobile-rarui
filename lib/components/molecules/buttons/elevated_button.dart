@@ -16,6 +16,8 @@ class RElevatedButton extends RBaseButton {
     super.iconAlignment = IconAlignment.start,
     super.maxLines,
     super.iconSize,
+    super.textStyle,
+    super.borderRadius,
     this.height,
   }) : super(text: text);
 
@@ -23,18 +25,18 @@ class RElevatedButton extends RBaseButton {
 
   @override
   Widget build(BuildContext context) {
-    final textColor =
-        onPressed == null ? disabledForegroundColor : foregroundColor;
+    final textColor = onPressed == null ? disabledForegroundColor : foregroundColor;
     final double buttonHeight =
-        (height != null && height! >= RConstants.minButtonHeight)
-            ? height!
-            : RConstants.minButtonHeight;
+        (height != null && height! >= RConstants.minButtonHeight) ? height! : RConstants.minButtonHeight;
 
     final styleButton = ElevatedButton.styleFrom(
-        disabledBackgroundColor: disabledBackgroundColor,
-        disabledForegroundColor: disabledForegroundColor,
-        backgroundColor: backgroundColor,
-        foregroundColor: textColor);
+      disabledBackgroundColor: disabledBackgroundColor,
+      disabledForegroundColor: disabledForegroundColor,
+      backgroundColor: backgroundColor,
+      foregroundColor: textColor,
+      textStyle: textStyle,
+      shape: borderRadius != null ? RoundedRectangleBorder(borderRadius: BorderRadius.circular(borderRadius!)) : null,
+    );
 
     final Widget textWidget = Text(
       text,
