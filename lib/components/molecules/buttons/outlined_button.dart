@@ -16,6 +16,7 @@ class ROutlinedButton extends RBaseButton {
     super.iconAlignment = IconAlignment.start,
     super.maxLines,
     super.iconSize,
+    super.borderRadius,
     this.height,
   }) : super(text: text);
 
@@ -23,12 +24,9 @@ class ROutlinedButton extends RBaseButton {
 
   @override
   Widget build(BuildContext context) {
-    final textColor =
-        onPressed == null ? disabledForegroundColor : foregroundColor;
+    final textColor = onPressed == null ? disabledForegroundColor : foregroundColor;
     final double buttonHeight =
-        (height != null && height! >= RConstants.minButtonHeight)
-            ? height!
-            : RConstants.minButtonHeight;
+        (height != null && height! >= RConstants.minButtonHeight) ? height! : RConstants.minButtonHeight;
 
     final styleButton = OutlinedButton.styleFrom(
       foregroundColor: textColor,
@@ -38,6 +36,7 @@ class ROutlinedButton extends RBaseButton {
               width: 1.0,
             )
           : BorderSide.none,
+      shape: borderRadius != null ? RoundedRectangleBorder(borderRadius: BorderRadius.circular(borderRadius!)) : null,
     );
 
     final Widget textWidget = Text(

@@ -16,6 +16,7 @@ class RFilledButton extends RBaseButton {
     super.iconAlignment = IconAlignment.start,
     super.maxLines,
     super.iconSize,
+    super.borderRadius,
     this.height,
   }) : super(text: text);
 
@@ -23,18 +24,15 @@ class RFilledButton extends RBaseButton {
 
   @override
   Widget build(BuildContext context) {
-    final textDefaultColor = (onPressed == null
-        ? disabledForegroundColor
-        : foregroundColor ?? Colors.white);
+    final textDefaultColor = (onPressed == null ? disabledForegroundColor : foregroundColor ?? Colors.white);
     final double buttonHeight =
-        (height != null && height! >= RConstants.minButtonHeight)
-            ? height!
-            : RConstants.minButtonHeight;
+        (height != null && height! >= RConstants.minButtonHeight) ? height! : RConstants.minButtonHeight;
 
     final styleButton = FilledButton.styleFrom(
       disabledBackgroundColor: disabledBackgroundColor,
       disabledForegroundColor: disabledForegroundColor,
       backgroundColor: backgroundColor,
+      shape: borderRadius != null ? RoundedRectangleBorder(borderRadius: BorderRadius.circular(borderRadius!)) : null,
     );
 
     final Widget textWidget = Text(

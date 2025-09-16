@@ -13,13 +13,12 @@ class RFloatingActionButtonExtended extends RBaseButton {
     super.icon,
     super.maxLines,
     super.iconSize,
+    super.borderRadius,
   }) : super(text: text);
 
   @override
   Widget build(BuildContext context) {
-    final textDefaultColor = (onPressed == null
-        ? disabledForegroundColor
-        : foregroundColor ?? Colors.white);
+    final textDefaultColor = (onPressed == null ? disabledForegroundColor : foregroundColor ?? Colors.white);
 
     final Widget textWidget = Text(
       text,
@@ -40,6 +39,7 @@ class RFloatingActionButtonExtended extends RBaseButton {
         label: textWidget,
         backgroundColor: backgroundColor,
         foregroundColor: textDefaultColor,
+        shape: borderRadius != null ? RoundedRectangleBorder(borderRadius: BorderRadius.circular(borderRadius!)) : null,
       );
     } else {
       button = FloatingActionButton.extended(

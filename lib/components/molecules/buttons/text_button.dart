@@ -23,12 +23,9 @@ class RTextButton extends RBaseButton {
 
   @override
   Widget build(BuildContext context) {
-    final textColor =
-        onPressed == null ? disabledForegroundColor : foregroundColor;
+    final textColor = onPressed == null ? disabledForegroundColor : foregroundColor;
     final double buttonHeight =
-        (height != null && height! >= RConstants.minButtonHeight)
-            ? height!
-            : RConstants.minButtonHeight;
+        (height != null && height! >= RConstants.minButtonHeight) ? height! : RConstants.minButtonHeight;
 
     final Widget textWidget = Text(
       text,
@@ -39,6 +36,7 @@ class RTextButton extends RBaseButton {
     final style = TextButton.styleFrom(
       backgroundColor: backgroundColor,
       foregroundColor: textColor,
+      shape: borderRadius != null ? RoundedRectangleBorder(borderRadius: BorderRadius.circular(borderRadius!)) : null,
     );
     late final Widget button;
 
