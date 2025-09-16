@@ -12,8 +12,11 @@ class RPinInput extends StatefulWidget {
     this.validator,
     this.useCustomKeyboard = false,
     this.activeBorderColor,
+    this.backgroundColor,
     this.heightFormField = 74.0,
     this.widthFormField = 48.0,
+    this.spacing = 8.0,
+    this.textStyle,
   }) : super(key: key);
 
   final GlobalKey<FormState> formKey;
@@ -24,8 +27,11 @@ class RPinInput extends StatefulWidget {
   final FormFieldValidator<String>? validator;
   final bool useCustomKeyboard;
   final Color? activeBorderColor;
+  final Color? backgroundColor;
   final double heightFormField;
   final double widthFormField;
+  final double spacing;
+  final TextStyle? textStyle;
 
   @override
   State<RPinInput> createState() => RPinInputState();
@@ -70,48 +76,44 @@ class RPinInputState extends State<RPinInput> {
     return Form(
       key: widget.formKey,
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        spacing: widget.spacing,
         children: List.generate(widget.length, (index) {
           final isFocused = focusNodes[index].hasFocus;
-          final borderColor = allFilled ? activeColor : (isFocused ? activeColor : defaultColor);
+          final borderColor = allFilled
+              ? activeColor
+              : (isFocused ? activeColor : defaultColor);
           final borderWidth = allFilled || isFocused ? 2.0 : 1.0;
 
-          return Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 8),
-            child: SizedBox(
-              width: widget.widthFormField,
-              height: widget.heightFormField,
-              child: Container(
-                decoration: BoxDecoration(
-                  border: Border.all(color: borderColor, width: borderWidth),
-                  borderRadius: BorderRadius.circular(8),
-                ),
-                child: AbsorbPointer(
-                  absorbing: widget.useCustomKeyboard,
-                  child: Center(
-                    child: RTextFormField(
-                      key: Key('pin_input_$index'),
-                      controller: controllers[index],
-                      focusNode: focusNodes[index],
-                      readOnly: widget.useCustomKeyboard,
-                      showCursor: !widget.useCustomKeyboard,
-                      obscureText: widget.obscureText,
-                      textAlign: TextAlign.center,
-                      style: const TextStyle(
-                        fontSize: 42,
-                        height: 1,
-                        fontWeight: FontWeight.bold,
-                      ),
-                      decoration: const InputDecoration(
-                        border: InputBorder.none,
-                        isDense: true,
-                        contentPadding: EdgeInsets.zero,
-                      ),
-                      keyboardType: TextInputType.number,
-                      validator: widget.validator,
-                      onSaved: widget.onSaved,
-                      onChanged: (value) => _onChanged(value, index),
+          return SizedBox(
+            width: widget.widthFormField,
+            height: widget.heightFormField,
+            child: Container(
+              decoration: BoxDecoration(
+                border: Border.all(color: borderColor, width: borderWidth),
+                borderRadius: BorderRadius.circular(8),
+                color: widget.backgroundColor ?? Colors.transparent,
+              ),
+              child: AbsorbPointer(
+                absorbing: widget.useCustomKeyboard,
+                child: Center(
+                  child: RTextFormField(
+                    key: Key('pin_input_$index'),
+                    controller: controllers[index],
+                    focusNode: focusNodes[index],
+                    readOnly: widget.useCustomKeyboard,
+                    obscureText: widget.obscureText,
+                    textAlign: TextAlign.center,
+                    style: widget.textStyle,
+                    decoration: const InputDecoration(
+                      border: InputBorder.none,
+                      isDense: true,
+                      contentPadding: EdgeInsets.zero,
                     ),
+                    keyboardType: TextInputType.number,
+                    validator: widget.validator,
+                    onSaved: widget.onSaved,
+                    onChanged: (value) => _onChanged(value, index),
                   ),
                 ),
               ),
