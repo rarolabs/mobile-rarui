@@ -11,6 +11,7 @@ class ROutlinedButton extends RBaseButton {
     super.foregroundColor,
     super.disabledBackgroundColor,
     super.disabledForegroundColor,
+    this.side,
     super.icon,
     super.expanded = false,
     super.iconAlignment = IconAlignment.start,
@@ -21,11 +22,17 @@ class ROutlinedButton extends RBaseButton {
   }) : super(child: child);
 
   final double? height;
+  final BorderSide? side;
+
+  bool get _isDisabled => onPressed == null;
+  bool get _hasIcon => icon != null;
+  bool get _hasBorderRadius => borderRadius != null;
 
   @override
   Widget build(BuildContext context) {
-    final textColor =
-        onPressed == null ? disabledForegroundColor : foregroundColor;
+    final disabledBorderColor =
+        Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.12);
+    final textColor = _isDisabled ? disabledForegroundColor : foregroundColor;
     final double buttonHeight =
         (height != null && height! >= RConstants.minButtonHeight)
             ? height!
@@ -33,39 +40,32 @@ class ROutlinedButton extends RBaseButton {
 
     final styleButton = OutlinedButton.styleFrom(
       foregroundColor: textColor,
-      side: textColor != null
-          ? BorderSide(
-              color: textColor,
-              width: 1.0,
-            )
-          : BorderSide.none,
-      shape: borderRadius != null
-          ? RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(borderRadius!))
-          : null,
+      disabledForegroundColor: disabledForegroundColor,
+      side: !_isDisabled ? side : side?.copyWith(color: disabledBorderColor),
+      shape: !_hasBorderRadius
+          ? StadiumBorder()
+          : RoundedRectangleBorder(
+              borderRadius: BorderRadiusGeometry.circular(borderRadius!),
+            ),
     );
 
-    late final Widget button;
-
-    if (icon != null) {
-      button = OutlinedButton.icon(
-        onPressed: onPressed,
-        style: styleButton,
-        icon: Icon(
-          icon!,
-          color: textColor,
-          size: iconSize,
-        ),
-        label: child,
-        iconAlignment: iconAlignment,
-      );
-    } else {
-      button = OutlinedButton(
-        onPressed: onPressed,
-        style: styleButton,
-        child: child,
-      );
-    }
+    final Widget button = _hasIcon
+        ? OutlinedButton.icon(
+            onPressed: onPressed,
+            style: styleButton,
+            icon: Icon(
+              icon!,
+              color: textColor,
+              size: iconSize,
+            ),
+            label: child,
+            iconAlignment: iconAlignment,
+          )
+        : OutlinedButton(
+            onPressed: onPressed,
+            style: styleButton,
+            child: child,
+          );
 
     return SizedBox(
       height: buttonHeight,
