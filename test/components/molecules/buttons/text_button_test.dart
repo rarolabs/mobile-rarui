@@ -88,7 +88,7 @@ void main() {
       ),
     );
 
-    final textWidget = tester.widget<Text>(find.byType(Text));
+    final textWidget = tester.widget<RTextButton>(find.byType(RTextButton));
     expect(textWidget.maxLines, 2);
   });
 }
