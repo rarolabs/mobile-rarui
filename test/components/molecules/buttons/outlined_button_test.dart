@@ -8,7 +8,7 @@ void main() {
       MaterialApp(
         home: Scaffold(
           body: ROutlinedButton(
-            text: 'Test Button',
+            child: const Text('Test Button'),
             onPressed: () {},
           ),
         ),
@@ -25,7 +25,7 @@ void main() {
       MaterialApp(
         home: Scaffold(
           body: ROutlinedButton(
-            text: 'Icon Button',
+            child: const Text('Icon Button'),
             onPressed: () {},
             icon: Icons.add,
           ),
@@ -43,7 +43,7 @@ void main() {
       MaterialApp(
         home: Scaffold(
           body: ROutlinedButton(
-            text: 'Disabled Button',
+            child: const Text('Disabled Button'),
             onPressed: null,
           ),
         ),
@@ -62,7 +62,7 @@ void main() {
       MaterialApp(
         home: Scaffold(
           body: ROutlinedButton(
-            text: 'Expanded Button',
+            child: const Text('Expanded Button'),
             onPressed: () {},
             expanded: true,
           ),

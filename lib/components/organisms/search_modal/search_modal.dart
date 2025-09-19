@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:rarUI/components/molecules/title_subtitle/title_subtitle.dart';
 import 'package:rarUI/rarui.dart';
 
 class RSearchModal<T extends Object> extends StatefulWidget {

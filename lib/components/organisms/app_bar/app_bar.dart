@@ -24,9 +24,10 @@ class RAppBar extends StatelessWidget implements PreferredSizeWidget {
       leading: leading,
       actions: actions,
       centerTitle: centerTitle,
+      automaticallyImplyLeading: false,
     );
   }
-  
+
   @override
   Size get preferredSize => const Size.fromHeight(kToolbarHeight);
 }

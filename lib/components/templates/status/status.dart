@@ -67,7 +67,10 @@ class RStatus extends StatelessWidget {
                         ),
                   ),
                   const SizedBox(height: 48),
-                  RImage(image:image, size: Size(160, 160),),
+                  RImage(
+                    image: image,
+                    size: Size(160, 160),
+                  ),
                   const SizedBox(height: 48),
                   RLabel(
                     text: description,
@@ -78,7 +81,7 @@ class RStatus extends StatelessWidget {
                   ),
                   const Spacer(),
                   RElevatedButton(
-                    text: buttonText,
+                    child: RLabel(text: buttonText),
                     onPressed: onButtonPressed,
                   ),
                 ],

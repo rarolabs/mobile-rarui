@@ -18,7 +18,8 @@ class RReviewTemplate extends StatefulWidget {
   final String checkboxText;
   final Map<String, String> details;
   final String primaryButtonText;
-  final Function(bool checkboxValue, String? description)? onPrimaryButtonPressed;
+  final Function(bool checkboxValue, String? description)?
+      onPrimaryButtonPressed;
 
   @override
   State<RReviewTemplate> createState() => _RReviewTemplateState();
@@ -100,9 +101,10 @@ class _RReviewTemplateState extends State<RReviewTemplate> {
                 listenable: _descriptionController,
                 builder: (_, __) {
                   return RTextButton(
-                    text: _descriptionController.text.trim().isEmpty
-                        ? 'Escrever uma mensagem'
-                        : _descriptionController.text,
+                    child: RLabel(
+                        text: _descriptionController.text.trim().isEmpty
+                            ? 'Escrever uma mensagem'
+                            : _descriptionController.text),
                     icon: Icons.message,
                     expanded: true,
                     onPressed: () => _openDescriptionBottomSheet(context),
@@ -110,11 +112,13 @@ class _RReviewTemplateState extends State<RReviewTemplate> {
                 }),
             SizedBox(height: 28),
             RElevatedButton(
-              text: widget.primaryButtonText,
+              child: RLabel(text: widget.primaryButtonText),
               expanded: true,
               onPressed: () => widget.onPrimaryButtonPressed?.call(
                 _checkboxValue.value,
-                _descriptionController.text.trim().isEmpty ? null : _descriptionController.text,
+                _descriptionController.text.trim().isEmpty
+                    ? null
+                    : _descriptionController.text,
               ),
               backgroundColor: Theme.of(context).primaryColor,
               foregroundColor: Colors.white,
@@ -138,8 +142,10 @@ class _RReviewTemplateState extends State<RReviewTemplate> {
             controller: _descriptionController,
             maxLength: _descriptionMaxLength,
           ),
-          titlePrimaryButton: 'Concluir',
-          onPrimaryButtonPressed: _descriptionController.text.trim().isEmpty ? null : () => Navigator.pop(context),
+          primaryButtonChild: RLabel(text: 'Concluir'),
+          onPrimaryButtonPressed: _descriptionController.text.trim().isEmpty
+              ? null
+              : () => Navigator.pop(context),
         ),
       ),
     );

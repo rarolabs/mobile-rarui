@@ -51,7 +51,7 @@ void main() {
                       },
                     ),
                   ),
-                  text: "Search",
+                  child: const Text("Search"),
                 ),
               ),
             ],

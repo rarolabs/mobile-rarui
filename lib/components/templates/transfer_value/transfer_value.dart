@@ -56,13 +56,13 @@ class _RTransferValueTemplateState extends State<RTransferValueTemplate> {
             valueListenable: widget.controller,
             builder: (context, value, child) {
               return RElevatedButton(
-                text: widget.onContinueLabel,
+                child: RLabel(text: widget.onContinueLabel),
                 onPressed: widget.onContinuePressed,
               );
             },
           ),
           ROutlinedButton(
-            text: widget.onCancelLabel,
+            child: RLabel(text: widget.onCancelLabel),
             onPressed: () => Navigator.pop(context),
           )
         ],

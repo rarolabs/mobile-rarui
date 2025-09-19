@@ -74,14 +74,14 @@ class _RSetLimitTemplateState extends State<RSetLimitTemplate> {
           children: [
             RTextButton(
               expanded: true,
-              text: widget.primaryButtonTitle,
+              child: RLabel(text: widget.primaryButtonTitle),
               onPressed: widget.onPrimaryButtonPressed,
               backgroundColor: Theme.of(context).colorScheme.inversePrimary,
             ),
             SizedBox(height: 16.0),
             RTextButton(
               expanded: true,
-              text: widget.secondaryButtonTitle,
+              child: RLabel(text: widget.secondaryButtonTitle),
               onPressed: widget.onSecondaryButtonPressed,
               backgroundColor: Theme.of(context).colorScheme.onInverseSurface,
             ),

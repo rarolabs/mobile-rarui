@@ -11,7 +11,7 @@ void main() {
       MaterialApp(
         home: Scaffold(
           body: RFilledButtonTonal(
-            text: 'Tonal Button',
+            child: const Text('Tonal Button'),
             onPressed: () => wasTapped = true,
           ),
         ),
@@ -30,7 +30,7 @@ void main() {
       MaterialApp(
         home: Scaffold(
           body: RFilledButtonTonal(
-            text: 'Disabled Tonal',
+            child: const Text('Disabled Tonal'),
             onPressed: null,
             disabledForegroundColor: Colors.grey,
           ),
@@ -49,7 +49,7 @@ void main() {
       MaterialApp(
         home: Scaffold(
           body: RFilledButtonTonal(
-            text: 'Tonal with Icon',
+            child: const Text('Tonal with Icon'),
             onPressed: () {},
             icon: Icons.add,
           ),

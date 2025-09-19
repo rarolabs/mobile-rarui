@@ -5,7 +5,8 @@ import 'package:rarUI/components/molecules/buttons/elevated_button.dart';
 import 'package:rarUI/components/molecules/modal/modal.dart';
 
 void main() {
-  testWidgets('RModal exibe título, descrição e aciona botões', (WidgetTester tester) async {
+  testWidgets('RModal exibe título, descrição e aciona botões',
+      (WidgetTester tester) async {
     bool primaryPressed = false;
     bool secondaryPressed = false;
 
@@ -15,8 +16,8 @@ void main() {
           body: RModal(
             title: 'Modal Title',
             description: 'Modal Description',
-            titlePrimaryButton: 'Main Action',
-            titleSecondaryButton: 'Secondary Action',
+            primaryButtonChild: const RLabel(text: 'Main Action'),
+            secondaryButtonChild: const RLabel(text: 'Secondary Action'),
             onPrimaryButtonPressed: () => primaryPressed = true,
             onSecondaryButtonPressed: () => secondaryPressed = true,
           ),
@@ -42,7 +43,9 @@ void main() {
     expect(secondaryPressed, isTrue);
   });
 
-  testWidgets('RModal sem título, descrição e conteúdo não renderiza esses widgets', (WidgetTester tester) async {
+  testWidgets(
+      'RModal sem título, descrição e conteúdo não renderiza esses widgets',
+      (WidgetTester tester) async {
     await tester.pumpWidget(
       MaterialApp(
         home: Scaffold(

@@ -9,7 +9,7 @@ void main() {
       MaterialApp(
         home: Scaffold(
           body: RTextButton(
-            text: 'Click me',
+            child: const Text('Click me'),
             onPressed: () {},
           ),
         ),
@@ -26,7 +26,7 @@ void main() {
       MaterialApp(
         home: Scaffold(
           body: RTextButton(
-            text: 'Icon Button',
+            child: const Text('Icon Button'),
             onPressed: () {},
             icon: Icons.add,
           ),
@@ -44,7 +44,7 @@ void main() {
       MaterialApp(
         home: Scaffold(
           body: RTextButton(
-            text: 'Disabled',
+            child: const Text('Disabled'),
             onPressed: null,
             disabledForegroundColor: Colors.grey,
           ),
@@ -62,7 +62,7 @@ void main() {
       MaterialApp(
         home: Scaffold(
           body: RTextButton(
-            text: 'Expanded',
+            child: const Text('Expanded'),
             onPressed: () {},
             expanded: true,
           ),
@@ -80,7 +80,7 @@ void main() {
       MaterialApp(
         home: Scaffold(
           body: RTextButton(
-            text: 'Long text that should wrap based on maxLines',
+            child: const Text('Long text that should wrap based on maxLines'),
             onPressed: () {},
             maxLines: 2,
           ),

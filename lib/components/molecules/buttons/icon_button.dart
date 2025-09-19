@@ -8,6 +8,7 @@ class RIconButton extends StatelessWidget {
   final Color? backgroundColor;
   final Color? disabledColor;
   final EdgeInsetsGeometry? padding;
+  final double? borderRadius;
 
   const RIconButton({
     super.key,
@@ -18,6 +19,7 @@ class RIconButton extends StatelessWidget {
     this.backgroundColor,
     this.disabledColor,
     this.padding,
+    this.borderRadius,
   });
 
   @override
@@ -32,10 +34,11 @@ class RIconButton extends StatelessWidget {
       disabledColor: disabledColor,
       padding: padding,
       style: IconButton.styleFrom(
-        backgroundColor: backgroundColor,
-        padding: padding,
-        splashFactory: InkRipple.splashFactory,
-      ),
+          backgroundColor: backgroundColor,
+          padding: padding,
+          splashFactory: InkRipple.splashFactory,
+          shape:
+              borderRadius != null ? RoundedRectangleBorder(borderRadius: BorderRadius.circular(borderRadius!)) : null),
     );
   }
 }

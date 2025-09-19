@@ -12,11 +12,14 @@ class RPinInput extends StatefulWidget {
     this.validator,
     this.useCustomKeyboard = false,
     this.activeBorderColor,
+    this.defaultBorderColor,
     this.backgroundColor,
+    this.borderWidth = 1.0,
     this.heightFormField = 74.0,
     this.widthFormField = 48.0,
     this.spacing = 8.0,
     this.textStyle,
+    this.autofocus = false,
   }) : super(key: key);
 
   final GlobalKey<FormState> formKey;
@@ -27,11 +30,14 @@ class RPinInput extends StatefulWidget {
   final FormFieldValidator<String>? validator;
   final bool useCustomKeyboard;
   final Color? activeBorderColor;
+  final Color? defaultBorderColor;
   final Color? backgroundColor;
+  final double borderWidth;
   final double heightFormField;
   final double widthFormField;
   final double spacing;
   final TextStyle? textStyle;
+  final bool autofocus;
 
   @override
   State<RPinInput> createState() => RPinInputState();
@@ -71,7 +77,7 @@ class RPinInputState extends State<RPinInput> {
   @override
   Widget build(BuildContext context) {
     final activeColor = widget.activeBorderColor ?? Colors.green;
-    const defaultColor = Colors.grey;
+    final defaultColor = widget.defaultBorderColor ?? Colors.grey;
 
     return Form(
       key: widget.formKey,
@@ -83,14 +89,14 @@ class RPinInputState extends State<RPinInput> {
           final borderColor = allFilled
               ? activeColor
               : (isFocused ? activeColor : defaultColor);
-          final borderWidth = allFilled || isFocused ? 2.0 : 1.0;
 
           return SizedBox(
             width: widget.widthFormField,
             height: widget.heightFormField,
             child: Container(
               decoration: BoxDecoration(
-                border: Border.all(color: borderColor, width: borderWidth),
+                border:
+                    Border.all(color: borderColor, width: widget.borderWidth),
                 borderRadius: BorderRadius.circular(8),
                 color: widget.backgroundColor ?? Colors.transparent,
               ),
@@ -100,6 +106,7 @@ class RPinInputState extends State<RPinInput> {
                   child: RTextFormField(
                     key: Key('pin_input_$index'),
                     controller: controllers[index],
+                    autofocus: widget.autofocus && index == 0,
                     focusNode: focusNodes[index],
                     readOnly: widget.useCustomKeyboard,
                     obscureText: widget.obscureText,

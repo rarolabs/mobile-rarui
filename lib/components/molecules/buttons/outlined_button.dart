@@ -4,7 +4,7 @@ import 'package:rarUI/utils/constants.dart';
 
 class ROutlinedButton extends RBaseButton {
   const ROutlinedButton({
-    required String text,
+    required Widget child,
     super.key,
     super.onPressed,
     super.backgroundColor,
@@ -16,8 +16,9 @@ class ROutlinedButton extends RBaseButton {
     super.iconAlignment = IconAlignment.start,
     super.maxLines,
     super.iconSize,
+    super.borderRadius,
     this.height,
-  }) : super(text: text);
+  }) : super(child: child);
 
   final double? height;
 
@@ -38,13 +39,10 @@ class ROutlinedButton extends RBaseButton {
               width: 1.0,
             )
           : BorderSide.none,
-    );
-
-    final Widget textWidget = Text(
-      text,
-      maxLines: maxLines,
-      style: TextStyle(color: textColor),
-      textAlign: TextAlign.center,
+      shape: borderRadius != null
+          ? RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(borderRadius!))
+          : null,
     );
 
     late final Widget button;
@@ -58,14 +56,14 @@ class ROutlinedButton extends RBaseButton {
           color: textColor,
           size: iconSize,
         ),
-        label: textWidget,
+        label: child,
         iconAlignment: iconAlignment,
       );
     } else {
       button = OutlinedButton(
         onPressed: onPressed,
         style: styleButton,
-        child: textWidget,
+        child: child,
       );
     }
 

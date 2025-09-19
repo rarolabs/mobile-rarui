@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:rarUI/components/molecules/title_subtitle/title_subtitle.dart';
 import 'package:rarUI/rarui.dart';
 import 'package:rarUI/utils/enums/key_pix_type.dart';
 
@@ -99,7 +98,8 @@ class RRegisterKeyPixTemplate extends StatelessWidget {
             child: SizedBox(
               height: 70,
               width: double.infinity,
-              child: RElevatedButton(text: textButton, onPressed: onPressed),
+              child: RElevatedButton(
+                  child: RLabel(text: textButton), onPressed: onPressed),
             ),
           ),
         ],

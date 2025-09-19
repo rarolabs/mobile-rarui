@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:rarUI/components/atoms/label/label.dart';
 import 'package:rarUI/components/molecules/bottom_sheet/bottom_sheet.dart';
 
 void main() {
-  testWidgets('Exibe título, descrição e botões corretamente', (WidgetTester tester) async {
+  testWidgets('Exibe título, descrição e botões corretamente',
+      (WidgetTester tester) async {
     const title = 'Título de Teste';
     const description = 'Descrição de Teste';
     const primaryButtonText = 'Confirmar';
@@ -15,8 +17,8 @@ void main() {
           body: RBottomSheet(
             title: title,
             description: description,
-            titlePrimaryButton: primaryButtonText,
-            titleSecondaryButton: secondaryButtonText,
+            primaryButtonChild: RLabel(text: primaryButtonText),
+            secondaryButtonChild: RLabel(text: secondaryButtonText),
           ),
         ),
       ),
@@ -28,14 +30,15 @@ void main() {
     expect(find.text(secondaryButtonText), findsOneWidget);
   });
 
-  testWidgets('Dispara onPrimaryButtonPressed ao clicar no botão primário', (WidgetTester tester) async {
+  testWidgets('Dispara onPrimaryButtonPressed ao clicar no botão primário',
+      (WidgetTester tester) async {
     var primaryPressed = false;
 
     await tester.pumpWidget(
       MaterialApp(
         home: Scaffold(
           body: RBottomSheet(
-            titlePrimaryButton: 'Salvar',
+            primaryButtonChild: RLabel(text: 'Salvar'),
             onPrimaryButtonPressed: () {
               primaryPressed = true;
             },
@@ -50,14 +53,15 @@ void main() {
     expect(primaryPressed, isTrue);
   });
 
-  testWidgets('Dispara onSecondaryButtonPressed ao clicar no botão secundário', (WidgetTester tester) async {
+  testWidgets('Dispara onSecondaryButtonPressed ao clicar no botão secundário',
+      (WidgetTester tester) async {
     var secondaryPressed = false;
 
     await tester.pumpWidget(
       MaterialApp(
         home: Scaffold(
           body: RBottomSheet(
-            titleSecondaryButton: 'Voltar',
+            secondaryButtonChild: RLabel(text: 'Voltar'),
             onSecondaryButtonPressed: () {
               secondaryPressed = true;
             },
@@ -72,7 +76,8 @@ void main() {
     expect(secondaryPressed, isTrue);
   });
 
-  testWidgets('Não exibe widgets quando valores estão vazios', (WidgetTester tester) async {
+  testWidgets('Não exibe widgets quando valores estão vazios',
+      (WidgetTester tester) async {
     await tester.pumpWidget(
       const MaterialApp(
         home: Scaffold(

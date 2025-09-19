@@ -5,8 +5,8 @@ import 'package:rarUI/components/molecules/buttons/elevated_button.dart';
 class RBottomSheet extends StatelessWidget {
   final String title;
   final String description;
-  final String titlePrimaryButton;
-  final String titleSecondaryButton;
+  final Widget? primaryButtonChild;
+  final Widget? secondaryButtonChild;
   final Widget? content;
   final TextStyle? titleStyle;
   final TextStyle? descriptionStyle;
@@ -22,8 +22,8 @@ class RBottomSheet extends StatelessWidget {
     super.key,
     this.title = "",
     this.description = "",
-    this.titlePrimaryButton = "",
-    this.titleSecondaryButton = "",
+    this.primaryButtonChild,
+    this.secondaryButtonChild,
     this.content,
     this.titleStyle,
     this.descriptionStyle,
@@ -70,24 +70,24 @@ class RBottomSheet extends StatelessWidget {
             content!,
             const SizedBox(height: 24.0),
           ],
-          if (titlePrimaryButton.isNotEmpty)
+          if (primaryButtonChild != null)
             Padding(
               padding: const EdgeInsets.only(bottom: 8.0),
               child: SizedBox(
                 width: double.infinity,
                 child: RElevatedButton(
-                  text: titlePrimaryButton,
+                  child: primaryButtonChild!,
                   onPressed: onPrimaryButtonPressed,
                   backgroundColor: primaryBackgroundButtonColor,
                   foregroundColor: titlePrimaryButtonColor,
                 ),
               ),
             ),
-          if (titleSecondaryButton.isNotEmpty)
+          if (secondaryButtonChild != null)
             SizedBox(
               width: double.infinity,
               child: RElevatedButton(
-                text: titleSecondaryButton,
+                child: secondaryButtonChild!,
                 onPressed: onSecondaryButtonPressed,
                 backgroundColor: secondaryBackgroundButtonColor,
                 foregroundColor: titleSecondaryButtonColor,
