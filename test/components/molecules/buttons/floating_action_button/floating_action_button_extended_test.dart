@@ -9,7 +9,7 @@ void main() {
       MaterialApp(
         home: Scaffold(
           floatingActionButton: RFloatingActionButtonExtended(
-            text: 'Extended FAB',
+            child: const Text('Extended FAB'),
             onPressed: () {},
           ),
         ),
@@ -26,7 +26,7 @@ void main() {
       MaterialApp(
         home: Scaffold(
           floatingActionButton: RFloatingActionButtonExtended(
-            text: 'Create',
+            child: const Text('Create'),
             onPressed: () {},
             icon: Icons.add,
           ),
@@ -45,7 +45,7 @@ void main() {
       MaterialApp(
         home: Scaffold(
           floatingActionButton: RFloatingActionButtonExtended(
-            text: 'Disabled',
+            child: const Text('Disabled'),
             onPressed: null,
             disabledForegroundColor: Colors.grey,
           ),

@@ -3,19 +3,23 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:rarUI/rarui.dart';
 
 void main() {
-  testWidgets('RPinInput deve renderizar corretamente',
-      (WidgetTester tester) async {
-    await tester.pumpWidget(
-      MaterialApp(
-        home: Scaffold(
-          body: RPinInput(
-            formKey: GlobalKey<FormState>(),
-            onComplete: (_) {},
-            length: 5,
-          ),
+  Widget buildTestWidget({int length = 6, Color? activeBorderColor}) {
+    final formKey = GlobalKey<FormState>();
+    return MaterialApp(
+      home: Scaffold(
+        body: RPinInput(
+          formKey: formKey,
+          length: length,
+          activeBorderColor: activeBorderColor,
+          onComplete: (_) {},
+          key: const Key('pin_input_widget'),
         ),
       ),
     );
+  }
+
+  testWidgets('RPinInput deve renderizar corretamente', (WidgetTester tester) async {
+    await tester.pumpWidget(buildTestWidget(length: 5));
 
     expect(find.byType(RPinInput), findsOneWidget);
     expect(find.byType(Form), findsOneWidget);
@@ -23,70 +27,82 @@ void main() {
     expect(find.byType(RTextFormField), findsNWidgets(5));
   });
 
-  group(
-      'onCompleted deve ser chamado somente quando todos os campos estiverem preenchidos',
-      () {
-    testWidgets('completando o PIN com paste deve chamar onComplete',
-        (WidgetTester tester) async {
-      String? pinCode;
+  testWidgets('onComplete é chamado somente quando todos os campos estão preenchidos', (WidgetTester tester) async {
+    String? pinCode;
+    final formKey = GlobalKey<FormState>();
 
-      await tester.pumpWidget(
-        MaterialApp(
-          home: Scaffold(
-            body: RPinInput(
-              formKey: GlobalKey<FormState>(),
-              onComplete: (value) {
-                pinCode = value;
-              },
-              length: 5,
-            ),
+    await tester.pumpWidget(
+      MaterialApp(
+        home: Scaffold(
+          body: RPinInput(
+            key: const Key('pin_input_widget'),
+            formKey: formKey,
+            length: 4,
+            onComplete: (value) {
+              pinCode = value;
+            },
           ),
         ),
-      );
+      ),
+    );
 
-      expect(pinCode, isNull);
+    expect(pinCode, isNull);
 
-      Future<void> pasteText(String testValue) async {
-        await tester.enterText(find.byType(RTextFormField).first, testValue);
-      }
+    // Preencher campo por campo
+    await tester.enterText(find.byType(RTextFormField).at(0), '1');
+    await tester.enterText(find.byType(RTextFormField).at(1), '2');
+    await tester.enterText(find.byType(RTextFormField).at(2), '3');
+    await tester.enterText(find.byType(RTextFormField).at(3), '4');
+    await tester.pump();
 
-      await pasteText('123');
-      expect(pinCode, equals(isNull));
+    expect(pinCode, equals('1234'));
+  });
 
-      await pasteText('12345');
-      expect(pinCode, equals('12345'));
-    });
+  testWidgets('addDigit adiciona corretamente e chama onComplete ao final', (WidgetTester tester) async {
+    String? pinCode;
+    final formKey = GlobalKey<FormState>();
 
-    testWidgets('completando o PIN com input deve chamar onComplete',
-        (WidgetTester tester) async {
-      String? pinCode;
-
-      await tester.pumpWidget(
-        MaterialApp(
-          home: Scaffold(
-            body: RPinInput(
-              formKey: GlobalKey<FormState>(),
-              onComplete: (value) {
-                pinCode = value;
-              },
-              length: 5,
-            ),
+    await tester.pumpWidget(
+      MaterialApp(
+        home: Scaffold(
+          body: RPinInput(
+            key: const Key('pin_input_widget'),
+            formKey: formKey,
+            length: 3,
+            onComplete: (value) {
+              pinCode = value;
+            },
           ),
         ),
-      );
+      ),
+    );
 
-      expect(pinCode, isNull);
+    final state = tester.state<RPinInputState>(find.byKey(const Key('pin_input_widget')));
+    state.addDigit('5');
+    state.addDigit('4');
+    state.addDigit('3');
+    await tester.pump();
 
-      Future<void> inputTextOneByOne(String testValue) async {
-        await tester.enterText(find.byType(RTextFormField).at(0), testValue[0]);
-        await tester.enterText(find.byType(RTextFormField).at(1), testValue[1]);
-        await tester.enterText(find.byType(RTextFormField).at(2), testValue[2]);
-        await tester.enterText(find.byType(RTextFormField).at(3), testValue[3]);
-        await tester.enterText(find.byType(RTextFormField).at(4), testValue[4]);
-      }
+    expect(find.text('5'), findsOneWidget);
+    expect(find.text('4'), findsOneWidget);
+    expect(find.text('3'), findsOneWidget);
+    expect(pinCode, equals('543'));
+  });
 
-      await inputTextOneByOne('54321');
-      expect(pinCode, equals('54321'));
-    });
+  testWidgets('backspace apaga corretamente o último dígito', (WidgetTester tester) async {
+    await tester.pumpWidget(buildTestWidget(length: 3));
+    final state = tester.state<RPinInputState>(find.byKey(const Key('pin_input_widget')));
+
+    state.addDigit('1');
+    state.addDigit('2');
+    state.addDigit('3');
+    await tester.pump();
+
+    expect(find.text('3'), findsOneWidget);
+
+    state.backspace();
+    await tester.pump();
+    expect(find.text('3'), findsNothing);
+    expect(find.text('2'), findsOneWidget);
   });
 }

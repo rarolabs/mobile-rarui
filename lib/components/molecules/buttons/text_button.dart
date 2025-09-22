@@ -4,7 +4,7 @@ import 'package:rarUI/utils/constants.dart';
 
 class RTextButton extends RBaseButton {
   const RTextButton({
-    required String text,
+    required Widget child,
     super.key,
     super.onPressed,
     super.backgroundColor,
@@ -17,7 +17,7 @@ class RTextButton extends RBaseButton {
     super.maxLines,
     super.iconSize,
     this.height,
-  }) : super(text: text);
+  }) : super(child: child);
 
   final double? height;
 
@@ -30,15 +30,13 @@ class RTextButton extends RBaseButton {
             ? height!
             : RConstants.minButtonHeight;
 
-    final Widget textWidget = Text(
-      text,
-      maxLines: maxLines,
-      textAlign: TextAlign.center,
-    );
-
     final style = TextButton.styleFrom(
       backgroundColor: backgroundColor,
       foregroundColor: textColor,
+      shape: borderRadius != null
+          ? RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(borderRadius!))
+          : null,
     );
     late final Widget button;
 
@@ -51,13 +49,13 @@ class RTextButton extends RBaseButton {
           color: textColor,
           size: iconSize,
         ),
-        label: textWidget,
+        label: child,
         iconAlignment: iconAlignment,
       );
     } else {
       button = TextButton(
         onPressed: onPressed,
-        child: textWidget,
+        child: child,
         style: style,
       );
     }

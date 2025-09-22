@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:rarUI/components/molecules/title_subtitle/title_subtitle.dart';
 import 'package:rarUI/rarui.dart';
 
 class RProofTransferTemplate extends StatelessWidget {
@@ -39,7 +38,8 @@ class RProofTransferTemplate extends StatelessWidget {
             alignment: Alignment.centerLeft,
             child: IconButton(
               onPressed: onPressedIconClose,
-              icon: Icon(Icons.close, color: Theme.of(context).colorScheme.onSurface),
+              icon: Icon(Icons.close,
+                  color: Theme.of(context).colorScheme.onSurface),
             ),
           ),
           if (imageLogo != null)
@@ -63,7 +63,9 @@ class RProofTransferTemplate extends StatelessWidget {
                   fontWeight: FontWeight.bold,
                 ),
                 subTitleStyle: TextStyle(
-                    fontSize: 14.0, fontWeight: FontWeight.w400, color: Theme.of(context).colorScheme.onSurface),
+                    fontSize: 14.0,
+                    fontWeight: FontWeight.w400,
+                    color: Theme.of(context).colorScheme.onSurface),
               ),
             ),
           if (transferData != null && transferData!.isNotEmpty)
@@ -81,10 +83,15 @@ class RProofTransferTemplate extends StatelessWidget {
                           color: Theme.of(context).colorScheme.onSurface,
                         ),
                       ),
-                      RLabel(text: e.value, style: TextStyle(fontSize: 14.0, fontWeight: FontWeight.bold))
+                      RLabel(
+                          text: e.value,
+                          style: TextStyle(
+                              fontSize: 14.0, fontWeight: FontWeight.bold))
                     ],
                   ),
-                  RDivider(color: Theme.of(context).colorScheme.onSurface, thickness: 0.1),
+                  RDivider(
+                      color: Theme.of(context).colorScheme.onSurface,
+                      thickness: 0.1),
                 ],
               );
             }).toList(),
@@ -93,29 +100,37 @@ class RProofTransferTemplate extends StatelessWidget {
               alignment: Alignment.centerLeft,
               child: Padding(
                 padding: const EdgeInsets.only(top: 28.0, bottom: 16.0),
-                child: RLabel(text: titleFisrtBlock!, style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold)),
+                child: RLabel(
+                    text: titleFisrtBlock!,
+                    style:
+                        TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold)),
               ),
             ),
           if (firstBlockItens != null && firstBlockItens!.isNotEmpty)
             ...firstBlockItens!.entries
-                .map((e) => TitleSubtitleDividerWidget(title: e.key, subtitle: e.value))
+                .map((e) =>
+                    TitleSubtitleDividerWidget(title: e.key, subtitle: e.value))
                 .toList(),
           if (titleSecondBlock != null && titleSecondBlock!.isNotEmpty)
             Align(
               alignment: Alignment.centerLeft,
               child: Padding(
                 padding: const EdgeInsets.only(top: 28.0, bottom: 16.0),
-                child: RLabel(text: titleSecondBlock!, style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold)),
+                child: RLabel(
+                    text: titleSecondBlock!,
+                    style:
+                        TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold)),
               ),
             ),
           if (secondBlockItens != null && secondBlockItens!.isNotEmpty)
             ...secondBlockItens!.entries
-                .map((e) => TitleSubtitleDividerWidget(title: e.key, subtitle: e.value))
+                .map((e) =>
+                    TitleSubtitleDividerWidget(title: e.key, subtitle: e.value))
                 .toList(),
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 32.0),
             child: RTextButton(
-              text: titleButton ?? "",
+              child: RLabel(text: titleButton ?? ""),
               onPressed: onPressedButton,
               foregroundColor: Theme.of(context).colorScheme.onSurface,
             ),
@@ -130,17 +145,23 @@ class TitleSubtitleDividerWidget extends StatelessWidget {
   final String title;
   final String subtitle;
 
-  const TitleSubtitleDividerWidget({super.key, required this.title, required this.subtitle});
+  const TitleSubtitleDividerWidget(
+      {super.key, required this.title, required this.subtitle});
 
   @override
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        RLabel(text: title, style: TextStyle(fontSize: 14.0, fontWeight: FontWeight.w400)),
-        RLabel(text: subtitle, style: TextStyle(fontSize: 14.0, fontWeight: FontWeight.bold)),
+        RLabel(
+            text: title,
+            style: TextStyle(fontSize: 14.0, fontWeight: FontWeight.w400)),
+        RLabel(
+            text: subtitle,
+            style: TextStyle(fontSize: 14.0, fontWeight: FontWeight.bold)),
         SizedBox(height: 12.0),
-        RDivider(color: Theme.of(context).colorScheme.onSurface, thickness: 0.1),
+        RDivider(
+            color: Theme.of(context).colorScheme.onSurface, thickness: 0.1),
         SizedBox(height: 12.0),
       ],
     );

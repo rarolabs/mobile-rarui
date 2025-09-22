@@ -4,7 +4,7 @@ import 'package:rarUI/utils/constants.dart';
 
 class RFilledButton extends RBaseButton {
   const RFilledButton({
-    required String text,
+    required Widget child,
     super.key,
     super.onPressed,
     super.backgroundColor,
@@ -16,8 +16,9 @@ class RFilledButton extends RBaseButton {
     super.iconAlignment = IconAlignment.start,
     super.maxLines,
     super.iconSize,
+    super.borderRadius,
     this.height,
-  }) : super(text: text);
+  }) : super(child: child);
 
   final double? height;
 
@@ -35,13 +36,10 @@ class RFilledButton extends RBaseButton {
       disabledBackgroundColor: disabledBackgroundColor,
       disabledForegroundColor: disabledForegroundColor,
       backgroundColor: backgroundColor,
-    );
-
-    final Widget textWidget = Text(
-      text,
-      maxLines: maxLines,
-      style: TextStyle(color: textDefaultColor),
-      textAlign: TextAlign.center,
+      shape: borderRadius != null
+          ? RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(borderRadius!))
+          : null,
     );
 
     late final Widget button;
@@ -54,14 +52,14 @@ class RFilledButton extends RBaseButton {
           color: textDefaultColor,
           size: iconSize,
         ),
-        label: textWidget,
+        label: child,
         iconAlignment: iconAlignment,
       );
     } else {
       button = FilledButton(
         onPressed: onPressed,
         style: styleButton,
-        child: textWidget,
+        child: child,
       );
     }
 

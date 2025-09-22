@@ -11,7 +11,7 @@ void main() {
       MaterialApp(
         home: Scaffold(
           body: RFilledButton(
-            text: 'Tap me',
+            child: const Text('Tap me'),
             onPressed: () => wasTapped = true,
           ),
         ),
@@ -29,7 +29,7 @@ void main() {
       MaterialApp(
         home: Scaffold(
           body: RFilledButton(
-            text: 'Disabled',
+            child: const Text('Disabled'),
             onPressed: null,
             disabledForegroundColor: Colors.grey,
           ),
@@ -48,7 +48,7 @@ void main() {
       MaterialApp(
         home: Scaffold(
           body: RFilledButton(
-            text: 'With Icon',
+            child: const Text('With Icon'),
             onPressed: () {},
             icon: Icons.check,
           ),

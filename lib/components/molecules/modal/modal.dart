@@ -5,8 +5,8 @@ import 'package:rarUI/components/molecules/molecules.dart';
 class RModal extends StatelessWidget {
   final String title;
   final String description;
-  final String titlePrimaryButton;
-  final String titleSecondaryButton;
+  final Widget? primaryButtonChild;
+  final Widget? secondaryButtonChild;
   final Widget? content;
   final TextStyle? titleStyle;
   final TextStyle? descriptionStyle;
@@ -22,8 +22,8 @@ class RModal extends StatelessWidget {
     super.key,
     this.title = "",
     this.description = "",
-    this.titlePrimaryButton = "",
-    this.titleSecondaryButton = "",
+    this.primaryButtonChild,
+    this.secondaryButtonChild,
     this.content,
     this.dragHandleColor,
     this.titleStyle,
@@ -51,7 +51,8 @@ class RModal extends StatelessWidget {
               width: 40.0,
               height: 4.0,
               decoration: BoxDecoration(
-                  color: dragHandleColor ?? Theme.of(context).colorScheme.primary,
+                  color:
+                      dragHandleColor ?? Theme.of(context).colorScheme.primary,
                   borderRadius: BorderRadius.circular(2)),
             ),
           ),
@@ -67,24 +68,24 @@ class RModal extends StatelessWidget {
             ),
           content ?? const SizedBox.shrink(),
           if (content != null) SizedBox(height: 24.0),
-          if (titlePrimaryButton.isNotEmpty)
+          if (primaryButtonChild != null)
             Padding(
               padding: const EdgeInsets.only(bottom: 8.0),
               child: SizedBox(
                 width: double.infinity,
                 child: RElevatedButton(
-                  text: titlePrimaryButton,
+                  child: primaryButtonChild!,
                   onPressed: onPrimaryButtonPressed,
                   backgroundColor: primaryBackgroundButtonColor,
                   foregroundColor: titlePrimaryButtonColor,
                 ),
               ),
             ),
-          if (titleSecondaryButton.isNotEmpty)
+          if (secondaryButtonChild != null)
             SizedBox(
               width: double.infinity,
               child: RElevatedButton(
-                text: titleSecondaryButton,
+                child: secondaryButtonChild!,
                 onPressed: onSecondaryButtonPressed,
                 backgroundColor: secondaryBackgroundButtonColor,
                 foregroundColor: titleSecondaryButtonColor,

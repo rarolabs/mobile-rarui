@@ -3,7 +3,7 @@ import 'package:rarUI/components/molecules/buttons/base_button.dart';
 
 class RFloatingActionButtonExtended extends RBaseButton {
   const RFloatingActionButtonExtended({
-    required String text,
+    required Widget child,
     super.key,
     super.onPressed,
     super.backgroundColor,
@@ -13,20 +13,14 @@ class RFloatingActionButtonExtended extends RBaseButton {
     super.icon,
     super.maxLines,
     super.iconSize,
-  }) : super(text: text);
+    super.borderRadius,
+  }) : super(child: child);
 
   @override
   Widget build(BuildContext context) {
     final textDefaultColor = (onPressed == null
         ? disabledForegroundColor
         : foregroundColor ?? Colors.white);
-
-    final Widget textWidget = Text(
-      text,
-      maxLines: maxLines,
-      style: TextStyle(color: textDefaultColor),
-      textAlign: TextAlign.center,
-    );
 
     late final Widget button;
     if (icon != null) {
@@ -37,14 +31,18 @@ class RFloatingActionButtonExtended extends RBaseButton {
           color: textDefaultColor,
           size: iconSize,
         ),
-        label: textWidget,
+        label: child,
         backgroundColor: backgroundColor,
         foregroundColor: textDefaultColor,
+        shape: borderRadius != null
+            ? RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(borderRadius!))
+            : null,
       );
     } else {
       button = FloatingActionButton.extended(
         onPressed: onPressed,
-        label: textWidget,
+        label: child,
         backgroundColor: backgroundColor,
         foregroundColor: textDefaultColor,
       );

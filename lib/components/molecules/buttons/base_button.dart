@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 abstract class RBaseButton extends StatelessWidget {
   const RBaseButton({
-    required this.text,
+    required this.child,
     super.key,
     this.onPressed,
     this.backgroundColor,
@@ -14,9 +14,11 @@ abstract class RBaseButton extends StatelessWidget {
     this.maxLines,
     this.icon,
     this.iconSize,
+    this.textStyle,
+    this.borderRadius,
   });
 
-  final String text;
+  final Widget child;
   final VoidCallback? onPressed;
   final Color? backgroundColor;
   final Color? foregroundColor;
@@ -27,6 +29,8 @@ abstract class RBaseButton extends StatelessWidget {
   final int? maxLines;
   final IconData? icon;
   final double? iconSize;
+  final TextStyle? textStyle;
+  final double? borderRadius;
 
   @override
   Widget build(BuildContext context);

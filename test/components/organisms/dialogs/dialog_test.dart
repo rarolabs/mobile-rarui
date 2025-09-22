@@ -8,24 +8,26 @@ void main() {
     const Key buttonKey = Key('buttonKey');
     await tester.pumpWidget(MaterialApp(
       home: Scaffold(
-        body: Builder(
-          builder: (BuildContext context) {
-            return ElevatedButton(
-              key: buttonKey,
-              onPressed: () {
-                RDialog.show(context: context, child: Column(
-                  children: [
-                    Text(textDialog),
-                    RElevatedButton(text: 'Fechar'),
-                  ],
-                ));
-              },
-              child: Text(
-                'Exibir Dialog',
-              ),
-            );
-          }
-        ),
+        body: Builder(builder: (BuildContext context) {
+          return ElevatedButton(
+            key: buttonKey,
+            onPressed: () {
+              RDialog.show(
+                  context: context,
+                  child: Column(
+                    children: [
+                      Text(textDialog),
+                      RElevatedButton(
+                        child: Text('Fechar'),
+                      ),
+                    ],
+                  ));
+            },
+            child: Text(
+              'Exibir Dialog',
+            ),
+          );
+        }),
       ),
     ));
     expect(find.text(textDialog), findsNothing);
@@ -34,4 +36,4 @@ void main() {
     await tester.pump();
     expect(find.text(textDialog), findsOneWidget);
   });
-  }
+}

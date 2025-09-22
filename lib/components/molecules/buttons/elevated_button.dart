@@ -4,7 +4,7 @@ import 'package:rarUI/utils/constants.dart';
 
 class RElevatedButton extends RBaseButton {
   const RElevatedButton({
-    required String text,
+    required Widget child,
     super.key,
     super.onPressed,
     super.backgroundColor,
@@ -16,8 +16,10 @@ class RElevatedButton extends RBaseButton {
     super.iconAlignment = IconAlignment.start,
     super.maxLines,
     super.iconSize,
+    super.textStyle,
+    super.borderRadius,
     this.height,
-  }) : super(text: text);
+  }) : super(child: child);
 
   final double? height;
 
@@ -31,16 +33,15 @@ class RElevatedButton extends RBaseButton {
             : RConstants.minButtonHeight;
 
     final styleButton = ElevatedButton.styleFrom(
-        disabledBackgroundColor: disabledBackgroundColor,
-        disabledForegroundColor: disabledForegroundColor,
-        backgroundColor: backgroundColor,
-        foregroundColor: textColor);
-
-    final Widget textWidget = Text(
-      text,
-      maxLines: maxLines,
-      style: TextStyle(color: textColor),
-      textAlign: TextAlign.center,
+      disabledBackgroundColor: disabledBackgroundColor,
+      disabledForegroundColor: disabledForegroundColor,
+      backgroundColor: backgroundColor,
+      foregroundColor: textColor,
+      textStyle: textStyle,
+      shape: borderRadius != null
+          ? RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(borderRadius!))
+          : null,
     );
 
     late final Widget button;
@@ -53,14 +54,14 @@ class RElevatedButton extends RBaseButton {
           color: textColor,
           size: iconSize,
         ),
-        label: textWidget,
+        label: child,
         iconAlignment: iconAlignment,
       );
     } else {
       button = ElevatedButton(
         onPressed: onPressed,
         style: styleButton,
-        child: textWidget,
+        child: child,
       );
     }
 

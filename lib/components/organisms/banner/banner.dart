@@ -60,12 +60,13 @@ class RBanner extends StatelessWidget {
                   RLabel(
                     text: subtitle,
                     style: theme.textTheme.bodyMedium?.copyWith(
-                      color: subtitleColor ?? theme.colorScheme.onSurface.withAlpha(179),
+                      color: subtitleColor ??
+                          theme.colorScheme.onSurface.withAlpha(179),
                     ),
                   ),
                   const SizedBox(height: 12),
                   RElevatedButton(
-                    text: buttonText,
+                    child: RLabel(text: buttonText),
                     onPressed: onButtonPressed,
                   ),
                 ],
