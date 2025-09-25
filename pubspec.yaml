@@ -1,7 +1,9 @@
 name: rarUI
 description: "RarUI"
 version: 0.0.1
-publish_to: none
+homepage: ""
+repository: ""
+issue_tracker: ""
 
 environment:
   sdk: ^3.6.0
