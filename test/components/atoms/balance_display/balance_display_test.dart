@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:rarUI/components/atoms/balance_display/balance_display.dart';
+import 'package:rarui/components/atoms/balance_display/balance_display.dart';
 
 void main() {
   group('RBalanceDisplay Tests', () {

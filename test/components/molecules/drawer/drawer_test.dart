@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:rarUI/components/molecules/drawer/drawer.dart';
+import 'package:rarui/components/molecules/drawer/drawer.dart';
 
 void main() {
   testWidgets('RDrawer: deve rederizar o widget corretamente', (tester) async {
@@ -29,7 +29,8 @@ void main() {
     expect(drawer.elevation, 10);
     expect(drawer.width, 200);
     expect(drawer.shadowColor, Colors.black);
-    expect(drawer.shape, RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)));
+    expect(drawer.shape,
+        RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)));
     expect(drawer.semanticLabel, 'teste');
     expect(drawer.surfaceTintColor, Colors.blue);
 

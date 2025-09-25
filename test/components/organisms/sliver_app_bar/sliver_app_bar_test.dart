@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:rarUI/rarui.dart';
+import 'package:rarui/rarui.dart';
 
 void main() {
   testWidgets('RSliverAppBar: deve renderizar corretamente', (tester) async {
@@ -9,19 +9,22 @@ void main() {
       key: rAppBarKey,
       title: Text('Sliver App Bar'),
       backgroundColor: Colors.red,
-    leading: Icon(Icons.arrow_back),
-    actions: [
-      Icon(Icons.search),
-    ],
-    centerTitle: true,
-    pinned: true,
-    expandedHeight: 200,
+      leading: Icon(Icons.arrow_back),
+      actions: [
+        Icon(Icons.search),
+      ],
+      centerTitle: true,
+      pinned: true,
+      expandedHeight: 200,
     );
 
-    await tester.pumpWidget(MaterialApp(home: CustomScrollView(slivers: [widget],)));
+    await tester.pumpWidget(MaterialApp(
+        home: CustomScrollView(
+      slivers: [widget],
+    )));
 
-    final sliverAppBar = tester.widget<RSliverAppBar>(find.byType(RSliverAppBar));
-
+    final sliverAppBar =
+        tester.widget<RSliverAppBar>(find.byType(RSliverAppBar));
 
     final componentFinder = find.byKey(rAppBarKey);
     expect(componentFinder, findsOneWidget);

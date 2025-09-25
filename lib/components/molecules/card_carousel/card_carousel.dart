@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:rarUI/components/atoms/atoms.dart';
+import 'package:rarui/components/atoms/atoms.dart';
 
 class RCardCarousel extends StatelessWidget {
   const RCardCarousel({

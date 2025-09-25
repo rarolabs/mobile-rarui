@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:rarUI/components/atoms/atoms.dart';
+import 'package:rarui/components/atoms/atoms.dart';
 
 import '../../utils/widget_tester_extension.dart';
 
@@ -31,7 +31,8 @@ void main() {
     expect(defaultTextFinder, findsOneWidget);
   });
 
-  testWidgets('DatePicker é renderizado com builder customizado', (tester) async {
+  testWidgets('DatePicker é renderizado com builder customizado',
+      (tester) async {
     Key datePickerKey = const Key("datePickerTest2");
     Key buttonKey = const Key("buttonTest2");
     String customLabel = "Escolher Data";
@@ -86,7 +87,8 @@ void main() {
     expect(datePickerDialog, findsOneWidget);
   });
 
-  testWidgets('DatePicker chama onDateSelected ao selecionar data', (tester) async {
+  testWidgets('DatePicker chama onDateSelected ao selecionar data',
+      (tester) async {
     Key datePickerKey = const Key("datePickerTest4");
     Key buttonKey = const Key("buttonTest4");
     DateTime? selectedDate;

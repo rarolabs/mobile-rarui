@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:rarUI/components/atoms/divider/divider.dart';
+import 'package:rarui/components/atoms/divider/divider.dart';
 
 void main() {
   group('RDivider Tests', () {

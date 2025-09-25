@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:rarUI/components/atoms/label/label.dart';
-import 'package:rarUI/components/molecules/bottom_sheet/bottom_sheet.dart';
+import 'package:rarui/components/atoms/label/label.dart';
+import 'package:rarui/components/molecules/bottom_sheet/bottom_sheet.dart';
 
 void main() {
   testWidgets('Exibe título, descrição e botões corretamente',

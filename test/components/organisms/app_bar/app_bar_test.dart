@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:rarUI/rarui.dart';
+import 'package:rarui/rarui.dart';
 
 void main() {
   testWidgets('RAppBar: deve renderizar corretamente', (tester) async {
@@ -9,11 +9,11 @@ void main() {
       key: rAppBarKey,
       title: Text('App Bar'),
       backgroundColor: Colors.red,
-    leading: Icon(Icons.arrow_back),
-    actions: [
-      Icon(Icons.search),
-    ],
-    centerTitle: true,
+      leading: Icon(Icons.arrow_back),
+      actions: [
+        Icon(Icons.search),
+      ],
+      centerTitle: true,
     );
 
     await tester.pumpWidget(MaterialApp(home: widget));

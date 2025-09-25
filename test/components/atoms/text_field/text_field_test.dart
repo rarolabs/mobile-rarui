@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:rarUI/components/atoms/text_field/text_field.dart';
+import 'package:rarui/components/atoms/text_field/text_field.dart';
 
 void main() {
   group('RTextField', () {
-    testWidgets('deve renderizar com propriedades básicas', (WidgetTester tester) async {
+    testWidgets('deve renderizar com propriedades básicas',
+        (WidgetTester tester) async {
       const testText = 'Texto de teste';
       final controller = TextEditingController();
 
@@ -28,7 +29,8 @@ void main() {
       expect(controller.text, testText);
     });
 
-    testWidgets('deve lidar com callback onChanged', (WidgetTester tester) async {
+    testWidgets('deve lidar com callback onChanged',
+        (WidgetTester tester) async {
       String? changedValue;
       const testText = 'Texto alterado';
 
@@ -46,7 +48,8 @@ void main() {
       expect(changedValue, testText);
     });
 
-    testWidgets('deve lidar com callback onSubmitted', (WidgetTester tester) async {
+    testWidgets('deve lidar com callback onSubmitted',
+        (WidgetTester tester) async {
       String? submittedValue;
       const testText = 'Texto enviado';
 
@@ -65,7 +68,8 @@ void main() {
       expect(submittedValue, testText);
     });
 
-    testWidgets('deve lidar com propriedade obscureText', (WidgetTester tester) async {
+    testWidgets('deve lidar com propriedade obscureText',
+        (WidgetTester tester) async {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
@@ -80,7 +84,8 @@ void main() {
       expect(textField.obscureText, true);
     });
 
-    testWidgets('deve lidar com propriedade readOnly', (WidgetTester tester) async {
+    testWidgets('deve lidar com propriedade readOnly',
+        (WidgetTester tester) async {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
@@ -95,7 +100,8 @@ void main() {
       expect(textField.readOnly, true);
     });
 
-    testWidgets('deve lidar com propriedade maxLength', (WidgetTester tester) async {
+    testWidgets('deve lidar com propriedade maxLength',
+        (WidgetTester tester) async {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(

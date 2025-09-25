@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:rarUI/components/molecules/buttons/elevated_button.dart';
+import 'package:rarui/components/molecules/buttons/elevated_button.dart';
 
 void main() {
   testWidgets('RElevatedButton renders correctly', (WidgetTester tester) async {

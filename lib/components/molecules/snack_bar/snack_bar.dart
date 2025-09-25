@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:rarUI/utils/constants.dart';
+import 'package:rarui/utils/constants.dart';
 
 class RSnackBar {
   static void show({
     required BuildContext context,
-    required String message, 
+    required String message,
     String? actionLabel,
     VoidCallback? onPressedAction,
     Duration? duration,

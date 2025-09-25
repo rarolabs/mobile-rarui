@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:rarUI/components/molecules/buttons/filled_button/filled_button_tonal.dart';
+import 'package:rarui/components/molecules/buttons/filled_button/filled_button_tonal.dart';
 
 void main() {
   testWidgets('RFilledButtonTonal renders with text and responds to tap',

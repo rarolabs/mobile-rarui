@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:rarUI/components/atoms/cards/card_outlined.dart';
+import 'package:rarui/components/atoms/cards/card_outlined.dart';
 
 void main() {
   testWidgets('RCardOutlined: deve renderizar corretamente', (tester) async {
@@ -33,7 +33,8 @@ void main() {
     expect(card.elevation, 1);
     expect(card.margin, EdgeInsets.all(10));
     expect(card.shadowColor, Colors.black);
-    expect(card.shape, RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)));
+    expect(card.shape,
+        RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)));
     expect(card.surfaceTintColor, Colors.white);
     expect(card.clipBehavior, Clip.hardEdge);
     expect(card.semanticContainer, isTrue);

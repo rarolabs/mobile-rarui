@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:rarUI/components/atoms/text_field/text_form_field.dart';
+import 'package:rarui/components/atoms/text_field/text_form_field.dart';
 
 class RPinInput extends StatefulWidget {
   const RPinInput({

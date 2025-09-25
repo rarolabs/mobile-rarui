@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:rarUI/components/molecules/toast/toast.dart';
-import 'package:rarUI/utils/extensions/theme_extension.dart';
+import 'package:rarui/components/molecules/toast/toast.dart';
+import 'package:rarui/utils/extensions/theme_extension.dart';
 
 void main() {
   Widget createTestWidget({required Widget child}) {
@@ -23,7 +23,8 @@ void main() {
   }
 
   group('RToast Widget Tests', () {
-    testWidgets('deve exibir RToast com estilo success corretamente', (WidgetTester tester) async {
+    testWidgets('deve exibir RToast com estilo success corretamente',
+        (WidgetTester tester) async {
       const String title = 'Sucesso';
       const String message = 'Operação realizada com sucesso!';
 
@@ -43,7 +44,8 @@ void main() {
       expect(find.byIcon(Icons.check_circle), findsOneWidget);
     });
 
-    testWidgets('deve exibir RToast com estilo warning corretamente', (WidgetTester tester) async {
+    testWidgets('deve exibir RToast com estilo warning corretamente',
+        (WidgetTester tester) async {
       const String title = 'Aviso';
       const String message = 'Atenção com esta operação!';
 
@@ -63,7 +65,8 @@ void main() {
       expect(find.byIcon(Icons.warning), findsOneWidget);
     });
 
-    testWidgets('deve exibir RToast com estilo error corretamente', (WidgetTester tester) async {
+    testWidgets('deve exibir RToast com estilo error corretamente',
+        (WidgetTester tester) async {
       const String title = 'Erro';
       const String message = 'Ocorreu um erro na operação!';
 
@@ -83,7 +86,8 @@ void main() {
       expect(find.byIcon(Icons.error), findsOneWidget);
     });
 
-    testWidgets('deve exibir RToast com estilo info corretamente', (WidgetTester tester) async {
+    testWidgets('deve exibir RToast com estilo info corretamente',
+        (WidgetTester tester) async {
       const String title = 'Informação';
       const String message = 'Esta é uma informação importante!';
 
@@ -103,7 +107,8 @@ void main() {
       expect(find.byIcon(Icons.info), findsOneWidget);
     });
 
-    testWidgets('deve exibir RToast com estilo custom corretamente', (WidgetTester tester) async {
+    testWidgets('deve exibir RToast com estilo custom corretamente',
+        (WidgetTester tester) async {
       const String title = 'Custom';
       const String message = 'Toast customizado!';
 
@@ -125,7 +130,8 @@ void main() {
       expect(find.byIcon(Icons.star), findsOneWidget);
     });
 
-    testWidgets('deve exibir botão quando buttonText é fornecido', (WidgetTester tester) async {
+    testWidgets('deve exibir botão quando buttonText é fornecido',
+        (WidgetTester tester) async {
       const String title = 'Toast com botão';
       const String message = 'Este toast tem um botão!';
       const String buttonText = 'Clique aqui';
@@ -156,7 +162,8 @@ void main() {
       expect(buttonPressed, isTrue);
     });
 
-    testWidgets('deve exibir botão de fechar quando onClose é fornecido', (WidgetTester tester) async {
+    testWidgets('deve exibir botão de fechar quando onClose é fornecido',
+        (WidgetTester tester) async {
       const String title = 'Toast com close';
       const String message = 'Este toast pode ser fechado!';
       bool closePressed = false;
@@ -185,7 +192,8 @@ void main() {
       expect(closePressed, isTrue);
     });
 
-    testWidgets('deve usar tamanhos diferentes quando isDense é true', (WidgetTester tester) async {
+    testWidgets('deve usar tamanhos diferentes quando isDense é true',
+        (WidgetTester tester) async {
       const String title = 'Toast denso';
       const String message = 'Este toast é denso!';
 
@@ -208,7 +216,8 @@ void main() {
       expect(icon.size, equals(16));
     });
 
-    testWidgets('deve aplicar diferentes tipos de toast (clean, soft, solid)', (WidgetTester tester) async {
+    testWidgets('deve aplicar diferentes tipos de toast (clean, soft, solid)',
+        (WidgetTester tester) async {
       const String title = 'Toast Solid';
       const String message = 'Este toast é sólido!';
 
@@ -231,7 +240,8 @@ void main() {
       expect(find.byType(Container), findsWidgets);
     });
 
-    testWidgets('deve falhar assertion quando style é custom mas customColor ou customIcon são null',
+    testWidgets(
+        'deve falhar assertion quando style é custom mas customColor ou customIcon são null',
         (WidgetTester tester) async {
       expect(
         () => RToast(

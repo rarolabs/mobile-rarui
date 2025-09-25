@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:rarUI/components/organisms/tab_pix/tab_pix_list_tile_entity.dart';
-import 'package:rarUI/rarui.dart';
+import 'package:rarui/components/organisms/tab_pix/tab_pix_list_tile_entity.dart';
+import 'package:rarui/rarui.dart';
 
 class RTabPix extends StatefulWidget {
   const RTabPix({

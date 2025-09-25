@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:rarUI/components/atoms/label/label.dart';
+import 'package:rarui/components/atoms/label/label.dart';
 
 void main() {
   testWidgets('RLabel deve renderizar corretamente', (tester) async {
@@ -33,7 +33,6 @@ void main() {
     expect(textWidget.textAlign, TextAlign.center);
     expect(textWidget.maxLines, 1);
     expect(textWidget.overflow, TextOverflow.ellipsis);
-
 
     final semantics = tester.getSemantics(find.byType(RLabel));
     expect(semantics.label, 'Label semântico');

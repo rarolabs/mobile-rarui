@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:rarUI/components/atoms/label/label.dart';
+import 'package:rarui/components/atoms/label/label.dart';
 
 class RRadioButton<T> extends StatelessWidget {
   RRadioButton({

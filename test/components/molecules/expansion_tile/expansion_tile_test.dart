@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:rarUI/components/molecules/expansion_tile/expansion_tile.dart';
+import 'package:rarui/components/molecules/expansion_tile/expansion_tile.dart';
 
 void main() {
   testWidgets('RExpansionTile: deve renderizar o componente', (tester) async {
@@ -19,7 +19,8 @@ void main() {
       ),
     );
 
-    final expansionTile = tester.widget<RExpansionTile>(find.byType(RExpansionTile));
+    final expansionTile =
+        tester.widget<RExpansionTile>(find.byType(RExpansionTile));
 
     expect(find.byType(RExpansionTile), findsOneWidget);
     expect(find.text('Teste'), findsOneWidget);

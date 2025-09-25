@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:rarUI/components/atoms/cards/card_filled.dart';
+import 'package:rarui/components/atoms/cards/card_filled.dart';
 
 void main() {
   testWidgets('RCardFilled: deve renderizar corretamente', (tester) async {
@@ -33,7 +33,10 @@ void main() {
     expect(card.elevation, equals(1));
     expect(card.margin, equals(EdgeInsets.all(10)));
     expect(card.shadowColor, equals(Colors.black));
-    expect(card.shape, equals(RoundedRectangleBorder(borderRadius: BorderRadius.circular(10))));
+    expect(
+        card.shape,
+        equals(
+            RoundedRectangleBorder(borderRadius: BorderRadius.circular(10))));
     expect(card.surfaceTintColor, equals(Colors.white));
     expect(card.clipBehavior, equals(Clip.hardEdge));
     expect(card.semanticContainer, isTrue);

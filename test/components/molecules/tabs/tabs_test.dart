@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:rarUI/components/molecules/tabs/primary_tab.dart';
-import 'package:rarUI/components/molecules/tabs/primary_tab_bar.dart';
-import 'package:rarUI/components/molecules/tabs/secondary_tab.dart';
-import 'package:rarUI/components/molecules/tabs/secondary_tab_bar.dart';
+import 'package:rarui/components/molecules/tabs/primary_tab.dart';
+import 'package:rarui/components/molecules/tabs/primary_tab_bar.dart';
+import 'package:rarui/components/molecules/tabs/secondary_tab.dart';
+import 'package:rarui/components/molecules/tabs/secondary_tab_bar.dart';
 
 import '../../utils/widget_tester_extension.dart';
 

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:rarUI/components/molecules/buttons/base_button.dart';
-import 'package:rarUI/utils/constants.dart';
+import 'package:rarui/components/molecules/buttons/base_button.dart';
+import 'package:rarui/utils/constants.dart';
 
 class RFilledButton extends RBaseButton {
   const RFilledButton({
