@@ -1,9 +1,9 @@
 name: rarUI
 description: "RarUI"
 version: 0.0.1
-homepage: ""
-repository: ""
-issue_tracker: ""
+homepage: "https://github.com/rarolabs/mobile-rarui"
+repository: "https://github.com/rarolabs/mobile-rarui"
+issue_tracker: "https://github.com/rarolabs/mobile-rarui/issues"
 
 environment:
   sdk: ^3.6.0
@@ -16,7 +16,6 @@ dependencies:
     sdk: flutter
   intl: ^0.20.2
   br_validators: ^2.0.4
-  qr_code_scanner_plus: ^2.0.10+1
 
 dev_dependencies:
   flutter_test:
