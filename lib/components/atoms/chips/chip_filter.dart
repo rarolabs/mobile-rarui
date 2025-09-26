@@ -13,6 +13,7 @@ class RChipFilter extends StatelessWidget {
     this.disabledColor,
     this.side,
     this.tooltip,
+    this.shape,
   });
 
   final String label;
@@ -25,6 +26,7 @@ class RChipFilter extends StatelessWidget {
   final Color? disabledColor;
   final BorderSide? side;
   final String? tooltip;
+  final OutlinedBorder? shape;
 
   @override
   Widget build(BuildContext context) {
@@ -45,6 +47,7 @@ class RChipFilter extends StatelessWidget {
       ),
       side: side,
       tooltip: tooltip,
+      shape: shape,
     );
   }
 }
