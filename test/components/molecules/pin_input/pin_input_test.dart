@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:rarUI/rarui.dart';
+import 'package:rarui/rarui.dart';
 
 void main() {
   Widget buildTestWidget({int length = 6, Color? activeBorderColor}) {
@@ -18,7 +18,8 @@ void main() {
     );
   }
 
-  testWidgets('RPinInput deve renderizar corretamente', (WidgetTester tester) async {
+  testWidgets('RPinInput deve renderizar corretamente',
+      (WidgetTester tester) async {
     await tester.pumpWidget(buildTestWidget(length: 5));
 
     expect(find.byType(RPinInput), findsOneWidget);
@@ -27,7 +28,9 @@ void main() {
     expect(find.byType(RTextFormField), findsNWidgets(5));
   });
 
-  testWidgets('onComplete é chamado somente quando todos os campos estão preenchidos', (WidgetTester tester) async {
+  testWidgets(
+      'onComplete é chamado somente quando todos os campos estão preenchidos',
+      (WidgetTester tester) async {
     String? pinCode;
     final formKey = GlobalKey<FormState>();
 
@@ -58,7 +61,8 @@ void main() {
     expect(pinCode, equals('1234'));
   });
 
-  testWidgets('addDigit adiciona corretamente e chama onComplete ao final', (WidgetTester tester) async {
+  testWidgets('addDigit adiciona corretamente e chama onComplete ao final',
+      (WidgetTester tester) async {
     String? pinCode;
     final formKey = GlobalKey<FormState>();
 
@@ -77,7 +81,8 @@ void main() {
       ),
     );
 
-    final state = tester.state<RPinInputState>(find.byKey(const Key('pin_input_widget')));
+    final state =
+        tester.state<RPinInputState>(find.byKey(const Key('pin_input_widget')));
     state.addDigit('5');
     state.addDigit('4');
     state.addDigit('3');
@@ -89,9 +94,11 @@ void main() {
     expect(pinCode, equals('543'));
   });
 
-  testWidgets('backspace apaga corretamente o último dígito', (WidgetTester tester) async {
+  testWidgets('backspace apaga corretamente o último dígito',
+      (WidgetTester tester) async {
     await tester.pumpWidget(buildTestWidget(length: 3));
-    final state = tester.state<RPinInputState>(find.byKey(const Key('pin_input_widget')));
+    final state =
+        tester.state<RPinInputState>(find.byKey(const Key('pin_input_widget')));
 
     state.addDigit('1');
     state.addDigit('2');

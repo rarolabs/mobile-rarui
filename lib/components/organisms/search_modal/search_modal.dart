@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:rarUI/rarui.dart';
+import 'package:rarui/rarui.dart';
 
 class RSearchModal<T extends Object> extends StatefulWidget {
   const RSearchModal({

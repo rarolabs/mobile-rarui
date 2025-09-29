@@ -1,7 +1,7 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:rarUI/components/atoms/tooltip/tooltip.dart';
+import 'package:rarui/components/atoms/tooltip/tooltip.dart';
 
 import '../../utils/widget_tester_extension.dart';
 
@@ -25,7 +25,8 @@ void main() {
     expect(childFinder, findsOneWidget);
   });
 
-  testWidgets('Rich Tooltip é renderizado com título e mensagem', (tester) async {
+  testWidgets('Rich Tooltip é renderizado com título e mensagem',
+      (tester) async {
     Key tooltipKey = const Key("tooltipTest2");
     String title = "Título do Tooltip";
     String message = "Rich Tooltip";

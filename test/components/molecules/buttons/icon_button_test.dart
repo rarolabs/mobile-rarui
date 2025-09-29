@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:rarUI/components/molecules/buttons/icon_button.dart';
+import 'package:rarui/components/molecules/buttons/icon_button.dart';
 
 void main() {
   testWidgets('RIconButton renders with basic properties',

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:rarUI/components/organisms/tab_pix/tab_pix.dart';
-import 'package:rarUI/components/organisms/tab_pix/tab_pix_list_tile_entity.dart';
+import 'package:rarui/components/organisms/tab_pix/tab_pix.dart';
+import 'package:rarui/components/organisms/tab_pix/tab_pix_list_tile_entity.dart';
 
 void main() {
   final mockFirstTabItems = [

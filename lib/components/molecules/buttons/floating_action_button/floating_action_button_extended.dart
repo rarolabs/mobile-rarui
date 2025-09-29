@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:rarUI/components/molecules/buttons/base_button.dart';
+import 'package:rarui/components/molecules/buttons/base_button.dart';
 
 class RFloatingActionButtonExtended extends RBaseButton {
   const RFloatingActionButtonExtended({

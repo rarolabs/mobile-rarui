@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:rarUI/components/atoms/loading/circular_progress_indicator.dart';
+import 'package:rarui/components/atoms/loading/circular_progress_indicator.dart';
 
 void main() {
-  testWidgets('Deve renderizar o widget RCircularProgressIndicator corretamente', (tester) async {
+  testWidgets(
+      'Deve renderizar o widget RCircularProgressIndicator corretamente',
+      (tester) async {
     const key = Key('circular_progress_indicator');
     final widget = const RCircularProgressIndicator(
       key: key,
@@ -27,7 +29,8 @@ void main() {
     expect(find.byKey(key), findsOneWidget);
     expect(find.byType(RCircularProgressIndicator), findsOneWidget);
 
-    final RCircularProgressIndicator circularProgress = tester.widget(find.byKey(key));
+    final RCircularProgressIndicator circularProgress =
+        tester.widget(find.byKey(key));
 
     expect(circularProgress.backgroundColor, equals(Colors.red));
     expect(circularProgress.color, equals(Colors.blue));
@@ -36,7 +39,8 @@ void main() {
     expect(circularProgress.strokeAlign, equals(BorderSide.strokeAlignOutside));
     expect(circularProgress.value, equals(0.5));
     expect(circularProgress.valueColor, isNotNull);
-    expect(circularProgress.constraints, equals(BoxConstraints(maxWidth: 100, maxHeight: 100)));
+    expect(circularProgress.constraints,
+        equals(BoxConstraints(maxWidth: 100, maxHeight: 100)));
     expect(circularProgress.trackGap, equals(10));
     expect(circularProgress.padding, equals(EdgeInsets.all(10)));
     expect(circularProgress.semanticsLabel, equals('Loading'));

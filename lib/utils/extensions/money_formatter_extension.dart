@@ -1,7 +1,7 @@
 import 'dart:math';
 
 import 'package:flutter/services.dart';
-import 'package:rarUI/utils/enums/coin_type.dart';
+import 'package:rarui/utils/enums/coin_type.dart';
 
 class MoneyFormatter extends TextInputFormatter {
   MoneyFormatter({

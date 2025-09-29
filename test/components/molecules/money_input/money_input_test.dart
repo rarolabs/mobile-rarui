@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:rarUI/components/atoms/balance_display/balance_display.dart';
-import 'package:rarUI/rarui.dart';
-import 'package:rarUI/utils/enums/coin_type.dart';
+import 'package:rarui/components/atoms/balance_display/balance_display.dart';
+import 'package:rarui/rarui.dart';
+import 'package:rarui/utils/enums/coin_type.dart';
 
 void main() {
   testWidgets('RMoneyInput deve renderizar corretamente',

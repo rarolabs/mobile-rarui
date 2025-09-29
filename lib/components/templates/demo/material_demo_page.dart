@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:rarUI/utils/extensions/theme_extension.dart';
+import 'package:rarui/utils/extensions/theme_extension.dart';
 
 class RMaterialDemoPage extends StatelessWidget {
   final String? semanticsLabel;
@@ -27,29 +27,50 @@ class RMaterialDemoPage extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  _buildBox('surface', colorScheme.surface, colorScheme.onSurface, wSize * 0.16),
-                  _buildBox('inverse surface', colorScheme.inverseSurface, colorScheme.onInverseSurface, wSize * 0.16),
-                  _buildBox('primary', colorScheme.primary, colorScheme.onPrimary, wSize * 0.16),
-                  _buildBox('secondary', colorScheme.secondary, colorScheme.onSecondary, wSize * 0.16),
-                  _buildBox('tertiary', colorScheme.tertiary, colorScheme.onTertiary, wSize * 0.16),
+                  _buildBox('surface', colorScheme.surface,
+                      colorScheme.onSurface, wSize * 0.16),
+                  _buildBox('inverse surface', colorScheme.inverseSurface,
+                      colorScheme.onInverseSurface, wSize * 0.16),
+                  _buildBox('primary', colorScheme.primary,
+                      colorScheme.onPrimary, wSize * 0.16),
+                  _buildBox('secondary', colorScheme.secondary,
+                      colorScheme.onSecondary, wSize * 0.16),
+                  _buildBox('tertiary', colorScheme.tertiary,
+                      colorScheme.onTertiary, wSize * 0.16),
                 ],
               ),
               const SizedBox(height: 20),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  _buildBoxScheme('success', Theme.of(context).extension<ExtraColors>()!.success, wSize * 0.2),
-                  _buildBoxScheme('warning', Theme.of(context).extension<ExtraColors>()!.warning, wSize * 0.2),
-                  _buildBoxScheme('error', Theme.of(context).extension<ExtraColors>()!.error, wSize * 0.2),
-                  _buildBoxScheme('info', Theme.of(context).extension<ExtraColors>()!.info, wSize * 0.2),
+                  _buildBoxScheme(
+                      'success',
+                      Theme.of(context).extension<ExtraColors>()!.success,
+                      wSize * 0.2),
+                  _buildBoxScheme(
+                      'warning',
+                      Theme.of(context).extension<ExtraColors>()!.warning,
+                      wSize * 0.2),
+                  _buildBoxScheme(
+                      'error',
+                      Theme.of(context).extension<ExtraColors>()!.error,
+                      wSize * 0.2),
+                  _buildBoxScheme(
+                      'info',
+                      Theme.of(context).extension<ExtraColors>()!.info,
+                      wSize * 0.2),
                 ],
               ),
               const SizedBox(height: 20),
-              _buildButtonRow(context, Theme.of(context).colorScheme.primary, null),
-              _buildButtonRow(context, Theme.of(context).colorScheme.primary, () {}),
+              _buildButtonRow(
+                  context, Theme.of(context).colorScheme.primary, null),
+              _buildButtonRow(
+                  context, Theme.of(context).colorScheme.primary, () {}),
               const SizedBox(height: 20),
-              _buildToggleableWidgets(context, Theme.of(context).colorScheme.primary),
-              _buildToggleableWidgets(context, Theme.of(context).extension<ExtraColors>()!.success.primary),
+              _buildToggleableWidgets(
+                  context, Theme.of(context).colorScheme.primary),
+              _buildToggleableWidgets(context,
+                  Theme.of(context).extension<ExtraColors>()!.success.primary),
             ],
           ),
         ),
@@ -59,7 +80,8 @@ class RMaterialDemoPage extends StatelessWidget {
 
   Widget _buildToggleableWidgets(BuildContext context, Color color) {
     return Theme(
-      data: Theme.of(context).copyWith(colorScheme: Theme.of(context).colorScheme.copyWith(primary: color)),
+      data: Theme.of(context).copyWith(
+          colorScheme: Theme.of(context).colorScheme.copyWith(primary: color)),
       child: ValueListenableBuilder(
           valueListenable: boolNotifier,
           builder: (context, value, child) {
@@ -110,10 +132,12 @@ class RMaterialDemoPage extends StatelessWidget {
     );
   }
 
-  Widget _buildButtonRow(BuildContext context, Color primaryColor, VoidCallback? onPressed) {
+  Widget _buildButtonRow(
+      BuildContext context, Color primaryColor, VoidCallback? onPressed) {
     return Theme(
       data: Theme.of(context).copyWith(
-        colorScheme: Theme.of(context).colorScheme.copyWith(primary: primaryColor),
+        colorScheme:
+            Theme.of(context).colorScheme.copyWith(primary: primaryColor),
       ),
       child: Builder(
         builder: (ctx) {
@@ -122,7 +146,8 @@ class RMaterialDemoPage extends StatelessWidget {
           return Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              ElevatedButton(onPressed: onPressed, child: const Text('Elevated Button')),
+              ElevatedButton(
+                  onPressed: onPressed, child: const Text('Elevated Button')),
               OutlinedButton(
                 onPressed: onPressed,
                 child: const Text('Outlined Button'),
@@ -135,8 +160,10 @@ class RMaterialDemoPage extends StatelessWidget {
                   ),
                 ),
               ),
-              TextButton(onPressed: onPressed, child: const Text('Text Button')),
-              FilledButton(onPressed: onPressed, child: const Text('Filled Button')),
+              TextButton(
+                  onPressed: onPressed, child: const Text('Text Button')),
+              FilledButton(
+                  onPressed: onPressed, child: const Text('Filled Button')),
               IconButton(
                 onPressed: onPressed,
                 icon: const Icon(Icons.add),
@@ -181,9 +208,17 @@ class RMaterialDemoPage extends StatelessWidget {
     return Column(
       children: [
         (colorScheme.primary, colorScheme.onPrimary, 'primary'),
-        (colorScheme.primaryContainer, colorScheme.onPrimaryContainer, 'primaryContainer'),
+        (
+          colorScheme.primaryContainer,
+          colorScheme.onPrimaryContainer,
+          'primaryContainer'
+        ),
         (colorScheme.primaryFixed, colorScheme.onPrimaryFixed, 'primaryFixed'),
-        (colorScheme.primaryFixedDim, colorScheme.onPrimaryFixedVariant, 'primaryFixedDim'),
+        (
+          colorScheme.primaryFixedDim,
+          colorScheme.onPrimaryFixedVariant,
+          'primaryFixedDim'
+        ),
       ].map(
         (e) {
           return Container(
@@ -195,7 +230,8 @@ class RMaterialDemoPage extends StatelessWidget {
               alignment: Alignment.centerLeft,
               child: Text(
                 colorName + ' (${e.$3})',
-                style: TextStyle(color: e.$2, fontSize: 16.0, fontWeight: FontWeight.bold),
+                style: TextStyle(
+                    color: e.$2, fontSize: 16.0, fontWeight: FontWeight.bold),
               ),
             ),
           );

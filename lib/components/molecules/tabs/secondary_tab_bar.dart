@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:rarUI/components/molecules/tabs/secondary_tab.dart';
+import 'package:rarui/components/molecules/tabs/secondary_tab.dart';
 
 class RSecondaryTabBar extends StatefulWidget {
   const RSecondaryTabBar({
@@ -27,7 +27,8 @@ class RSecondaryTabBar extends StatefulWidget {
   State<RSecondaryTabBar> createState() => RSecondaryTabBarState();
 }
 
-class RSecondaryTabBarState extends State<RSecondaryTabBar> with TickerProviderStateMixin {
+class RSecondaryTabBarState extends State<RSecondaryTabBar>
+    with TickerProviderStateMixin {
   late final TabController _tabController;
 
   @override

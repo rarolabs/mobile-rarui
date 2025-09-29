@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:rarUI/components/atoms/atoms.dart';
-import 'package:rarUI/components/atoms/balance_display/balance_display.dart';
-import 'package:rarUI/components/molecules/buttons/icon_button.dart';
-import 'package:rarUI/utils/enums/coin_type.dart';
-import 'package:rarUI/utils/extensions/money_formatter_extension.dart';
+import 'package:rarui/components/atoms/atoms.dart';
+import 'package:rarui/components/atoms/balance_display/balance_display.dart';
+import 'package:rarui/components/molecules/buttons/icon_button.dart';
+import 'package:rarui/utils/enums/coin_type.dart';
+import 'package:rarui/utils/extensions/money_formatter_extension.dart';
 
 class RMoneyInput extends StatefulWidget {
   const RMoneyInput({

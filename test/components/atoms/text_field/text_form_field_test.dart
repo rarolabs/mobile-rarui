@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:rarUI/components/atoms/text_field/text_form_field.dart';
+import 'package:rarui/components/atoms/text_field/text_form_field.dart';
 
 void main() {
   group('RTextFormField', () {
-    testWidgets('deve renderizar com propriedades básicas', (WidgetTester tester) async {
+    testWidgets('deve renderizar com propriedades básicas',
+        (WidgetTester tester) async {
       const testText = 'Texto de teste';
       final controller = TextEditingController();
 
@@ -30,7 +31,8 @@ void main() {
       expect(controller.text, testText);
     });
 
-    testWidgets('deve lidar com propriedade initialValue', (WidgetTester tester) async {
+    testWidgets('deve lidar com propriedade initialValue',
+        (WidgetTester tester) async {
       const initialValue = 'Texto inicial';
 
       await tester.pumpWidget(
@@ -98,7 +100,8 @@ void main() {
       expect(savedValue, testText);
     });
 
-    testWidgets('deve lidar com callback onFieldSubmitted', (WidgetTester tester) async {
+    testWidgets('deve lidar com callback onFieldSubmitted',
+        (WidgetTester tester) async {
       String? submittedValue;
       const testText = 'Texto enviado';
 
@@ -119,21 +122,24 @@ void main() {
       expect(submittedValue, testText);
     });
 
-    testWidgets('deve lidar com propriedade autovalidateMode', (WidgetTester tester) async {
+    testWidgets('deve lidar com propriedade autovalidateMode',
+        (WidgetTester tester) async {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
             body: Form(
               child: RTextFormField(
                 autovalidateMode: AutovalidateMode.always,
-                validator: (value) => value?.isEmpty == true ? 'Obrigatório' : null,
+                validator: (value) =>
+                    value?.isEmpty == true ? 'Obrigatório' : null,
               ),
             ),
           ),
         ),
       );
 
-      final textFormField = tester.widget<TextFormField>(find.byType(TextFormField));
+      final textFormField =
+          tester.widget<TextFormField>(find.byType(TextFormField));
       expect(textFormField.autovalidateMode, AutovalidateMode.always);
     });
   });

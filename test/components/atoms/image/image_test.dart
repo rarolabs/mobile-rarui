@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:rarUI/components/atoms/image/image.dart';
+import 'package:rarui/components/atoms/image/image.dart';
 
 void main() {
   testWidgets('RImage: deve rederizar o widget corretamente', (tester) async {

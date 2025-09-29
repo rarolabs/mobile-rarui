@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:rarUI/components/molecules/otp_timer/otp_timer.dart';
+import 'package:rarui/components/molecules/otp_timer/otp_timer.dart';
 
 void main() {
-  testWidgets('ROtpTimer mostra código OTP inicial e atualiza após conclusão', (WidgetTester tester) async {
+  testWidgets('ROtpTimer mostra código OTP inicial e atualiza após conclusão',
+      (WidgetTester tester) async {
     String otpCode = 'Texto Inicial';
     final onCompleteCalled = ValueNotifier<bool>(false);
 

@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:rarUI/components/atoms/loading/linear_progress_indicator.dart';
+import 'package:rarui/components/atoms/loading/linear_progress_indicator.dart';
 
 void main() {
-  testWidgets('RLinearProgressIndicator: deve renderizar corretamente', (tester) async {
+  testWidgets('RLinearProgressIndicator: deve renderizar corretamente',
+      (tester) async {
     final widget = await const RLinearProgressIndicator(
       backgroundColor: Colors.red,
       borderRadius: 10,
@@ -22,7 +23,8 @@ void main() {
     await tester.pumpWidget(MaterialApp(home: widget));
     expect(find.byType(LinearProgressIndicator), findsOneWidget);
 
-    final progressIndicator = tester.widget<LinearProgressIndicator>(find.byType(LinearProgressIndicator));
+    final progressIndicator = tester
+        .widget<LinearProgressIndicator>(find.byType(LinearProgressIndicator));
 
     // Validando backgroundColor
     final backgroundColor = progressIndicator.backgroundColor;

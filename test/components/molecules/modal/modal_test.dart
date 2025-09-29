@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:rarUI/components/atoms/label/label.dart';
-import 'package:rarUI/components/molecules/buttons/elevated_button.dart';
-import 'package:rarUI/components/molecules/modal/modal.dart';
+import 'package:rarui/components/atoms/label/label.dart';
+import 'package:rarui/components/molecules/buttons/elevated_button.dart';
+import 'package:rarui/components/molecules/modal/modal.dart';
 
 void main() {
   testWidgets('RModal exibe título, descrição e aciona botões',

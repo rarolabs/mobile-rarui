@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:rarUI/components/atoms/checkbox/checkbox.dart';
+import 'package:rarui/components/atoms/checkbox/checkbox.dart';
 
 void main() {
-  testWidgets('RCheckbox deve renderizar com valor inicial falso', (tester) async {
+  testWidgets('RCheckbox deve renderizar com valor inicial falso',
+      (tester) async {
     await tester.pumpWidget(
       MaterialApp(
         home: Scaffold(
@@ -22,7 +23,8 @@ void main() {
     expect(checkbox.value, isFalse);
   });
 
-  testWidgets('RCheckbox deve renderizar com valor inicial verdadeiro', (tester) async {
+  testWidgets('RCheckbox deve renderizar com valor inicial verdadeiro',
+      (tester) async {
     await tester.pumpWidget(
       MaterialApp(
         home: Scaffold(
@@ -41,7 +43,8 @@ void main() {
     expect(checkbox.value, isTrue);
   });
 
-  testWidgets('RCheckbox deve chamar onChanged ao ser pressionado', (tester) async {
+  testWidgets('RCheckbox deve chamar onChanged ao ser pressionado',
+      (tester) async {
     bool? checked;
     await tester.pumpWidget(
       MaterialApp(
@@ -63,11 +66,13 @@ void main() {
     expect(checked, isTrue);
   });
 
-  testWidgets('RCheckbox deve aplicar as propriedades visuais corretamente', (tester) async {
+  testWidgets('RCheckbox deve aplicar as propriedades visuais corretamente',
+      (tester) async {
     const borderColor = Colors.red;
     const checkColor = Colors.green;
     const activeColor = Colors.blue;
-    const shape = RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(8)));
+    const shape = RoundedRectangleBorder(
+        borderRadius: BorderRadius.all(Radius.circular(8)));
     const visualDensity = VisualDensity(horizontal: 2, vertical: 2);
 
     await tester.pumpWidget(
@@ -97,11 +102,13 @@ void main() {
     expect(side.color, borderColor);
   });
 
-  testWidgets('RCheckbox deve aplicar cor de borda padrão quando desabilitado', (tester) async {
+  testWidgets('RCheckbox deve aplicar cor de borda padrão quando desabilitado',
+      (tester) async {
     const borderColor = Colors.red;
     const checkColor = Colors.green;
     const activeColor = Colors.blue;
-    const shape = RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(8)));
+    const shape = RoundedRectangleBorder(
+        borderRadius: BorderRadius.all(Radius.circular(8)));
     const visualDensity = VisualDensity(horizontal: 2, vertical: 2);
 
     await tester.pumpWidget(
@@ -133,8 +140,8 @@ void main() {
     expect(side.color, expectedColor);
   });
 
-
-  testWidgets('RCheckbox deve renderizar corretamente com label', (tester) async {
+  testWidgets('RCheckbox deve renderizar corretamente com label',
+      (tester) async {
     await tester.pumpWidget(
       MaterialApp(
         home: Scaffold(
@@ -153,7 +160,8 @@ void main() {
     expect(checkbox.label, 'Label teste');
   });
 
-  testWidgets('RCheckbox deve ficar desabilitado quando onChanged for null', (tester) async {
+  testWidgets('RCheckbox deve ficar desabilitado quando onChanged for null',
+      (tester) async {
     await tester.pumpWidget(
       MaterialApp(
         home: Scaffold(
@@ -176,5 +184,4 @@ void main() {
     final checkboxAfterTap = tester.widget<Checkbox>(find.byType(Checkbox));
     expect(checkboxAfterTap.value, isFalse);
   });
-
 }

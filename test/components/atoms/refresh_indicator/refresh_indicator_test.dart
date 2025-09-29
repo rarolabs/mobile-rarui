@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:rarUI/components/atoms/refresh_indicator/refresh_indicator.dart';
+import 'package:rarui/components/atoms/refresh_indicator/refresh_indicator.dart';
 
 void main() {
   group('RRefreshIndicator Tests', () {

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:rarUI/components/molecules/buttons/floating_action_button/floating_action_button_extended.dart';
+import 'package:rarui/components/molecules/buttons/floating_action_button/floating_action_button_extended.dart';
 
 void main() {
   testWidgets('RFloatingActionButtonExtended renders with text',

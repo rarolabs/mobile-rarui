@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:rarUI/components/molecules/shortcut/shortcut.dart';
+import 'package:rarui/components/molecules/shortcut/shortcut.dart';
 
 void main() {
   group('RShortcut Tests', () {

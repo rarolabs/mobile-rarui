@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:rarUI/components/organisms/banner/banner.dart';
+import 'package:rarui/components/organisms/banner/banner.dart';
 
 void main() {
-  testWidgets('RBanner exibe título, subtítulo e botão corretamente', (tester) async {
+  testWidgets('RBanner exibe título, subtítulo e botão corretamente',
+      (tester) async {
     const title = 'Título de teste';
     const subtitle = 'Subtítulo de teste';
     const buttonText = 'Clique aqui';
@@ -48,7 +49,8 @@ void main() {
     expect(tapped, isTrue);
   });
 
-  testWidgets('RBanner chama onButtonPressed ao clicar no botão', (tester) async {
+  testWidgets('RBanner chama onButtonPressed ao clicar no botão',
+      (tester) async {
     bool buttonTapped = false;
 
     await tester.pumpWidget(

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:rarUI/components/atoms/badge/badge.dart';
+import 'package:rarui/components/atoms/badge/badge.dart';
 
 import '../../utils/widget_tester_extension.dart';
 

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:rarUI/components/atoms/label/label.dart';
-import 'package:rarUI/components/molecules/molecules.dart';
+import 'package:rarui/components/atoms/label/label.dart';
+import 'package:rarui/components/molecules/molecules.dart';
 
 class RModal extends StatelessWidget {
   final String title;

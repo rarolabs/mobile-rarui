@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:rarUI/components/atoms/switch/switch.dart';
+import 'package:rarui/components/atoms/switch/switch.dart';
 
 void main() {
   late RSwitch widget;

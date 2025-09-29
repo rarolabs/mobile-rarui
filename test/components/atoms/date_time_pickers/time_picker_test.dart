@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:rarUI/components/atoms/atoms.dart';
+import 'package:rarui/components/atoms/atoms.dart';
 
 import '../../utils/widget_tester_extension.dart';
 
@@ -31,7 +31,8 @@ void main() {
     expect(defaultTextFinder, findsOneWidget);
   });
 
-  testWidgets('TimePicker é renderizado com builder customizado', (tester) async {
+  testWidgets('TimePicker é renderizado com builder customizado',
+      (tester) async {
     Key timePickerKey = const Key("timePickerTest2");
     Key buttonKey = const Key("buttonTest2");
     String customLabel = "Escolher Horário";
@@ -113,7 +114,8 @@ void main() {
     expect(timePickerDialog, findsOneWidget);
   });
 
-  testWidgets('TimePicker chama onTimeSelected ao selecionar horário', (tester) async {
+  testWidgets('TimePicker chama onTimeSelected ao selecionar horário',
+      (tester) async {
     Key timePickerKey = const Key("timePickerTest5");
     Key buttonKey = const Key("buttonTest5");
     TimeOfDay? selectedTime;

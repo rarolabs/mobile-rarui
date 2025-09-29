@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:rarUI/components/atoms/label/label.dart';
-import 'package:rarUI/components/molecules/buttons/elevated_button.dart';
+import 'package:rarui/components/atoms/label/label.dart';
+import 'package:rarui/components/molecules/buttons/elevated_button.dart';
 
 class RBottomSheet extends StatelessWidget {
   final String title;

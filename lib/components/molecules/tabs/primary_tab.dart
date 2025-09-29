@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:rarUI/components/atoms/badge/badge.dart';
+import 'package:rarui/components/atoms/badge/badge.dart';
 
 class RPrimaryTab extends StatelessWidget {
   const RPrimaryTab({

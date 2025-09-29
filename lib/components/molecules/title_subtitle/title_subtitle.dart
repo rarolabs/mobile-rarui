@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:rarUI/components/atoms/label/label.dart';
+import 'package:rarui/components/atoms/label/label.dart';
 
 class RTitleSubtitle extends StatelessWidget {
   final String title;
@@ -22,12 +22,19 @@ class RTitleSubtitle extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
-      crossAxisAlignment: centralized ? CrossAxisAlignment.center : CrossAxisAlignment.start,
+      crossAxisAlignment:
+          centralized ? CrossAxisAlignment.center : CrossAxisAlignment.start,
       mainAxisSize: MainAxisSize.min,
       children: [
-        RLabel(text: title, style: titleStyle ?? TextStyle(fontSize: 20, fontWeight: FontWeight.w700)),
+        RLabel(
+            text: title,
+            style: titleStyle ??
+                TextStyle(fontSize: 20, fontWeight: FontWeight.w700)),
         SizedBox(height: spaceBetween),
-        RLabel(text: subTitle, style: subTitleStyle ?? TextStyle(fontSize: 14, fontWeight: FontWeight.w400)),
+        RLabel(
+            text: subTitle,
+            style: subTitleStyle ??
+                TextStyle(fontSize: 14, fontWeight: FontWeight.w400)),
       ],
     );
   }

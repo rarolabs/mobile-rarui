@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:rarUI/utils/extensions/theme_extension.dart';
+import 'package:rarui/utils/extensions/theme_extension.dart';
 
 enum RToastType { clean, soft, solid }
 
@@ -29,7 +29,8 @@ class RToast extends StatelessWidget {
     this.customColor,
     this.customIcon,
   }) : assert(
-          style != RToastStyle.custom || (customColor != null && customIcon != null),
+          style != RToastStyle.custom ||
+              (customColor != null && customIcon != null),
           'customColor and customIcon must be provided when using RToastStyle.custom',
         );
 
@@ -81,7 +82,8 @@ class RToast extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
       decoration: BoxDecoration(
-        color: primaryColor.withValues(alpha: type == RToastType.solid ? 1.0 : 0.1),
+        color: primaryColor.withValues(
+            alpha: type == RToastType.solid ? 1.0 : 0.1),
         gradient: type == RToastType.clean
             ? LinearGradient(
                 // Faixa lateral sem intrinsic height
