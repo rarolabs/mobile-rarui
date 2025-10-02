@@ -14,6 +14,16 @@ Compatível com **Flutter 3.32.x+**.
 
 ---
 
+## 📚 Catálogo de Widgets
+
+Visualize todos os componentes disponíveis no **RaroUI** através do nosso catálogo interativo:
+
+🔗 **[Acessar Catálogo de Widgets](https://rarui-771b4.web.app)**
+
+O catálogo permite explorar todos os componentes, suas variações e propriedades de forma interativa, facilitando a escolha e implementação dos componentes em seus projetos.
+
+---
+
 ## Lista de componentes
 
 ## Atomos
