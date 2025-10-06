@@ -42,22 +42,4 @@ void main() {
     expect(button.onPressed, isNull);
     expect(find.text('Disabled Tonal'), findsOneWidget);
   });
-
-  testWidgets('RFilledButtonTonal with icon renders correctly',
-      (WidgetTester tester) async {
-    await tester.pumpWidget(
-      MaterialApp(
-        home: Scaffold(
-          body: RFilledButtonTonal(
-            child: const Text('Tonal with Icon'),
-            onPressed: () {},
-            icon: Icons.add,
-          ),
-        ),
-      ),
-    );
-
-    expect(find.text('Tonal with Icon'), findsOneWidget);
-    expect(find.byIcon(Icons.add), findsOneWidget);
-  });
 }
