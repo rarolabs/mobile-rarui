@@ -11,11 +11,7 @@ class RFilledButton extends RBaseButton {
     super.foregroundColor,
     super.disabledBackgroundColor,
     super.disabledForegroundColor,
-    super.icon,
     super.expanded = false,
-    super.iconAlignment = IconAlignment.start,
-    super.maxLines,
-    super.iconSize,
     super.borderRadius,
     this.height,
   }) : super(child: child);
@@ -24,9 +20,6 @@ class RFilledButton extends RBaseButton {
 
   @override
   Widget build(BuildContext context) {
-    final textDefaultColor = (onPressed == null
-        ? disabledForegroundColor
-        : foregroundColor ?? Colors.white);
     final double buttonHeight =
         (height != null && height! >= RConstants.minButtonHeight)
             ? height!
@@ -42,31 +35,14 @@ class RFilledButton extends RBaseButton {
           : null,
     );
 
-    late final Widget button;
-    if (icon != null) {
-      button = FilledButton.icon(
-        onPressed: onPressed,
-        style: styleButton,
-        icon: Icon(
-          icon!,
-          color: textDefaultColor,
-          size: iconSize,
-        ),
-        label: child,
-        iconAlignment: iconAlignment,
-      );
-    } else {
-      button = FilledButton(
-        onPressed: onPressed,
-        style: styleButton,
-        child: child,
-      );
-    }
-
     return SizedBox(
       height: buttonHeight,
       width: expanded ? MediaQuery.sizeOf(context).width : null,
-      child: button,
+      child: FilledButton(
+        onPressed: onPressed,
+        style: styleButton,
+        child: child,
+      ),
     );
   }
 }

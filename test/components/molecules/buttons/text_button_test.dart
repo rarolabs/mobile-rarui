@@ -20,24 +20,6 @@ void main() {
     expect(find.byType(TextButton), findsOneWidget);
   });
 
-  testWidgets('RTextButton with icon renders correctly',
-      (WidgetTester tester) async {
-    await tester.pumpWidget(
-      MaterialApp(
-        home: Scaffold(
-          body: RTextButton(
-            child: const Text('Icon Button'),
-            onPressed: () {},
-            icon: Icons.add,
-          ),
-        ),
-      ),
-    );
-
-    expect(find.text('Icon Button'), findsOneWidget);
-    expect(find.byIcon(Icons.add), findsOneWidget);
-  });
-
   testWidgets('Disabled RTextButton renders with disabled state',
       (WidgetTester tester) async {
     await tester.pumpWidget(
@@ -82,13 +64,9 @@ void main() {
           body: RTextButton(
             child: const Text('Long text that should wrap based on maxLines'),
             onPressed: () {},
-            maxLines: 2,
           ),
         ),
       ),
     );
-
-    final textWidget = tester.widget<RTextButton>(find.byType(RTextButton));
-    expect(textWidget.maxLines, 2);
   });
 }

@@ -11,12 +11,7 @@ class RElevatedButton extends RBaseButton {
     super.foregroundColor,
     super.disabledBackgroundColor,
     super.disabledForegroundColor,
-    super.icon,
     super.expanded = false,
-    super.iconAlignment = IconAlignment.start,
-    super.maxLines,
-    super.iconSize,
-    super.textStyle,
     super.borderRadius,
     this.height,
   }) : super(child: child);
@@ -37,38 +32,20 @@ class RElevatedButton extends RBaseButton {
       disabledForegroundColor: disabledForegroundColor,
       backgroundColor: backgroundColor,
       foregroundColor: textColor,
-      textStyle: textStyle,
       shape: borderRadius != null
           ? RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(borderRadius!))
           : null,
     );
 
-    late final Widget button;
-    if (icon != null) {
-      button = ElevatedButton.icon(
-        onPressed: onPressed,
-        style: styleButton,
-        icon: Icon(
-          icon!,
-          color: textColor,
-          size: iconSize,
-        ),
-        label: child,
-        iconAlignment: iconAlignment,
-      );
-    } else {
-      button = ElevatedButton(
-        onPressed: onPressed,
-        style: styleButton,
-        child: child,
-      );
-    }
-
     return SizedBox(
       height: buttonHeight,
       width: expanded ? MediaQuery.sizeOf(context).width : null,
-      child: button,
+      child: ElevatedButton(
+        onPressed: onPressed,
+        style: styleButton,
+        child: child,
+      ),
     );
   }
 }

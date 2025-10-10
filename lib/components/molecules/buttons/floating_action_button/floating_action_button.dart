@@ -10,8 +10,6 @@ class RFloatingActionButton extends RBaseButton {
     super.foregroundColor,
     super.disabledBackgroundColor,
     super.disabledForegroundColor,
-    super.maxLines,
-    super.iconSize,
     super.borderRadius,
   }) : super(child: child);
 

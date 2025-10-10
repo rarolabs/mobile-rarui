@@ -12,11 +12,7 @@ class ROutlinedButton extends RBaseButton {
     super.disabledBackgroundColor,
     super.disabledForegroundColor,
     this.side,
-    super.icon,
     super.expanded = false,
-    super.iconAlignment = IconAlignment.start,
-    super.maxLines,
-    super.iconSize,
     super.borderRadius,
     this.height,
   }) : super(child: child);
@@ -25,7 +21,6 @@ class ROutlinedButton extends RBaseButton {
   final BorderSide? side;
 
   bool get _isDisabled => onPressed == null;
-  bool get _hasIcon => icon != null;
   bool get _hasBorderRadius => borderRadius != null;
 
   @override
@@ -49,28 +44,14 @@ class ROutlinedButton extends RBaseButton {
             ),
     );
 
-    final Widget button = _hasIcon
-        ? OutlinedButton.icon(
-            onPressed: onPressed,
-            style: styleButton,
-            icon: Icon(
-              icon!,
-              color: textColor,
-              size: iconSize,
-            ),
-            label: child,
-            iconAlignment: iconAlignment,
-          )
-        : OutlinedButton(
-            onPressed: onPressed,
-            style: styleButton,
-            child: child,
-          );
-
     return SizedBox(
       height: buttonHeight,
       width: expanded ? MediaQuery.sizeOf(context).width : null,
-      child: button,
+      child: OutlinedButton(
+        onPressed: onPressed,
+        style: styleButton,
+        child: child,
+      ),
     );
   }
 }
