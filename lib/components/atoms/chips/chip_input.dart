@@ -16,12 +16,13 @@ class RChipInput extends StatelessWidget {
     this.deleteIconColor,
     this.backgorundColor,
     this.disabledColor,
+    this.shape,
     this.side,
     this.tooltip,
   });
 
   final Widget? icon;
-  final String label;
+  final Widget label;
   final VoidCallback? onPressed;
   final bool selected;
   final bool isEnabled;
@@ -33,6 +34,7 @@ class RChipInput extends StatelessWidget {
   final Color? deleteIconColor;
   final Color? backgorundColor;
   final Color? disabledColor;
+  final OutlinedBorder? shape;
   final BorderSide? side;
   final String? tooltip;
 
@@ -43,12 +45,7 @@ class RChipInput extends StatelessWidget {
   Widget build(BuildContext context) {
     return InputChip(
       avatar: _hasIcon ? FittedBox(child: icon) : null,
-      label: Text(
-        label,
-        style: TextStyle(
-          color: labelColor,
-        ),
-      ),
+      label: label,
       onPressed: onPressed,
       selected: selected,
       isEnabled: isEnabled,
@@ -62,6 +59,7 @@ class RChipInput extends StatelessWidget {
       iconTheme: IconThemeData(
         color: iconColor,
       ),
+      shape: shape,
       side: side,
       tooltip: tooltip,
     );
