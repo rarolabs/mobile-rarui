@@ -14,9 +14,11 @@ class RFilledButton extends RBaseButton {
     super.expanded = false,
     super.borderRadius,
     this.height,
+    this.padding,
   }) : super(child: child);
 
   final double? height;
+  final EdgeInsetsGeometry? padding;
 
   @override
   Widget build(BuildContext context) {
@@ -29,6 +31,7 @@ class RFilledButton extends RBaseButton {
       disabledBackgroundColor: disabledBackgroundColor,
       disabledForegroundColor: disabledForegroundColor,
       backgroundColor: backgroundColor,
+      padding: padding,
       shape: borderRadius != null
           ? RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(borderRadius!))
