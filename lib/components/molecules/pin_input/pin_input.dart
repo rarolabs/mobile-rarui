@@ -6,6 +6,7 @@ class RPinInput extends StatefulWidget {
     Key? key,
     required this.formKey,
     required this.onComplete,
+    this.onChanged,
     this.onSaved,
     this.obscureText = true,
     this.length = 6,
@@ -26,6 +27,7 @@ class RPinInput extends StatefulWidget {
   final bool obscureText;
   final int length;
   final ValueChanged<String> onComplete;
+  final ValueChanged<String>? onChanged;
   final FormFieldSetter<String>? onSaved;
   final FormFieldValidator<String>? validator;
   final bool useCustomKeyboard;
@@ -155,10 +157,15 @@ class RPinInputState extends State<RPinInput> {
 
     allFilled = controllers.every((c) => c.text.isNotEmpty);
 
+    final inputValue = controllers.map((c) => c.text).join();
+
+    if (widget.onChanged != null) {
+      widget.onChanged!(inputValue);
+    }
+
     if (allFilled) {
-      final full = controllers.map((c) => c.text).join();
       FocusScope.of(context).unfocus();
-      widget.onComplete(full);
+      widget.onComplete(inputValue);
     }
 
     if (mounted) setState(() {});

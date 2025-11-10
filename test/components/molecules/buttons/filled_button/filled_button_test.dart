@@ -41,22 +41,4 @@ void main() {
     expect(button.onPressed, isNull);
     expect(find.text('Disabled'), findsOneWidget);
   });
-
-  testWidgets('RFilledButton with icon renders correctly',
-      (WidgetTester tester) async {
-    await tester.pumpWidget(
-      MaterialApp(
-        home: Scaffold(
-          body: RFilledButton(
-            child: const Text('With Icon'),
-            onPressed: () {},
-            icon: Icons.check,
-          ),
-        ),
-      ),
-    );
-
-    expect(find.text('With Icon'), findsOneWidget);
-    expect(find.byIcon(Icons.check), findsOneWidget);
-  });
 }

@@ -19,24 +19,6 @@ void main() {
     expect(find.byType(ElevatedButton), findsOneWidget);
   });
 
-  testWidgets('RElevatedButton with icon renders correctly',
-      (WidgetTester tester) async {
-    await tester.pumpWidget(
-      MaterialApp(
-        home: Scaffold(
-          body: RElevatedButton(
-            child: const Text('Icon Button'),
-            onPressed: () {},
-            icon: Icons.add,
-          ),
-        ),
-      ),
-    );
-
-    expect(find.text('Icon Button'), findsOneWidget);
-    expect(find.byIcon(Icons.add), findsOneWidget);
-  });
-
   testWidgets('Disabled RElevatedButton renders correctly',
       (WidgetTester tester) async {
     await tester.pumpWidget(

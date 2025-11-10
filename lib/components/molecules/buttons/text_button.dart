@@ -11,11 +11,7 @@ class RTextButton extends RBaseButton {
     super.foregroundColor,
     super.disabledBackgroundColor,
     super.disabledForegroundColor,
-    super.icon,
     super.expanded = false,
-    super.iconAlignment = IconAlignment.start,
-    super.maxLines,
-    super.iconSize,
     this.height,
   }) : super(child: child);
 
@@ -38,32 +34,15 @@ class RTextButton extends RBaseButton {
               borderRadius: BorderRadius.circular(borderRadius!))
           : null,
     );
-    late final Widget button;
-
-    if (icon != null) {
-      button = TextButton.icon(
-        onPressed: onPressed,
-        style: style,
-        icon: Icon(
-          icon!,
-          color: textColor,
-          size: iconSize,
-        ),
-        label: child,
-        iconAlignment: iconAlignment,
-      );
-    } else {
-      button = TextButton(
-        onPressed: onPressed,
-        child: child,
-        style: style,
-      );
-    }
 
     return SizedBox(
       height: buttonHeight,
       width: expanded ? MediaQuery.sizeOf(context).width : null,
-      child: button,
+      child: TextButton(
+        onPressed: onPressed,
+        child: child,
+        style: style,
+      ),
     );
   }
 }

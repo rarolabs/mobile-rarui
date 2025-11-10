@@ -20,25 +20,6 @@ void main() {
     expect(find.byType(FloatingActionButton), findsOneWidget);
   });
 
-  testWidgets('RFloatingActionButtonExtended with icon renders correctly',
-      (WidgetTester tester) async {
-    await tester.pumpWidget(
-      MaterialApp(
-        home: Scaffold(
-          floatingActionButton: RFloatingActionButtonExtended(
-            child: const Text('Create'),
-            onPressed: () {},
-            icon: Icons.add,
-          ),
-        ),
-      ),
-    );
-
-    expect(find.text('Create'), findsOneWidget);
-    expect(find.byIcon(Icons.add), findsOneWidget);
-    expect(find.byType(FloatingActionButton), findsOneWidget);
-  });
-
   testWidgets('RFloatingActionButtonExtended handles disabled state',
       (WidgetTester tester) async {
     await tester.pumpWidget(

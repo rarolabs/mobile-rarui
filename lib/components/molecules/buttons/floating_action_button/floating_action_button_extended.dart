@@ -10,9 +10,6 @@ class RFloatingActionButtonExtended extends RBaseButton {
     super.foregroundColor,
     super.disabledBackgroundColor,
     super.disabledForegroundColor,
-    super.icon,
-    super.maxLines,
-    super.iconSize,
     super.borderRadius,
   }) : super(child: child);
 
@@ -22,32 +19,11 @@ class RFloatingActionButtonExtended extends RBaseButton {
         ? disabledForegroundColor
         : foregroundColor ?? Colors.white);
 
-    late final Widget button;
-    if (icon != null) {
-      button = FloatingActionButton.extended(
-        onPressed: onPressed,
-        icon: Icon(
-          icon!,
-          color: textDefaultColor,
-          size: iconSize,
-        ),
-        label: child,
-        backgroundColor: backgroundColor,
-        foregroundColor: textDefaultColor,
-        shape: borderRadius != null
-            ? RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(borderRadius!))
-            : null,
-      );
-    } else {
-      button = FloatingActionButton.extended(
-        onPressed: onPressed,
-        label: child,
-        backgroundColor: backgroundColor,
-        foregroundColor: textDefaultColor,
-      );
-    }
-
-    return button;
+    return FloatingActionButton.extended(
+      onPressed: onPressed,
+      label: child,
+      backgroundColor: backgroundColor,
+      foregroundColor: textDefaultColor,
+    );
   }
 }

@@ -19,24 +19,6 @@ void main() {
     expect(find.byType(OutlinedButton), findsOneWidget);
   });
 
-  testWidgets('ROutlinedButton with icon renders correctly',
-      (WidgetTester tester) async {
-    await tester.pumpWidget(
-      MaterialApp(
-        home: Scaffold(
-          body: ROutlinedButton(
-            child: const Text('Icon Button'),
-            onPressed: () {},
-            icon: Icons.add,
-          ),
-        ),
-      ),
-    );
-
-    expect(find.text('Icon Button'), findsOneWidget);
-    expect(find.byIcon(Icons.add), findsOneWidget);
-  });
-
   testWidgets('Disabled ROutlinedButton renders correctly',
       (WidgetTester tester) async {
     await tester.pumpWidget(
