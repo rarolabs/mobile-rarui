@@ -14,7 +14,7 @@ void main() {
           return RChipInput(
             icon: Icon(Icons.abc),
             selected: selected.value,
-            label: 'Chip Input',
+            label: Text('Chip Input'),
             onSelected: (value) {
               selected.value = value;
             },
