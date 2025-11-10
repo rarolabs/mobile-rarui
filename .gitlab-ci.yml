@@ -23,10 +23,22 @@ mirror_to_github:
   script:
     - git config --global user.email "ci@gitlab.com"
     - git config --global user.name "GitLab CI"
-    - git clone --mirror "$CI_REPOSITORY_URL" repo
+ 
+    # Clona o repositório
+    - git clone "$CI_REPOSITORY_URL" repo
     - cd repo
-    - git remote set-url --push origin "https://oauth2:${GITHUB_TOKEN}@${GITHUB_REPO}"
-    - git push --mirror
+ 
+    # Define o remote apontando para o GitHub
+    - git remote add github "https://oauth2:${GITHUB_TOKEN}@${GITHUB_REPO}"
+ 
+    # Mostra qual branch será enviada
+    - echo "▶️ Branch atual: $CI_COMMIT_REF_NAME"
+ 
+    # Checkout da branch que disparou a pipeline
+    - git checkout $CI_COMMIT_REF_NAME
+ 
+    # Push somente dessa branch
+    - git push github $CI_COMMIT_REF_NAME --force
   only:
     - main
-    - feature/mirror-ro-github
+    - feature/lib/mirror-to-github
