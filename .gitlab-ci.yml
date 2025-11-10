@@ -26,7 +26,6 @@ mirror_to_github:
     - git clone "$CI_REPOSITORY_URL" repo
     - cd repo
     - git remote add github "https://oauth2:${GITHUB_TOKEN}@${GITHUB_REPO}"
-    - echo "Branch atual: $CI_COMMIT_REF_NAME"
     - git checkout $CI_COMMIT_REF_NAME
     - git push github $CI_COMMIT_REF_NAME --force
   only:
