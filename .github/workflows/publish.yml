@@ -1,16 +1,19 @@
 name: Publish to pub.dev
-
+ 
 on:
-  release:
-    branches:
-      - main
-  push:
-    tag:
-      - '[0-9]+.[0-9]+.[0-9]+' # tag pattern on pub.dev: '{{version}'
+  workflow_dispatch:
+    inputs:
+      version:
+        description: "Versão a ser publicada (ex: 1.2.3)"
+        required: true
+        type: string
  
 jobs:
   publish:
     runs-on: ubuntu-latest
+ 
+    # ✅ Só executa se branch for main
+    if: github.ref == 'refs/heads/main'
  
     steps:
       - name: Checkout code
@@ -26,23 +29,17 @@ jobs:
       - name: Install dependencies
         run: flutter pub get
  
-      - name: Extract version from tag
-        id: version
-        run: |
-          VERSION=${GITHUB_REF#refs/tag/}
-          echo "version=$VERSION" >> $GITHUB_OUTPUT
- 
       - name: Update version in pubspec.yaml
         run: |
-          sed -i "s/^version:.*/version: ${{ steps.version.outputs.version }}/" pubspec.yaml
-
+          sed -i "s/^version:.*/version: ${{ github.event.inputs.version }}/" pubspec.yaml
+ 
       - name: Analyze code
         run: flutter analyze
  
       - name: Run tests
         run: flutter test
  
-      - name: Check publishing requirements (dry run)
+      - name: Check publishing requirements (dry-run)
         run: dart pub publish --dry-run
  
       - name: Save pub.dev credentials
