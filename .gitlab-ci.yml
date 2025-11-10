@@ -2,16 +2,33 @@ image: ghcr.io/cirruslabs/flutter:3.32.4
 
 stages:
 - test
+- mirror
 
 test_job:
-    interruptible: true
-    stage: test
-    script:
-      - echo "Executando testes"
-      - flutter test
-    rules:
-      - if: '$CI_PIPELINE_SOURCE == "merge_request_event" && ($CI_MERGE_REQUEST_TARGET_BRANCH_NAME == "candidate" || $CI_MERGE_REQUEST_TARGET_BRANCH_NAME == "develop")'
-        when: always
-      - if: '$CI_PIPELINE_SOURCE == "push" && $CI_COMMIT_BRANCH == "candidate" || $CI_COMMIT_BRANCH == "develop"'
-        when: always
-      - when: never
+  interruptible: true
+  stage: test
+  script:
+    - echo "Executando testes"
+    - flutter test
+  rules:
+    - if: '$CI_PIPELINE_SOURCE == "merge_request_event" && ($CI_MERGE_REQUEST_TARGET_BRANCH_NAME == "candidate" || $CI_MERGE_REQUEST_TARGET_BRANCH_NAME == "develop")'
+      when: always
+    - if: '$CI_PIPELINE_SOURCE == "push" && $CI_COMMIT_BRANCH == "candidate" || $CI_COMMIT_BRANCH == "develop"'
+      when: always
+    - when: never
+ 
+mirror_to_github:
+  interruptible: true
+  stage: mirror
+  script:
+    - git config --global user.email "ci@gitlab.com"
+    - git config --global user.name "GitLab CI"
+    - git clone "$CI_REPOSITORY_URL" repo
+    - cd repo
+    - git remote add github "https://oauth2:${GITHUB_TOKEN}@${GITHUB_REPO}"
+    - git checkout $CI_COMMIT_REF_NAME
+    - git push github $CI_COMMIT_REF_NAME --force
+  only:
+    - main
+    - candidate
+    - develop
