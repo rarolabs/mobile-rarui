@@ -14,19 +14,39 @@ on:
         type: string
         default: "- Correções de bugs e melhorias de desempenho."
  
- 
 jobs:
-  validate:
+  test_and_lint:
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/main'
  
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
  
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: "3.32.2"
+ 
+      - name: Run flutter pub get
+        run: flutter pub get
+ 
+      - name: Run flutter analyze (lint)
+        run: flutter analyze
+ 
+      - name: Run flutter tests
+        run: flutter test
+ 
+  validate:
+    needs: test_and_lint
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+ 
+    steps:
+      - uses: actions/checkout@v4
       - name: Validate version do pubspec.yaml e CHANGELOG.md
         run: |
           VERSION="${{ github.event.inputs.version }}"
- 
           echo "🔍 Validando versão $VERSION..."
  
           if grep -q "^version: $VERSION" pubspec.yaml; then
@@ -42,7 +62,7 @@ jobs:
           echo "✅ Versão não encontrada, continuar."
  
   update_version:
-    needs: validate      # só executa se validar passou
+    needs: validate
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/main'
  
@@ -84,14 +104,29 @@ jobs:
           flutter-version: "3.32.2"
  
       - run: flutter pub get
-      - run: flutter analyze
-      - run: flutter test
+ 
+      # só dry-run aqui, pois lint e test já foram feitos no job 1
       - run: dart pub publish --dry-run
  
       - name: Save pub.dev credentials
         run: |
           mkdir -p ~/.config/dart
-          printf '%s' "${{ secrets.CREDENTIAL_JSON }}" > ~/.config/dart/pub-credentials.json
+          
+          # ✅ Validação se diretório foi criado
+          if [ ! -d ~/.config/dart ]; then
+            echo "::error::Falha ao criar diretório ~/.config/dart"
+            exit 1
+          fi
+ 
+          echo ${{ secrets.PUB_CREDENTIALS }} | base64 --decode > ~/.config/dart/pub-credentials.json
+ 
+          # ✅ Validação se o arquivo foi criado
+          if [ ! -f ~/.config/dart/pub-credentials.json ]; then
+            echo "::error::Arquivo pub-credentials.json não foi criado!"
+            exit 1
+          fi
+          echo "✅ Credenciais salvas com sucesso."
+          ls -la ~/.config/dart
  
       - name: Publish package
         id: publish
