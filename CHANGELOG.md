@@ -2,6 +2,10 @@
 
 - Correções de bugs e melhorias de desempenho.
 
+## 0.0.3
+
+- Correções de bugs e melhorias de desempenho.
+
 ## 0.0.2
  
 - Componentes baseados no Material 3 (M3) para Flutter.
