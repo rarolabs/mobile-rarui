@@ -7,85 +7,93 @@ on:
         description: "Tag Git e versão do package a ser publicada (ex: 1.2.3)"
         required: true
         type: string
-
+ 
       changelog:
         description: "CHANGELOG.md notes"
         required: true
         type: string
         default: "- Correções de bugs e melhorias de desempenho."
-
+ 
+ 
 jobs:
-  publish:
+  validate:
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/main'
  
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
+ 
+      - name: Validate version do pubspec.yaml e CHANGELOG.md
+        run: |
+          VERSION="${{ github.event.inputs.version }}"
+ 
+          echo "🔍 Validando versão $VERSION..."
+ 
+          if grep -q "^version: $VERSION" pubspec.yaml; then
+            echo "::error::A versão $VERSION já está no pubspec.yaml."
+            exit 1
+          fi
+ 
+          if grep -q "^## $VERSION" CHANGELOG.md; then
+            echo "::error::A versão $VERSION já existe no CHANGELOG.md."
+            exit 1
+          fi
+ 
+          echo "✅ Versão não encontrada, continuar."
+ 
+  update_version:
+    needs: validate      # só executa se validar passou
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+ 
+    steps:
+      - uses: actions/checkout@v4
         with:
           fetch-depth: 0
  
-      - name: Install Flutter
-        uses: subosito/flutter-action@v2
-        with:
-          flutter-version: "3.32.2"
- 
-      - name: Install dependencies
-        run: flutter pub get
- 
-      # ✅ Validação antes de alterar os arquivos
-      - name: Validate version not already released
-        id: validate
-        run: |
-          VERSION="${{ github.event.inputs.version }}"
-          echo "Verificando versão $VERSION..."
-          # Verifica pubspec.yaml
-          if grep -q "^version: $VERSION" pubspec.yaml; then
-            echo "::error::A versão $VERSION já está definida no pubspec.yaml. Pipeline cancelado."
-            exit 1
-          fi
-          # Verifica changelog
-          if grep -q "^## $VERSION" CHANGELOG.md; then
-            echo "::error::A versão $VERSION já existe no CHANGELOG.md. Pipeline cancelado."
-            exit 1
-          fi
-          echo "OK: versão não encontrada, prosseguindo."
- 
-      # Atualiza versão no pubspec.yaml
-      - name: Update version in pubspec.yaml
+      - name: Atualizar versão no pubspec.yaml
         run: |
           sed -i "s/^version:.*/version: ${{ github.event.inputs.version }}/" pubspec.yaml
  
-      # ✅ Garante que existe um CHANGELOG.md mínimo
-      - name: Ensure CHANGELOG.md contains current version
+      - name: Atualizar CHANGELOG.md
         run: printf '%s\n\n%s\n\n%s\n' "## ${{ github.event.inputs.version }}" "${{ github.event.inputs.changelog }}" "$(cat CHANGELOG.md)" > CHANGELOG.md
  
-      # ✅ Commit antes do publish (necessário para evitar erro do pub.dev)
-      - name: Commit version update
+      - name: Commit & Push
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
+ 
           git add pubspec.yaml CHANGELOG.md
-          git commit -m "chore: release ${{ github.event.inputs.version }}" || echo "Nenhuma alteração para commit"
+          git commit -m "chore: release ${{ github.event.inputs.version }}" || echo "Nenhuma mudança"
           git push origin main
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
  
-      - name: Analyze code
-        run: flutter analyze
+  publish:
+    needs: update_version
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
  
-      - name: Run tests
-        run: flutter test
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
  
-      - name: Check publishing requirements (dry-run)
-        run: dart pub publish --dry-run
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: "3.32.2"
+ 
+      - run: flutter pub get
+      - run: flutter analyze
+      - run: flutter test
+      - run: dart pub publish --dry-run
  
       - name: Save pub.dev credentials
         run: |
           mkdir -p ~/.config/dart
-          echo "${{ secrets.CREDENTIAL_JSON }}" > ~/.config/dart/pub-credentials.json
+          printf '%s' "${{ secrets.CREDENTIAL_JSON }}" > ~/.config/dart/pub-credentials.json
  
-      - name: Publish to pub.dev
+      - name: Publish package
         id: publish
         run: dart pub publish --force
  
@@ -93,9 +101,8 @@ jobs:
         if: always()
         run: rm -rf ~/.config/dart
  
-      # ✅ Agora sim: criar e enviar tag *só se publication foi sucesso*
-      - name: Create and push Git Tag
-        if: success() && steps.publish.outcome == 'success'
+      - name: Criar e push da TAG após sucesso
+        if: success()
         run: |
           git tag ${{ github.event.inputs.version }}
           git push origin ${{ github.event.inputs.version }}
