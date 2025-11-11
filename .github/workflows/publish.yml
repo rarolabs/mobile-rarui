@@ -17,8 +17,6 @@ on:
 jobs:
   publish:
     runs-on: ubuntu-latest
- 
-    # Só executa se branch é main
     if: github.ref == 'refs/heads/main'
  
     steps:
@@ -35,13 +33,32 @@ jobs:
       - name: Install dependencies
         run: flutter pub get
  
+      # ✅ Validação antes de alterar os arquivos
+      - name: Validate version not already released
+        id: validate
+        run: |
+          VERSION="${{ github.event.inputs.version }}"
+          echo "Verificando versão $VERSION..."
+          # Verifica pubspec.yaml
+          if grep -q "^version: $VERSION" pubspec.yaml; then
+            echo "::error::A versão $VERSION já está definida no pubspec.yaml. Pipeline cancelado."
+            exit 1
+          fi
+          # Verifica changelog
+          if grep -q "^## $VERSION" CHANGELOG.md; then
+            echo "::error::A versão $VERSION já existe no CHANGELOG.md. Pipeline cancelado."
+            exit 1
+          fi
+          echo "OK: versão não encontrada, prosseguindo."
+ 
+      # Atualiza versão no pubspec.yaml
       - name: Update version in pubspec.yaml
         run: |
           sed -i "s/^version:.*/version: ${{ github.event.inputs.version }}/" pubspec.yaml
  
       # ✅ Garante que existe um CHANGELOG.md mínimo
       - name: Ensure CHANGELOG.md contains current version
-        run: printf '%s\n\n%s\n\n%s\n' "## ${{ github.event.inputs.version }}" "${{ github.event.inputs.changelog }}" "$(cat CHANGELOG.md)" >CHANGELOG.md
+        run: printf '%s\n\n%s\n\n%s\n' "## ${{ github.event.inputs.version }}" "${{ github.event.inputs.changelog }}" "$(cat CHANGELOG.md)" > CHANGELOG.md
  
       # ✅ Commit antes do publish (necessário para evitar erro do pub.dev)
       - name: Commit version update
@@ -49,7 +66,7 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add pubspec.yaml CHANGELOG.md
-          git commit -m "chore: release ${{ github.event.inputs.version }}" || echo "No changes to commit"
+          git commit -m "chore: release ${{ github.event.inputs.version }}" || echo "Nenhuma alteração para commit"
           git push origin main
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -68,7 +85,6 @@ jobs:
           mkdir -p ~/.config/dart
           echo "${{ secrets.CREDENTIAL_JSON }}" > ~/.config/dart/pub-credentials.json
  
-      # Publica
       - name: Publish to pub.dev
         id: publish
         run: dart pub publish --force
