@@ -4,15 +4,21 @@ on:
   workflow_dispatch:
     inputs:
       version:
-        description: "Versão a ser publicada (ex: 1.2.3)"
+        description:  Tag Git e versão do package a ser publicada (ex: 1.2.3)"
         required: true
         type: string
- 
+
+      changelog:
+        description: "CHANGELOG.md notes"
+        required: true
+        type: string
+        default: "- Correções de bugs e melhorias de desempenho."
+
 jobs:
   publish:
     runs-on: ubuntu-latest
  
-    # ✅ Só executa se branch for main
+    # Só executa se branch é main
     if: github.ref == 'refs/heads/main'
  
     steps:
@@ -33,6 +39,21 @@ jobs:
         run: |
           sed -i "s/^version:.*/version: ${{ github.event.inputs.version }}/" pubspec.yaml
  
+      # ✅ Garante que existe um CHANGELOG.md mínimo
+      - name: Ensure CHANGELOG.md contains current version
+        run: printf '%s\n\n%s\n\n%s\n' "## ${{ github.event.inputs.version }}" "${{ github.event.inputs.changelog }}" "$(cat CHANGELOG.md)" >CHANGELOG.md
+ 
+      # ✅ Commit antes do publish (necessário para evitar erro do pub.dev)
+      - name: Commit version update
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add pubspec.yaml CHANGELOG.md
+          git commit -m "chore: release ${{ github.event.inputs.version }}" || echo "No changes to commit"
+          git push origin main
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+ 
       - name: Analyze code
         run: flutter analyze
  
@@ -47,9 +68,20 @@ jobs:
           mkdir -p ~/.config/dart
           echo "${{ secrets.CREDENTIAL_JSON }}" > ~/.config/dart/pub-credentials.json
  
+      # Publica
       - name: Publish to pub.dev
+        id: publish
         run: dart pub publish --force
  
       - name: Cleanup credentials
         if: always()
         run: rm -rf ~/.config/dart
+ 
+      # ✅ Agora sim: criar e enviar tag *só se publication foi sucesso*
+      - name: Create and push Git Tag
+        if: success() && steps.publish.outcome == 'success'
+        run: |
+          git tag ${{ github.event.inputs.version }}
+          git push origin ${{ github.event.inputs.version }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
