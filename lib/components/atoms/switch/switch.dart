@@ -12,6 +12,7 @@ class RSwitch extends StatefulWidget {
     this.inactiveThumbColor,
     this.inactiveTrackColor,
     this.text,
+    this.textStyle
   });
   final bool initialValue;
   final Function(bool)? onChanged;
@@ -22,6 +23,7 @@ class RSwitch extends StatefulWidget {
   final Color? inactiveThumbColor;
   final Color? inactiveTrackColor;
   final String? text;
+  final TextStyle? textStyle;
 
   @override
   State<RSwitch> createState() => _RSwitchState();
@@ -70,7 +72,7 @@ class _RSwitchState extends State<RSwitch> {
             padding: const EdgeInsets.only(left: 8.0),
             child: Text(
               widget.text!,
-              style: Theme.of(context)
+              style: widget.textStyle ?? Theme.of(context)
                   .textTheme
                   .bodyMedium
                   ?.copyWith(fontSize: 14),
