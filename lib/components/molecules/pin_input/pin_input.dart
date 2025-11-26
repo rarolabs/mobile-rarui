@@ -84,7 +84,7 @@ class RPinInputState extends State<RPinInput> {
     return Form(
       key: widget.formKey,
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        mainAxisAlignment: MainAxisAlignment.center,
         spacing: widget.spacing,
         children: List.generate(widget.length, (index) {
           final isFocused = focusNodes[index].hasFocus;
