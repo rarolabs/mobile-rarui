@@ -8,6 +8,7 @@ class RAppBar extends StatelessWidget implements PreferredSizeWidget {
     this.leading,
     this.actions,
     this.centerTitle,
+    this.scrolledUnderElevation,
   }) : super(key: key);
 
   final Color? backgroundColor;
@@ -15,6 +16,7 @@ class RAppBar extends StatelessWidget implements PreferredSizeWidget {
   final Widget? leading;
   final List<Widget>? actions;
   final bool? centerTitle;
+  final double? scrolledUnderElevation;
 
   @override
   Widget build(BuildContext context) {
@@ -25,6 +27,7 @@ class RAppBar extends StatelessWidget implements PreferredSizeWidget {
       actions: actions,
       centerTitle: centerTitle,
       automaticallyImplyLeading: false,
+      scrolledUnderElevation: scrolledUnderElevation,
     );
   }
 
