@@ -193,13 +193,17 @@ class RPinInputState extends State<RPinInput> {
   }
 
   void backspace() {
-    for (int i = controllers.length - 1; i >= 0; i--) {
-      if (controllers[i].text.isNotEmpty) {
-        controllers[i].clear();
-        focusNodes[i].requestFocus();
-        break;
-      }
+    final int index = focusNodes.indexWhere((node) => node.hasFocus);
+
+    if (index == -1) return;
+
+    if (controllers[index].text.isNotEmpty) {
+      controllers[index].clear();
+    } else if (index > 0) {
+      focusNodes[index - 1].requestFocus();
+      controllers[index - 1].clear();
     }
+
     allFilled = controllers.every((c) => c.text.isNotEmpty);
     if (mounted) setState(() {});
   }
