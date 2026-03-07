@@ -196,16 +196,27 @@ class RPinInputState extends State<RPinInput> {
       index = controllers.lastIndexWhere((controller) => controller.text.isNotEmpty);
 
       if (index == -1) return;
+
       focusNodes[index].requestFocus();
-      controllers[index].clear();
+      Future<void>.microtask(() {
+        controllers[index].clear();
+      });
     } else if (controllers[index].text.isNotEmpty) {
       controllers[index].clear();
     } else if (index > 0) {
       focusNodes[index - 1].requestFocus();
-      controllers[index - 1].clear();
+      Future<void>.microtask(() {
+        controllers[index - 1].clear();
+      });
+    }
+
+    final inputValue = controllers.map((c) => c.text).join();
+
+    if (widget.onChanged != null) {
+      widget.onChanged!(inputValue);
     }
 
     allFilled = controllers.every((c) => c.text.isNotEmpty);
-    if (mounted) setState(() {});
+    if (mounted && !allFilled) setState(() {});
   }
 }
