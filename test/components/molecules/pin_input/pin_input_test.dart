@@ -3,13 +3,20 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:rarui/rarui.dart';
 
 void main() {
-  Widget buildTestWidget({int length = 6, Color? activeBorderColor}) {
+  bool onChangedCalled = false;
+
+  void _onChanged(String value) {
+    onChangedCalled = !onChangedCalled;
+  }
+
+  Widget buildTestWidget({int length = 6, Color? activeBorderColor, void Function(String)? onChanged}) {
     final formKey = GlobalKey<FormState>();
     return MaterialApp(
       home: Scaffold(
         body: RPinInput(
           formKey: formKey,
           length: length,
+          onChanged: onChanged,
           activeBorderColor: activeBorderColor,
           onComplete: (_) {},
           key: const Key('pin_input_widget'),
@@ -17,6 +24,10 @@ void main() {
       ),
     );
   }
+
+  tearDown(() {
+    onChangedCalled = false;
+  });
 
   testWidgets('RPinInput deve renderizar corretamente', (WidgetTester tester) async {
     await tester.pumpWidget(buildTestWidget(length: 5));
@@ -89,27 +100,55 @@ void main() {
     expect(pinCode, equals('543'));
   });
 
-  testWidgets('backspace apaga corretamente o digito do campo em foco - No exemplo foca no terceiro campo',
-      (WidgetTester tester) async {
-    await tester.pumpWidget(buildTestWidget(length: 3));
-    final state = tester.state<RPinInputState>(find.byKey(const Key('pin_input_widget')));
+  group('backspace method', () {
+    testWidgets(
+        'backspace apaga corretamente o dígito do campo em foco - No exemplo foca no terceiro campo - Deve chamar o onChanged ao final do método caso tenha sido passado',
+        (WidgetTester tester) async {
+      await tester.pumpWidget(buildTestWidget(length: 3, onChanged: _onChanged));
+      final state = tester.state<RPinInputState>(find.byKey(const Key('pin_input_widget')));
 
-    state.addDigit('1');
-    state.addDigit('2');
-    state.addDigit('3');
-    await tester.pump();
+      state.addDigit('1');
+      state.addDigit('2');
+      state.addDigit('3');
+      await tester.pump();
 
-    expect(find.text('3'), findsOneWidget);
+      expect(find.text('3'), findsOneWidget);
+      expect(onChangedCalled, isFalse);
 
-    final fieldInFocus = find.byType(RTextFormField).at(2);
+      final fieldInFocus = find.byType(RTextFormField).at(2);
 
-    await tester.tap(fieldInFocus);
+      await tester.tap(fieldInFocus);
 
-    state.backspace();
+      state.backspace();
 
-    await tester.pump();
-    expect(find.text('3'), findsNothing);
-    expect(find.text('2'), findsOneWidget);
-    expect(find.text('1'), findsOneWidget);
+      await tester.pump();
+      expect(find.text('3'), findsNothing);
+      expect(find.text('2'), findsOneWidget);
+      expect(find.text('1'), findsOneWidget);
+      expect(onChangedCalled, isTrue);
+    });
+
+    testWidgets(
+        'backspace apaga corretamente o dígito do último campo caso não tenha um campo focado - No exemplo o último campo com dígito vai ser apagado mesmo sem foco - Não deve chamar o onChanged ao final do método pois não foi passado',
+        (WidgetTester tester) async {
+      await tester.pumpWidget(buildTestWidget(length: 3));
+      final state = tester.state<RPinInputState>(find.byKey(const Key('pin_input_widget')));
+
+      state.addDigit('1');
+      state.addDigit('2');
+      state.addDigit('3');
+      await tester.pump();
+
+      expect(find.text('3'), findsOneWidget);
+      expect(onChangedCalled, isFalse);
+
+      state.backspace();
+
+      await tester.pump();
+      expect(find.text('3'), findsNothing);
+      expect(find.text('2'), findsOneWidget);
+      expect(find.text('1'), findsOneWidget);
+      expect(onChangedCalled, isFalse);
+    });
   });
 }
