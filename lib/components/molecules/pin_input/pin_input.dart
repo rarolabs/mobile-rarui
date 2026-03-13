@@ -84,21 +84,18 @@ class RPinInputState extends State<RPinInput> {
     return Form(
       key: widget.formKey,
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        mainAxisAlignment: MainAxisAlignment.center,
         spacing: widget.spacing,
         children: List.generate(widget.length, (index) {
           final isFocused = focusNodes[index].hasFocus;
-          final borderColor = allFilled
-              ? activeColor
-              : (isFocused ? activeColor : defaultColor);
+          final borderColor = allFilled ? activeColor : (isFocused ? activeColor : defaultColor);
 
           return SizedBox(
             width: widget.widthFormField,
             height: widget.heightFormField,
             child: Container(
               decoration: BoxDecoration(
-                border:
-                    Border.all(color: borderColor, width: widget.borderWidth),
+                border: Border.all(color: borderColor, width: widget.borderWidth),
                 borderRadius: BorderRadius.circular(8),
                 color: widget.backgroundColor ?? Colors.transparent,
               ),
@@ -193,14 +190,33 @@ class RPinInputState extends State<RPinInput> {
   }
 
   void backspace() {
-    for (int i = controllers.length - 1; i >= 0; i--) {
-      if (controllers[i].text.isNotEmpty) {
-        controllers[i].clear();
-        focusNodes[i].requestFocus();
-        break;
-      }
+    int index = focusNodes.indexWhere((node) => node.hasFocus);
+
+    if (index == -1) {
+      index = controllers.lastIndexWhere((controller) => controller.text.isNotEmpty);
+
+      if (index == -1) return;
+
+      focusNodes[index].requestFocus();
+      Future<void>.microtask(() {
+        controllers[index].clear();
+      });
+    } else if (controllers[index].text.isNotEmpty) {
+      controllers[index].clear();
+    } else if (index > 0) {
+      focusNodes[index - 1].requestFocus();
+      Future<void>.microtask(() {
+        controllers[index - 1].clear();
+      });
     }
+
+    final inputValue = controllers.map((c) => c.text).join();
+
+    if (widget.onChanged != null) {
+      widget.onChanged!(inputValue);
+    }
+
     allFilled = controllers.every((c) => c.text.isNotEmpty);
-    if (mounted) setState(() {});
+    if (mounted && !allFilled) setState(() {});
   }
 }

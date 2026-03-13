@@ -10,6 +10,9 @@ class RSliverAppBarLarge extends StatelessWidget {
     this.centerTitle,
     this.pinned = false,
     this.expandedHeight,
+    this.flexibleSpace,
+    this.titleTextStyle,
+    this.scrolledUnderElevation,
   }) : super(key: key);
 
   final Color? backgroundColor;
@@ -19,6 +22,9 @@ class RSliverAppBarLarge extends StatelessWidget {
   final bool? centerTitle;
   final bool pinned;
   final double? expandedHeight;
+  final Widget? flexibleSpace;
+  final TextStyle? titleTextStyle;
+  final double? scrolledUnderElevation;
 
   @override
   Widget build(BuildContext context) {
@@ -30,6 +36,9 @@ class RSliverAppBarLarge extends StatelessWidget {
       centerTitle: centerTitle,
       expandedHeight: expandedHeight,
       pinned: pinned,
+      flexibleSpace: flexibleSpace,
+      titleTextStyle: titleTextStyle,
+      scrolledUnderElevation: scrolledUnderElevation,
     );
   }
 }
