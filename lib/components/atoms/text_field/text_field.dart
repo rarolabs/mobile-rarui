@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-
+ 
 class RTextField extends StatelessWidget {
   RTextField({
     Key? key,
     this.controller,
     this.decoration,
     this.keyboardType,
+    this.textCapitalization,
     this.textInputAction,
     this.style,
     this.textAlign = TextAlign.start,
@@ -21,10 +22,11 @@ class RTextField extends StatelessWidget {
     this.inputFormatters,
     this.onTap,
   }) : super(key: key);
-
+ 
   final TextEditingController? controller;
   final InputDecoration? decoration;
   final TextInputType? keyboardType;
+  final TextCapitalization? textCapitalization;
   final TextInputAction? textInputAction;
   final TextStyle? style;
   final TextAlign textAlign;
@@ -38,13 +40,14 @@ class RTextField extends StatelessWidget {
   final ValueChanged<String>? onSubmitted;
   final List<TextInputFormatter>? inputFormatters;
   final GestureTapCallback? onTap;
-
+ 
   @override
   Widget build(BuildContext context) {
     return TextField(
       controller: controller,
       decoration: decoration,
       keyboardType: keyboardType,
+      textCapitalization: textCapitalization ?? TextCapitalization.none,
       textInputAction: textInputAction,
       style: style,
       textAlign: textAlign,
