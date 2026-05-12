@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:rarui/components/atoms/text_field/text_form_field.dart';
 
 class RPinInput extends StatefulWidget {
@@ -88,38 +89,58 @@ class RPinInputState extends State<RPinInput> {
         spacing: widget.spacing,
         children: List.generate(widget.length, (index) {
           final isFocused = focusNodes[index].hasFocus;
-          final borderColor = allFilled ? activeColor : (isFocused ? activeColor : defaultColor);
+          final borderColor = allFilled
+              ? activeColor
+              : (isFocused ? activeColor : defaultColor);
 
           return SizedBox(
             width: widget.widthFormField,
             height: widget.heightFormField,
             child: Container(
               decoration: BoxDecoration(
-                border: Border.all(color: borderColor, width: widget.borderWidth),
+                border:
+                    Border.all(color: borderColor, width: widget.borderWidth),
                 borderRadius: BorderRadius.circular(8),
                 color: widget.backgroundColor ?? Colors.transparent,
               ),
               child: AbsorbPointer(
                 absorbing: widget.useCustomKeyboard,
                 child: Center(
-                  child: RTextFormField(
-                    key: Key('pin_input_$index'),
-                    controller: controllers[index],
-                    autofocus: widget.autofocus && index == 0,
-                    focusNode: focusNodes[index],
-                    readOnly: widget.useCustomKeyboard,
-                    obscureText: widget.obscureText,
-                    textAlign: TextAlign.center,
-                    style: widget.textStyle,
-                    decoration: const InputDecoration(
-                      border: InputBorder.none,
-                      isDense: true,
-                      contentPadding: EdgeInsets.zero,
+                  child: Focus(
+                    onKeyEvent: (node, event) {
+                      if (event is KeyDownEvent &&
+                          event.logicalKey == LogicalKeyboardKey.backspace &&
+                          controllers[index].text.isEmpty &&
+                          index > 0) {
+                        focusNodes[index - 1].requestFocus();
+                        controllers[index - 1].clear();
+
+                        _notifyChanges();
+
+                        return KeyEventResult.handled;
+                      }
+
+                      return KeyEventResult.ignored;
+                    },
+                    child: RTextFormField(
+                      key: Key('pin_input_$index'),
+                      controller: controllers[index],
+                      autofocus: widget.autofocus && index == 0,
+                      focusNode: focusNodes[index],
+                      readOnly: widget.useCustomKeyboard,
+                      obscureText: widget.obscureText,
+                      textAlign: TextAlign.center,
+                      style: widget.textStyle,
+                      decoration: const InputDecoration(
+                        border: InputBorder.none,
+                        isDense: true,
+                        contentPadding: EdgeInsets.zero,
+                      ),
+                      keyboardType: TextInputType.number,
+                      validator: widget.validator,
+                      onSaved: widget.onSaved,
+                      onChanged: (value) => _onChanged(value, index),
                     ),
-                    keyboardType: TextInputType.number,
-                    validator: widget.validator,
-                    onSaved: widget.onSaved,
-                    onChanged: (value) => _onChanged(value, index),
                   ),
                 ),
               ),
@@ -193,7 +214,8 @@ class RPinInputState extends State<RPinInput> {
     int index = focusNodes.indexWhere((node) => node.hasFocus);
 
     if (index == -1) {
-      index = controllers.lastIndexWhere((controller) => controller.text.isNotEmpty);
+      index = controllers
+          .lastIndexWhere((controller) => controller.text.isNotEmpty);
 
       if (index == -1) return;
 
@@ -218,5 +240,15 @@ class RPinInputState extends State<RPinInput> {
 
     allFilled = controllers.every((c) => c.text.isNotEmpty);
     if (mounted && !allFilled) setState(() {});
+  }
+
+  void _notifyChanges() {
+    allFilled = controllers.every((c) => c.text.isNotEmpty);
+
+    final inputValue = controllers.map((c) => c.text).join();
+
+    widget.onChanged?.call(inputValue);
+
+    if (mounted) setState(() {});
   }
 }
