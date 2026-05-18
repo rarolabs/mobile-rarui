@@ -9,6 +9,7 @@ class RTextFormField extends StatelessWidget {
     this.focusNode,
     this.decoration,
     this.keyboardType,
+    this.textCapitalization,
     this.textInputAction,
     this.style,
     this.textAlign = TextAlign.start,
@@ -32,6 +33,7 @@ class RTextFormField extends StatelessWidget {
   final FocusNode? focusNode;
   final InputDecoration? decoration;
   final TextInputType? keyboardType;
+   final TextCapitalization? textCapitalization;
   final TextInputAction? textInputAction;
   final TextStyle? style;
   final TextAlign textAlign;
@@ -59,6 +61,7 @@ class RTextFormField extends StatelessWidget {
       focusNode: focusNode,
       decoration: decoration,
       keyboardType: keyboardType,
+      textCapitalization: textCapitalization ?? TextCapitalization.none,
       textInputAction: textInputAction,
       style: style,
       textAlign: textAlign,
