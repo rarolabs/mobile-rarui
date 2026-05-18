@@ -1,4 +1,8 @@
 ## 0.0.4
+
+- Correções de bugs e melhorias de desempenho.
+
+## 0.0.4
  
 - Correções de bugs e melhorias de desempenho.
 - Inclusão de um novo componente.
